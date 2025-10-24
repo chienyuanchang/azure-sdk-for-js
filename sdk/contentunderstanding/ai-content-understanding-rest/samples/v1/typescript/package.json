@@ -1,0 +1,18 @@
+{
+  "name": "ai-content-understanding-rest-typescript-samples",
+  "version": "1.0.0",
+  "description": "TypeScript samples for Azure AI Content Understanding REST API.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/sampleAnalyzeBinary.js"
+  },
+  "dependencies": {
+    "@azure-rest/ai-content-understanding": "*",
+    "@azure/identity": "*",
+    "dotenv": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
