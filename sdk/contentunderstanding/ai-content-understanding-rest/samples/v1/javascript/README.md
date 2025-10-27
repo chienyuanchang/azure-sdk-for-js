@@ -1,54 +1,62 @@
-# JavaScript Samples for ai-content-understanding-rest
 
-This folder contains JavaScript sample code for using the Azure AI Content Understanding REST API.
+---
+page_type: sample
+languages:
+  - javascript
+products:
+  - azure
+  - azure-ai-content-understanding
+urlFragment: ai-content-understanding-rest-javascript
+---
 
-## Structure
-- `sample.env`: Example environment variables for authentication and configuration.
-- `package.json`: Sample dependencies and scripts for running samples.
-- `content_analyzers_analyze_binary.js`: Example usage of the Content Analyzers API.
-- `sample_files/`: Example input files for binary/text analysis.
+# Azure AI Content Understanding REST client library samples for JavaScript
 
-## How to Run
+These sample programs show how to use the JavaScript client libraries for Azure AI Content Understanding REST in common scenarios.
+
+| **File Name**                        | **Description**                                                        |
+| ------------------------------------- | ---------------------------------------------------------------------- |
+| [contentAnalyzersAnalyzeBinary.js](contentAnalyzersAnalyzeBinary.js) | Analyze a PDF using the prebuilt-documentAnalyzer.                     |
+
+## Prerequisites
+
+- [Node.js LTS](https://github.com/nodejs/release#release-schedule)
+- An [Azure subscription](https://azure.microsoft.com/free/)
+- An [Azure AI Content Understanding resource](https://learn.microsoft.com/azure/ai-services/content-understanding/)
+
+## Setup
+
 1. Install dependencies:
    ```bash
    pnpm install
    ```
-2. Set up your environment variables (see `sample.env`).
-3. Run a sample:
+2. Copy `sample.env` to `.env` and fill in your endpoint/key:
    ```bash
-   node content_analyzers_analyze_binary.js
-   ```
-
-## Quick Run (published packages)
-1. Make sure `package.json` contains the required dependencies (or install them):
-   ```bash
-   npm install @azure-rest/ai-content-understanding @azure/identity @azure/core-auth dotenv
-   ```
-2. Run the sample:
-   ```bash
-   node content_analyzers_analyze_binary.js
-   ```
-
-## Local Development
-1. From the repo root, install workspace packages and build the client package:
-   ```bash
-   pnpm install
-   npx turbo build -F ./sdk/contentunderstanding/ai-content-understanding-rest...
-   ```
-2. From the sample folder, install (pnpm will link local workspace package):
-   ```bash
-   pnpm install
+   cp sample.env .env
+   # Edit .env to add your values
    ```
 3. Run the sample:
    ```bash
-   node content_analyzers_analyze_binary.js
+   node contentAnalyzersAnalyzeBinary.js
    ```
 
+## Running with Published Packages
+
+If you want to use the published NPM packages directly:
+
+```bash
+npm install @azure-rest/ai-content-understanding @azure/identity @azure/core-auth dotenv
+node contentAnalyzersAnalyzeBinary.js
+```
+
 ## Notes
+
 - The sample uses `DefaultAzureCredential` if `AZURE_CONTENT_UNDERSTANDING_KEY` is not set.
-- The sample demonstrates a simple polling loop against the `operation-location` returned by the service.
+- The sample demonstrates a simple polling loop using the SDK's poller helper.
 
-## More Samples
-Add more sample files following the naming convention: `sample<Operation>.js`.
+## Next Steps
 
-For TypeScript samples, see the `typescript/` folder.
+- [API Reference](https://learn.microsoft.com/javascript/api/@azure-rest/ai-content-understanding)
+- [Package README](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/contentunderstanding/ai-content-understanding-rest/README.md)
+- For TypeScript samples, see the [`typescript/`](../typescript) folder.
+
+---

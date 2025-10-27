@@ -1,8 +1,8 @@
 {
-  "name": "@azure-samples/ai-document-intelligence-js",
+  "name": "@azure-samples/ai-content-understanding-rest-js",
   "private": true,
   "version": "1.0.0",
-  "description": "Document Intelligence client library samples for JavaScript",
+  "description": "AI Content Understanding REST client library samples for JavaScript",
   "engines": {
     "node": ">=20.0.0"
   },
