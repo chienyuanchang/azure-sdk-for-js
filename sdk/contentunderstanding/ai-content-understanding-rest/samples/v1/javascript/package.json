@@ -33,6 +33,6 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node content_analyzers_analyze_binary.js"
+    "start": "node contentAnalyzersAnalyzeBinary.js"
   }
 }

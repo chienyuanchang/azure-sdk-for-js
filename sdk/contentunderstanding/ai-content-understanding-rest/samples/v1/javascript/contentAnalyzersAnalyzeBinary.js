@@ -3,6 +3,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
 // --------------------------------------------------------------------------
+
 /**
  * Async sample: use the prebuilt-documentAnalyzer to extract content from a PDF.
  *
@@ -18,11 +19,13 @@
  *   These variables can be set in a .env file in the samples directory for repeated use.
  *
  * Run:
- *   node content_analyzers_analyze_binary.js
+ *   node contentAnalyzersAnalyzeBinary.js
  */
+
 
 import dotenv from "dotenv";
 dotenv.config();
+
 
 import fs from "fs";
 import path from "path";
@@ -30,29 +33,30 @@ import { fileURLToPath } from "url";
 import { DefaultAzureCredential } from "@azure/identity";
 import createClient, { getLongRunningPoller } from "@azure-rest/ai-content-understanding";
 
-// Helper to pause for polling
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
+// Helper to pause for polling (not used, can be removed if unnecessary)
+// const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 // Helper to select credential based on environment
-async function getCredential() {
+const getCredential = async () => {
   const key = process.env.AZURE_CONTENT_UNDERSTANDING_KEY;
   if (key) {
     // Lazy import to avoid requiring @azure/core-auth for AAD samples
     const { AzureKeyCredential } = await import("@azure/core-auth");
     return new AzureKeyCredential(key);
-  } else {
-    return new DefaultAzureCredential();
   }
-}
+  return new DefaultAzureCredential();
+};
+
 
 // Print markdown and document info, matching Python sample's clarity
-function printAnalysisResult(analyzeResult) {
-  if (!analyzeResult?.contents || analyzeResult.contents.length === 0) {
+const printAnalysisResult = (analyzeResult) => {
+  if (!analyzeResult?.contents?.length) {
     console.log("No contents found in result:", JSON.stringify(analyzeResult, null, 2));
     return;
   }
@@ -62,7 +66,6 @@ function printAnalysisResult(analyzeResult) {
   console.log(content.markdown || "(no markdown)");
   console.log("=".repeat(50));
 
-  // Check if this is document content to access document-specific properties
   if (content.kind === "document") {
     const doc = content;
     console.log(`\n📚 Document Information:`);
@@ -70,7 +73,7 @@ function printAnalysisResult(analyzeResult) {
     console.log(`End page: ${doc.endPageNumber}`);
     console.log(`Total pages: ${doc.endPageNumber - doc.startPageNumber + 1}`);
 
-    if (doc.pages) {
+    if (doc.pages?.length) {
       console.log(`\n📄 Pages (${doc.pages.length}):`);
       doc.pages.forEach((page) => {
         const unit = doc.unit || "units";
@@ -78,7 +81,7 @@ function printAnalysisResult(analyzeResult) {
       });
     }
 
-    if (doc.tables) {
+    if (doc.tables?.length) {
       console.log(`\n📊 Tables (${doc.tables.length}):`);
       doc.tables.forEach((table, i) => {
         console.log(`  Table ${i + 1}: ${table.rowCount} rows x ${table.columnCount} columns`);
@@ -87,16 +90,15 @@ function printAnalysisResult(analyzeResult) {
   } else {
     console.log("\n📚 Document Information: Not available for this content type");
   }
-}
+};
+
 
 // Main sample logic
-async function main() {
+const main = async () => {
   // 1. Authenticate with Azure AI Content Understanding
   const endpoint = process.env.AZURE_CONTENT_UNDERSTANDING_ENDPOINT;
   if (!endpoint) {
-    throw new Error(
-      "Please set AZURE_CONTENT_UNDERSTANDING_ENDPOINT in your environment (or in .env)."
-    );
+    throw new Error("Please set AZURE_CONTENT_UNDERSTANDING_ENDPOINT in your environment (or in .env).");
   }
   const credential = await getCredential();
 
@@ -115,20 +117,29 @@ async function main() {
   console.log(`🔍 Analyzing ${samplePath} with prebuilt-documentAnalyzer...`);
 
   // Submit analysis request
-  const initialResponse = await client
-    .path(`/analyzers/${analyzerId}:analyze`, analyzerId)
-    .post({
-      contentType: "application/pdf",
-      body: pdfBytes,
-    });
+  let initialResponse;
+  try {
+    initialResponse = await client
+      .path(`/analyzers/${analyzerId}:analyze`, analyzerId)
+      .post({
+        contentType: "application/pdf",
+        body: pdfBytes,
+      });
+  } catch (err) {
+    console.error("Failed to submit analysis request:", err);
+    process.exit(1);
+  }
 
   // 4. Poll for result and print output using SDK poller helper
-  if (initialResponse.status === "202" || initialResponse.status === 202 || initialResponse.status === "200" || initialResponse.status === 200) {
-    // Use the SDK's poller helper for LRO
-    const poller = await getLongRunningPoller(client, initialResponse);
-    const pollResult = await poller.pollUntilDone();
-    const analyzeResult = pollResult.body?.result ?? pollResult.body;
-    printAnalysisResult(analyzeResult);
+  if (["202", 202, "200", 200].includes(initialResponse.status)) {
+    try {
+      const poller = await getLongRunningPoller(client, initialResponse);
+      const pollResult = await poller.pollUntilDone();
+      const analyzeResult = pollResult.body?.result ?? pollResult.body;
+      printAnalysisResult(analyzeResult);
+    } catch (err) {
+      console.error("Error during polling or result processing:", err);
+    }
   } else {
     console.error("Unexpected initial response status:", initialResponse.status);
     console.error(initialResponse.body);
@@ -138,9 +149,11 @@ async function main() {
   if (credential instanceof DefaultAzureCredential && typeof credential.close === "function") {
     await credential.close();
   }
-}
+};
 
-if (import.meta.main || require.main === module) {
+
+// Entry point check for both ESM and CommonJS
+if (typeof require !== "undefined" && require.main === module || import.meta.main) {
   main().catch((err) => {
     console.error(err);
     process.exit(1);
