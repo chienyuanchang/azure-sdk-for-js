@@ -1,88 +1,152 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 
-import createContentUnderstandingClient from "../../../../src/index";
-import { DefaultAzureCredential, AzureKeyCredential } from "@azure/identity";
+// --------------------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See License.txt in the project root for license information.
+// --------------------------------------------------------------------------
+
+/**
+ * Async sample: use the prebuilt-documentAnalyzer to extract content from a PDF.
+ *
+ * Prerequisites:
+ *   pnpm install @azure-rest/ai-content-understanding @azure/identity @azure/core-auth dotenv
+ *   Place a sample PDF at samples/javascript/sample_files/sample_invoice.pdf
+ *   Set environment variable AZURE_CONTENT_UNDERSTANDING_ENDPOINT (required)
+ *   Optionally set AZURE_CONTENT_UNDERSTANDING_KEY (otherwise DefaultAzureCredential will be used)
+ *
+ * Environment variables:
+ *   AZURE_CONTENT_UNDERSTANDING_ENDPOINT   (required)
+ *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional)
+ *   These variables can be set in a .env file in the typescript directory for repeated use.
+ *
+ * Run:
+ *   pnpm ts-node sampleAnalyzeBinary.ts
+ */
+
+import dotenv from "dotenv";
 import * as fs from "fs";
 import * as path from "path";
-import dotenv from "dotenv";
+import { fileURLToPath } from "url";
+import { DefaultAzureCredential } from "@azure/identity";
+import createClient, { getLongRunningPoller } from "@azure-rest/ai-content-understanding";
 
-dotenv.config({ path: path.resolve(__dirname, "../../sample.env") });
+// Polyfill __dirname for ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-async function main() {
-  const endpoint = process.env["AZURE_CONTENT_UNDERSTANDING_ENDPOINT"];
-  if (!endpoint) {
-    throw new Error("Missing AZURE_CONTENT_UNDERSTANDING_ENDPOINT in environment");
+// Load environment variables from .env in parent directory
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
+
+// Helper to select credential based on environment
+const getCredential = async (): Promise<DefaultAzureCredential | { key: string }> => {
+  const key = process.env.AZURE_CONTENT_UNDERSTANDING_KEY;
+  if (key) {
+    // Lazy import to avoid requiring @azure/core-auth for AAD samples
+    const { AzureKeyCredential } = await import("@azure/core-auth");
+    return new AzureKeyCredential(key);
   }
-  const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
-  const credential = key ? new AzureKeyCredential(key) : new DefaultAzureCredential();
+  return new DefaultAzureCredential();
+};
 
-  const client = createContentUnderstandingClient(endpoint, credential);
-
-  // Read PDF file
-  const pdfPath = path.resolve(__dirname, "../../../../sample_files/sample_invoice.pdf");
-  const pdfBytes = fs.readFileSync(pdfPath);
-
-  console.log(`Analyzing ${pdfPath} with prebuilt-documentAnalyzer...`);
-
-  // Start analyze binary operation
-  const initialResponse = await client
-    .path("/contentAnalyzers/prebuilt-documentAnalyzer:analyzeBinary")
-    .post({
-      contentType: "application/pdf",
-      body: pdfBytes,
-    });
-
-  if (initialResponse.status !== 202) {
-    console.error("Failed to start analysis", initialResponse.body);
+// Print markdown and document info, matching JS sample's clarity
+const printAnalysisResult = (analyzeResult: any): void => {
+  if (!analyzeResult?.contents?.length) {
+    console.log("No contents found in result:", JSON.stringify(analyzeResult, null, 2));
     return;
   }
+  const content = analyzeResult.contents[0];
+  console.log("\n📄 Markdown Content:");
+  console.log("=".repeat(50));
+  console.log(content.markdown || "(no markdown)");
+  console.log("=".repeat(50));
 
-  // Get operation-location for polling
-  const operationLocation = initialResponse.headers["operation-location"] || initialResponse.headers["Operation-Location"];
-  if (!operationLocation) {
-    throw new Error("No operation-location header found in response");
-  }
+  if (content.kind === "document") {
+    const doc = content;
+    console.log(`\n📚 Document Information:`);
+    console.log(`Start page: ${doc.startPageNumber}`);
+    console.log(`End page: ${doc.endPageNumber}`);
+    console.log(`Total pages: ${doc.endPageNumber - doc.startPageNumber + 1}`);
 
-  // Poll for result
-  let resultResponse;
-  let pollCount = 0;
-  while (true) {
-    await new Promise((r) => setTimeout(r, 2000));
-    resultResponse = await client
-      .path("/analyzerResults/{operationId}", getOperationIdFromUrl(operationLocation))
-      .get();
-    pollCount++;
-    if (resultResponse.status === 200 && resultResponse.body.status === "succeeded") {
-      break;
+    if (doc.pages?.length) {
+      console.log(`\n📄 Pages (${doc.pages.length}):`);
+      doc.pages.forEach((page: any) => {
+        const unit = doc.unit || "units";
+        console.log(`  Page ${page.pageNumber}: ${page.width} x ${page.height} ${unit}`);
+      });
     }
-    if (resultResponse.body.status === "failed") {
-      throw new Error("Analysis failed: " + JSON.stringify(resultResponse.body.error));
-    }
-    if (pollCount > 30) {
-      throw new Error("Polling timed out");
-    }
-  }
 
-  // Print markdown content
-  const contents = resultResponse.body.result?.contents;
-  if (contents && contents.length > 0) {
-    console.log("\nMarkdown Content:\n" + "=".repeat(50));
-    console.log(contents[0].markdown);
-    console.log("=".repeat(50));
+    if (doc.tables?.length) {
+      console.log(`\n📊 Tables (${doc.tables.length}):`);
+      doc.tables.forEach((table: any, i: number) => {
+        console.log(`  Table ${i + 1}: ${table.rowCount} rows x ${table.columnCount} columns`);
+      });
+    }
   } else {
-    console.log("No content found in analysis result.");
+    console.log("\n📚 Document Information: Not available for this content type");
   }
-}
+};
 
-function getOperationIdFromUrl(url: string): string {
-  // Extract operationId from .../analyzerResults/{operationId}
-  const match = url.match(/\/analyzerResults\/([^/?]+)/);
-  if (!match) throw new Error("Invalid operation-location URL: " + url);
-  return match[1];
-}
+// Main sample logic
+const main = async (): Promise<void> => {
+  // 1. Authenticate with Azure AI Content Understanding
+  const endpoint = process.env.AZURE_CONTENT_UNDERSTANDING_ENDPOINT;
+  if (!endpoint) {
+    throw new Error("Please set AZURE_CONTENT_UNDERSTANDING_ENDPOINT in your environment (or in .env).");
+  }
+  const credential = await getCredential();
 
-main().catch((err) => {
-  console.error("Error running sampleAnalyzeBinary:", err);
-  process.exit(1);
-});
+  // 2. Read a PDF file from disk
+  const samplePath = path.join(__dirname, "..", "..", "..", "..", "sample_files", "sample_invoice.pdf");
+  if (!fs.existsSync(samplePath)) {
+    console.error("Sample PDF not found:", samplePath);
+    console.error("Put a PDF at samples/javascript/sample_files/sample_invoice.pdf and re-run the sample.");
+    process.exit(1);
+  }
+  const pdfBytes = fs.readFileSync(samplePath);
+
+  // 3. Analyze the document using prebuilt-documentAnalyzer
+  const client = createClient(endpoint, credential);
+  const analyzerId = "prebuilt-documentAnalyzer";
+  console.log(`🔍 Analyzing ${samplePath} with prebuilt-documentAnalyzer...`);
+
+  // Submit analysis request
+  let initialResponse: any;
+  try {
+    initialResponse = await client
+      .path(`/analyzers/${analyzerId}:analyze`, analyzerId)
+      .post({
+        contentType: "application/pdf",
+        body: pdfBytes,
+      });
+  } catch (err) {
+    console.error("Failed to submit analysis request:", err);
+    process.exit(1);
+  }
+
+  // 4. Poll for result and print output using SDK poller helper
+  if (["202", 202, "200", 200].includes(initialResponse.status)) {
+    try {
+      const poller = await getLongRunningPoller(client, initialResponse);
+      const pollResult = await poller.pollUntilDone();
+      const analyzeResult = pollResult.body?.result ?? pollResult.body;
+      printAnalysisResult(analyzeResult);
+    } catch (err) {
+      console.error("Error during polling or result processing:", err);
+    }
+  } else {
+    console.error("Unexpected initial response status:", initialResponse.status);
+    console.error(initialResponse.body);
+  }
+
+  // Manually close DefaultAzureCredential if it was used
+  if (credential instanceof DefaultAzureCredential && typeof (credential as any).close === "function") {
+    await (credential as any).close();
+  }
+};
+
+// Entry point check for ESM
+if (import.meta.main) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "ai-content-understanding-rest-typescript-samples",
   "version": "1.0.0",
   "description": "TypeScript samples for Azure AI Content Understanding REST API.",
