@@ -43,3 +43,38 @@ export const saveJsonToFile = (
 
   return filePath;
 };
+
+/**
+ * Extract the actual value from a ContentField
+ * @param {Record<string, any>} fields - A dictionary of field names to ContentField objects
+ * @param {string} fieldName - The name of the field to extract
+ * @returns {any} The extracted value or null if not found
+ */
+export const getFieldValue = (fields, fieldName) => {
+  if (!fields || !(fieldName in fields)) {
+    return null;
+  }
+
+  const field = fields[fieldName];
+  
+  // Extract value based on field type
+  if (field.type === "string") {
+    return field.valueString;
+  } else if (field.type === "number") {
+    return field.valueNumber;
+  } else if (field.type === "integer") {
+    return field.valueInteger;
+  } else if (field.type === "boolean") {
+    return field.valueBoolean;
+  } else if (field.type === "date") {
+    return field.valueDate;
+  } else if (field.type === "time") {
+    return field.valueTime;
+  } else if (field.type === "array") {
+    return field.valueArray;
+  } else if (field.type === "object") {
+    return field.valueObject;
+  }
+  
+  return null;
+};

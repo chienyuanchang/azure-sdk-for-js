@@ -16,6 +16,7 @@ These sample programs show how to use the JavaScript client libraries for Azure 
 | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [contentAnalyzersAnalyzeBinary.js](contentAnalyzersAnalyzeBinary.js)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                      |
 | [contentAnalyzersAnalyzeBinaryRawJson.js](contentAnalyzersAnalyzeBinaryRawJson.js) | Analyze a PDF using the prebuilt-documentAnalyzer and save raw JSON response to a file. |
+| [contentAnalyzersAnalyzeUrlPrebuiltInvoice.js](contentAnalyzersAnalyzeUrlPrebuiltInvoice.js) | Analyze an invoice PDF from a URL using the prebuilt-invoice analyzer and extract fields. |
 
 ## Prerequisites
 
@@ -34,9 +35,10 @@ These sample programs show how to use the JavaScript client libraries for Azure 
    cp sample.env .env
    # Edit .env to add your values
    ```
-3. Run the sample:
+
+3. Run a sample (for example, to analyze an invoice from a URL):
    ```bash
-   node contentAnalyzersAnalyzeBinary.js
+   node contentAnalyzersAnalyzeUrlPrebuiltInvoice.js
    ```
 
 ## Running with Published Packages

@@ -16,6 +16,7 @@ These sample programs show how to use the TypeScript client libraries for Azure 
 | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [contentAnalyzersAnalyzeBinary.ts](src/contentAnalyzersAnalyzeBinary.ts)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                      |
 | [contentAnalyzersAnalyzeBinaryRawJson.ts](src/contentAnalyzersAnalyzeBinaryRawJson.ts) | Analyze a PDF using the prebuilt-documentAnalyzer and save raw JSON response to a file. |
+| [contentAnalyzersAnalyzeUrlPrebuiltInvoice.ts](src/contentAnalyzersAnalyzeUrlPrebuiltInvoice.ts) | Analyze an invoice PDF from a URL using the prebuilt-invoice analyzer and extract fields. |
 
 ## Prerequisites
 
@@ -34,9 +35,10 @@ These sample programs show how to use the TypeScript client libraries for Azure 
    ```bash
    pnpm run build
    ```
-4. Run the sample:
+
+4. Run a sample (for example, to analyze an invoice from a URL):
    ```bash
-   node dist/contentAnalyzersAnalyzeBinary.js
+   npx ts-node src/contentAnalyzersAnalyzeUrlPrebuiltInvoice.ts
    ```
 
 ## Running with Published Packages
