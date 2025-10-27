@@ -28,7 +28,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { DefaultAzureCredential } from "@azure/identity";
-import createClient from "@azure-rest/ai-content-understanding";
+import createClient, { getLongRunningPoller } from "@azure-rest/ai-content-understanding";
 
 // Helper to pause for polling
 function sleep(ms) {
@@ -122,35 +122,12 @@ async function main() {
       body: pdfBytes,
     });
 
-  // 4. Poll for result and print output
-  if (initialResponse.status === "202" || initialResponse.status === 202) {
-    const opLocation =
-      initialResponse.headers["operation-location"] || initialResponse.headers["Operation-Location"];
-    if (!opLocation) {
-      console.error("operation-location header missing on 202 response");
-      process.exit(1);
-    }
-    console.log("Operation accepted. Polling until complete...");
-    while (true) {
-      await sleep(1000);
-      const pollResp = await client.pathUnchecked(opLocation).get();
-      if (pollResp.status === "200" || pollResp.status === 200) {
-        const body = pollResp.body;
-        // Check for LRO status in body
-        const status = body?.status || body?.result?.status;
-        if (status && status.toLowerCase() === "running") {
-          console.log(`Polling... operation status: ${status}`);
-          continue;
-        }
-        const analyzeResult = body?.result ?? body;
-        printAnalysisResult(analyzeResult);
-        break;
-      } else {
-        console.log(`Polling... status: ${pollResp.status}`);
-      }
-    }
-  } else if (initialResponse.status === "200" || initialResponse.status === 200) {
-    const analyzeResult = initialResponse.body?.result ?? initialResponse.body;
+  // 4. Poll for result and print output using SDK poller helper
+  if (initialResponse.status === "202" || initialResponse.status === 202 || initialResponse.status === "200" || initialResponse.status === 200) {
+    // Use the SDK's poller helper for LRO
+    const poller = await getLongRunningPoller(client, initialResponse);
+    const pollResult = await poller.pollUntilDone();
+    const analyzeResult = pollResult.body?.result ?? pollResult.body;
     printAnalysisResult(analyzeResult);
   } else {
     console.error("Unexpected initial response status:", initialResponse.status);
