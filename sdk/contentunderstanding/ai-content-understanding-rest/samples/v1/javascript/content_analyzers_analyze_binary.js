@@ -101,7 +101,7 @@ async function main() {
   const credential = await getCredential();
 
   // 2. Read a PDF file from disk
-  const samplePath = path.join(__dirname, "..", "sample_files", "sample_invoice.pdf");
+  const samplePath = path.join(__dirname, "..", "..", "..", "sample_files", "sample_invoice.pdf");
   if (!fs.existsSync(samplePath)) {
     console.error("Sample PDF not found:", samplePath);
     console.error("Put a PDF at samples/javascript/sample_files/sample_invoice.pdf and re-run the sample.");
