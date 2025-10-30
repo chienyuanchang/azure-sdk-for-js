@@ -7410,9 +7410,6 @@ importers:
       '@azure/identity':
         specifier: catalog:internal
         version: 4.11.1
-      '@types/minimatch':
-        specifier: ^5.1.2
-        version: 5.1.2
       '@types/node':
         specifier: 'catalog:'
         version: 20.19.23
