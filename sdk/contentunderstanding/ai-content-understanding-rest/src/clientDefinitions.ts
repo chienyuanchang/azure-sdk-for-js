@@ -178,7 +178,7 @@ export interface Routes {
   (
     path: "/analyzerResults/{operationId}/files/{path}",
     operationId: string,
-    path: GetResultFilePathPathParam,
+    filePathParam: GetResultFilePathPathParam,
   ): GetResultFile;
   /** Resource for '/analyzers/\{analyzerId\}:copy' has methods for the following verbs: post */
   (path: "/analyzers/{analyzerId}:copy", analyzerId: string): Copy;
