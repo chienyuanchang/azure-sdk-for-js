@@ -112,9 +112,7 @@ const responseMap: Record<string, string[]> = {
   "DELETE /personDirectories/{personDirectoryId}/faces/{faceId}": ["204"],
   "POST /personDirectories/{personDirectoryId}/persons:identify": ["200"],
   "POST /personDirectories/{personDirectoryId}/faces:find": ["200"],
-  "POST /personDirectories/{personDirectoryId}/persons/{personId}:verify": [
-    "200",
-  ],
+  "POST /personDirectories/{personDirectoryId}/persons/{personId}:verify": ["200"],
   "POST /faces:detect": ["200"],
   "POST /faces:compare": ["200"],
   "GET /classifiers/{classifierId}/operations/{operationId}": ["200"],
@@ -141,22 +139,16 @@ export function isUnexpected(
     | ContentAnalyzersCreateOrReplaceDefaultResponse,
 ): response is ContentAnalyzersCreateOrReplaceDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentAnalyzersUpdate200Response
-    | ContentAnalyzersUpdateDefaultResponse,
+  response: ContentAnalyzersUpdate200Response | ContentAnalyzersUpdateDefaultResponse,
 ): response is ContentAnalyzersUpdateDefaultResponse;
 export function isUnexpected(
   response: ContentAnalyzersGet200Response | ContentAnalyzersGetDefaultResponse,
 ): response is ContentAnalyzersGetDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentAnalyzersDelete204Response
-    | ContentAnalyzersDeleteDefaultResponse,
+  response: ContentAnalyzersDelete204Response | ContentAnalyzersDeleteDefaultResponse,
 ): response is ContentAnalyzersDeleteDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentAnalyzersList200Response
-    | ContentAnalyzersListDefaultResponse,
+  response: ContentAnalyzersList200Response | ContentAnalyzersListDefaultResponse,
 ): response is ContentAnalyzersListDefaultResponse;
 export function isUnexpected(
   response:
@@ -171,79 +163,49 @@ export function isUnexpected(
     | ContentAnalyzersAnalyzeBinaryDefaultResponse,
 ): response is ContentAnalyzersAnalyzeBinaryDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentAnalyzersGetResult200Response
-    | ContentAnalyzersGetResultDefaultResponse,
+  response: ContentAnalyzersGetResult200Response | ContentAnalyzersGetResultDefaultResponse,
 ): response is ContentAnalyzersGetResultDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesCreate201Response
-    | PersonDirectoriesCreateDefaultResponse,
+  response: PersonDirectoriesCreate201Response | PersonDirectoriesCreateDefaultResponse,
 ): response is PersonDirectoriesCreateDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesUpdate200Response
-    | PersonDirectoriesUpdateDefaultResponse,
+  response: PersonDirectoriesUpdate200Response | PersonDirectoriesUpdateDefaultResponse,
 ): response is PersonDirectoriesUpdateDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesGet200Response
-    | PersonDirectoriesGetDefaultResponse,
+  response: PersonDirectoriesGet200Response | PersonDirectoriesGetDefaultResponse,
 ): response is PersonDirectoriesGetDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesDelete204Response
-    | PersonDirectoriesDeleteDefaultResponse,
+  response: PersonDirectoriesDelete204Response | PersonDirectoriesDeleteDefaultResponse,
 ): response is PersonDirectoriesDeleteDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesList200Response
-    | PersonDirectoriesListDefaultResponse,
+  response: PersonDirectoriesList200Response | PersonDirectoriesListDefaultResponse,
 ): response is PersonDirectoriesListDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesUpdatePerson200Response
-    | PersonDirectoriesUpdatePersonDefaultResponse,
+  response: PersonDirectoriesUpdatePerson200Response | PersonDirectoriesUpdatePersonDefaultResponse,
 ): response is PersonDirectoriesUpdatePersonDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesGetPerson200Response
-    | PersonDirectoriesGetPersonDefaultResponse,
+  response: PersonDirectoriesGetPerson200Response | PersonDirectoriesGetPersonDefaultResponse,
 ): response is PersonDirectoriesGetPersonDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesDeletePerson204Response
-    | PersonDirectoriesDeletePersonDefaultResponse,
+  response: PersonDirectoriesDeletePerson204Response | PersonDirectoriesDeletePersonDefaultResponse,
 ): response is PersonDirectoriesDeletePersonDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesListPersons200Response
-    | PersonDirectoriesListPersonsDefaultResponse,
+  response: PersonDirectoriesListPersons200Response | PersonDirectoriesListPersonsDefaultResponse,
 ): response is PersonDirectoriesListPersonsDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesAddFace201Response
-    | PersonDirectoriesAddFaceDefaultResponse,
+  response: PersonDirectoriesAddFace201Response | PersonDirectoriesAddFaceDefaultResponse,
 ): response is PersonDirectoriesAddFaceDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesListFaces200Response
-    | PersonDirectoriesListFacesDefaultResponse,
+  response: PersonDirectoriesListFaces200Response | PersonDirectoriesListFacesDefaultResponse,
 ): response is PersonDirectoriesListFacesDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesUpdateFace200Response
-    | PersonDirectoriesUpdateFaceDefaultResponse,
+  response: PersonDirectoriesUpdateFace200Response | PersonDirectoriesUpdateFaceDefaultResponse,
 ): response is PersonDirectoriesUpdateFaceDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesGetFace200Response
-    | PersonDirectoriesGetFaceDefaultResponse,
+  response: PersonDirectoriesGetFace200Response | PersonDirectoriesGetFaceDefaultResponse,
 ): response is PersonDirectoriesGetFaceDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesDeleteFace204Response
-    | PersonDirectoriesDeleteFaceDefaultResponse,
+  response: PersonDirectoriesDeleteFace204Response | PersonDirectoriesDeleteFaceDefaultResponse,
 ): response is PersonDirectoriesDeleteFaceDefaultResponse;
 export function isUnexpected(
   response:
@@ -256,9 +218,7 @@ export function isUnexpected(
     | PersonDirectoriesFindSimilarFacesDefaultResponse,
 ): response is PersonDirectoriesFindSimilarFacesDefaultResponse;
 export function isUnexpected(
-  response:
-    | PersonDirectoriesVerifyPerson200Response
-    | PersonDirectoriesVerifyPersonDefaultResponse,
+  response: PersonDirectoriesVerifyPerson200Response | PersonDirectoriesVerifyPersonDefaultResponse,
 ): response is PersonDirectoriesVerifyPersonDefaultResponse;
 export function isUnexpected(
   response: FacesDetect200Response | FacesDetectDefaultResponse,
@@ -279,24 +239,16 @@ export function isUnexpected(
     | ContentClassifiersCreateOrReplaceDefaultResponse,
 ): response is ContentClassifiersCreateOrReplaceDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentClassifiersUpdate200Response
-    | ContentClassifiersUpdateDefaultResponse,
+  response: ContentClassifiersUpdate200Response | ContentClassifiersUpdateDefaultResponse,
 ): response is ContentClassifiersUpdateDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentClassifiersGet200Response
-    | ContentClassifiersGetDefaultResponse,
+  response: ContentClassifiersGet200Response | ContentClassifiersGetDefaultResponse,
 ): response is ContentClassifiersGetDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentClassifiersDelete204Response
-    | ContentClassifiersDeleteDefaultResponse,
+  response: ContentClassifiersDelete204Response | ContentClassifiersDeleteDefaultResponse,
 ): response is ContentClassifiersDeleteDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentClassifiersList200Response
-    | ContentClassifiersListDefaultResponse,
+  response: ContentClassifiersList200Response | ContentClassifiersListDefaultResponse,
 ): response is ContentClassifiersListDefaultResponse;
 export function isUnexpected(
   response:
@@ -311,9 +263,7 @@ export function isUnexpected(
     | ContentClassifiersClassifyBinaryDefaultResponse,
 ): response is ContentClassifiersClassifyBinaryDefaultResponse;
 export function isUnexpected(
-  response:
-    | ContentClassifiersGetResult200Response
-    | ContentClassifiersGetResultDefaultResponse,
+  response: ContentClassifiersGetResult200Response | ContentClassifiersGetResultDefaultResponse,
 ): response is ContentClassifiersGetResultDefaultResponse;
 export function isUnexpected(
   response:
@@ -469,24 +419,17 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
 
     // track if we have found a match to return the values found.
     let found = true;
-    for (
-      let i = candidateParts.length - 1, j = pathParts.length - 1;
-      i >= 1 && j >= 1;
-      i--, j--
-    ) {
-      if (
-        candidateParts[i]?.startsWith("{") &&
-        candidateParts[i]?.indexOf("}") !== -1
-      ) {
+    for (let i = candidateParts.length - 1, j = pathParts.length - 1; i >= 1 && j >= 1; i--, j--) {
+      if (candidateParts[i]?.startsWith("{") && candidateParts[i]?.indexOf("}") !== -1) {
         const start = candidateParts[i]!.indexOf("}") + 1,
           end = candidateParts[i]?.length;
         // If the current part of the candidate is a "template" part
         // Try to use the suffix of pattern to match the path
         // {guid} ==> $
         // {guid}:export ==> :export$
-        const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`,
-        ).test(pathParts[j] || "");
+        const isMatched = new RegExp(`${candidateParts[i]?.slice(start, end)}`).test(
+          pathParts[j] || "",
+        );
 
         if (!isMatched) {
           found = false;

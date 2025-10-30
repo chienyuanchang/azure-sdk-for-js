@@ -14,6 +14,8 @@ These sample programs show how to use the JavaScript client libraries for Azure 
 
 | **File Name**                                                                      | **Description**                                                                         |
 | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [contentAnalyzersCreateOrReplace.js](contentAnalyzersCreateOrReplace.js)           | Create a custom analyzer using the create or replace API.                               |
+| [contentAnalyzersDeleteAnalyzer.js](contentAnalyzersDeleteAnalyzer.js)             | Delete a custom analyzer using the delete API.                                          |
 | [contentAnalyzersAnalyzeBinary.js](contentAnalyzersAnalyzeBinary.js)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                      |
 | [contentAnalyzersAnalyzeBinaryRawJson.js](contentAnalyzersAnalyzeBinaryRawJson.js) | Analyze a PDF using the prebuilt-documentAnalyzer and save raw JSON response to a file. |
 | [contentAnalyzersAnalyzeUrl.js](contentAnalyzersAnalyzeUrl.js)                     | Analyze a document from a URL using the prebuilt-documentAnalyzer.                      |

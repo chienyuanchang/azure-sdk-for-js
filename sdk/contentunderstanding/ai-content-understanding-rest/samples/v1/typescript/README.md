@@ -14,6 +14,8 @@ These sample programs show how to use the TypeScript client libraries for Azure 
 
 | **File Name**                                                                          | **Description**                                                                         |
 | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [contentAnalyzersCreateOrReplace.ts](src/contentAnalyzersCreateOrReplace.ts)           | Create a custom analyzer using the create or replace API.                               |
+| [contentAnalyzersDeleteAnalyzer.ts](src/contentAnalyzersDeleteAnalyzer.ts)             | Delete a custom analyzer using the delete API.                                          |
 | [contentAnalyzersAnalyzeBinary.ts](src/contentAnalyzersAnalyzeBinary.ts)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                      |
 | [contentAnalyzersAnalyzeBinaryRawJson.ts](src/contentAnalyzersAnalyzeBinaryRawJson.ts) | Analyze a PDF using the prebuilt-documentAnalyzer and save raw JSON response to a file. |
 | [contentAnalyzersAnalyzeUrl.ts](src/contentAnalyzersAnalyzeUrl.ts)                     | Analyze a document from a URL using the prebuilt-documentAnalyzer.                      |

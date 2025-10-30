@@ -22,13 +22,9 @@ export interface ContentUnderstandingClientOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  {
-    apiVersion = "2025-05-01-preview",
-    ...options
-  }: ContentUnderstandingClientOptions = {},
+  { apiVersion = "2025-05-01-preview", ...options }: ContentUnderstandingClientOptions = {},
 ): ContentUnderstandingClient {
-  const endpointUrl =
-    options.endpoint ?? `${endpointParam}/contentunderstanding`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/contentunderstanding`;
   const userAgentInfo = `azsdk-js-ai-document-intelligence-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -43,18 +39,11 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://cognitiveservices.azure.com/.default",
-      ],
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+      scopes: options.credentials?.scopes ?? ["https://cognitiveservices.azure.com/.default"],
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
-  const client = getClient(
-    endpointUrl,
-    credentials,
-    options,
-  ) as ContentUnderstandingClient;
+  const client = getClient(endpointUrl, credentials, options) as ContentUnderstandingClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({

@@ -166,8 +166,7 @@ export interface KnowledgeSourceOutputParent {
 }
 
 /** File knowledge source. */
-export interface ReferenceKnowledgeSourceOutput
-  extends KnowledgeSourceOutputParent {
+export interface ReferenceKnowledgeSourceOutput extends KnowledgeSourceOutputParent {
   /** Indicates that the knowledge source is a reference knowledge source. */
   kind: "reference";
   /** The URL of the blob container. */
@@ -913,9 +912,7 @@ export interface OperationStatusClassifyResultErrorOutput {
 /** Data source specifying a set of documents. */
 export type DataSourceOutput = DataSourceOutputParent | BlobDataSourceOutput;
 /** Knowledge source. */
-export type KnowledgeSourceOutput =
-  | KnowledgeSourceOutputParent
-  | ReferenceKnowledgeSourceOutput;
+export type KnowledgeSourceOutput = KnowledgeSourceOutputParent | ReferenceKnowledgeSourceOutput;
 /** Media content base class. */
 export type MediaContentOutput =
   | MediaContentOutputParent

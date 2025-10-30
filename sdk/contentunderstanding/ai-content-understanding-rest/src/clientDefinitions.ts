@@ -142,45 +142,34 @@ export interface ContentAnalyzersCreateOrReplace {
   /** Update analyzer properties. */
   patch(
     options: ContentAnalyzersUpdateParameters,
-  ): StreamableMethod<
-    ContentAnalyzersUpdate200Response | ContentAnalyzersUpdateDefaultResponse
-  >;
+  ): StreamableMethod<ContentAnalyzersUpdate200Response | ContentAnalyzersUpdateDefaultResponse>;
   /** Get analyzer properties. */
   get(
     options?: ContentAnalyzersGetParameters,
-  ): StreamableMethod<
-    ContentAnalyzersGet200Response | ContentAnalyzersGetDefaultResponse
-  >;
+  ): StreamableMethod<ContentAnalyzersGet200Response | ContentAnalyzersGetDefaultResponse>;
   /** Delete analyzer. */
   delete(
     options?: ContentAnalyzersDeleteParameters,
-  ): StreamableMethod<
-    ContentAnalyzersDelete204Response | ContentAnalyzersDeleteDefaultResponse
-  >;
+  ): StreamableMethod<ContentAnalyzersDelete204Response | ContentAnalyzersDeleteDefaultResponse>;
 }
 
 export interface ContentAnalyzersList {
   /** List analyzers. */
   get(
     options?: ContentAnalyzersListParameters,
-  ): StreamableMethod<
-    ContentAnalyzersList200Response | ContentAnalyzersListDefaultResponse
-  >;
+  ): StreamableMethod<ContentAnalyzersList200Response | ContentAnalyzersListDefaultResponse>;
 }
 
 export interface ContentAnalyzersAnalyze {
   /** Extract content and fields from input. */
   post(
     options: ContentAnalyzersAnalyzeParameters,
-  ): StreamableMethod<
-    ContentAnalyzersAnalyze202Response | ContentAnalyzersAnalyzeDefaultResponse
-  >;
+  ): StreamableMethod<ContentAnalyzersAnalyze202Response | ContentAnalyzersAnalyzeDefaultResponse>;
   /** Extract content and fields from input. */
   post(
     options: ContentAnalyzersAnalyzeBinaryParameters,
   ): StreamableMethod<
-    | ContentAnalyzersAnalyzeBinary202Response
-    | ContentAnalyzersAnalyzeBinaryDefaultResponse
+    ContentAnalyzersAnalyzeBinary202Response | ContentAnalyzersAnalyzeBinaryDefaultResponse
   >;
 }
 
@@ -189,8 +178,7 @@ export interface ContentAnalyzersGetResult {
   get(
     options?: ContentAnalyzersGetResultParameters,
   ): StreamableMethod<
-    | ContentAnalyzersGetResult200Response
-    | ContentAnalyzersGetResultDefaultResponse
+    ContentAnalyzersGetResult200Response | ContentAnalyzersGetResultDefaultResponse
   >;
 }
 
@@ -198,36 +186,26 @@ export interface PersonDirectoriesCreate {
   /** Create a new person directory. */
   put(
     options: PersonDirectoriesCreateParameters,
-  ): StreamableMethod<
-    PersonDirectoriesCreate201Response | PersonDirectoriesCreateDefaultResponse
-  >;
+  ): StreamableMethod<PersonDirectoriesCreate201Response | PersonDirectoriesCreateDefaultResponse>;
   /** Update person directory properties. */
   patch(
     options: PersonDirectoriesUpdateParameters,
-  ): StreamableMethod<
-    PersonDirectoriesUpdate200Response | PersonDirectoriesUpdateDefaultResponse
-  >;
+  ): StreamableMethod<PersonDirectoriesUpdate200Response | PersonDirectoriesUpdateDefaultResponse>;
   /** Get person directory properties. */
   get(
     options?: PersonDirectoriesGetParameters,
-  ): StreamableMethod<
-    PersonDirectoriesGet200Response | PersonDirectoriesGetDefaultResponse
-  >;
+  ): StreamableMethod<PersonDirectoriesGet200Response | PersonDirectoriesGetDefaultResponse>;
   /** Delete person directory and all associated persons and faces. */
   delete(
     options?: PersonDirectoriesDeleteParameters,
-  ): StreamableMethod<
-    PersonDirectoriesDelete204Response | PersonDirectoriesDeleteDefaultResponse
-  >;
+  ): StreamableMethod<PersonDirectoriesDelete204Response | PersonDirectoriesDeleteDefaultResponse>;
 }
 
 export interface PersonDirectoriesList {
   /** List person directories. */
   get(
     options?: PersonDirectoriesListParameters,
-  ): StreamableMethod<
-    PersonDirectoriesList200Response | PersonDirectoriesListDefaultResponse
-  >;
+  ): StreamableMethod<PersonDirectoriesList200Response | PersonDirectoriesListDefaultResponse>;
 }
 
 export interface PersonDirectoriesUpdatePerson {
@@ -235,22 +213,19 @@ export interface PersonDirectoriesUpdatePerson {
   patch(
     options: PersonDirectoriesUpdatePersonParameters,
   ): StreamableMethod<
-    | PersonDirectoriesUpdatePerson200Response
-    | PersonDirectoriesUpdatePersonDefaultResponse
+    PersonDirectoriesUpdatePerson200Response | PersonDirectoriesUpdatePersonDefaultResponse
   >;
   /** Get person properties. */
   get(
     options?: PersonDirectoriesGetPersonParameters,
   ): StreamableMethod<
-    | PersonDirectoriesGetPerson200Response
-    | PersonDirectoriesGetPersonDefaultResponse
+    PersonDirectoriesGetPerson200Response | PersonDirectoriesGetPersonDefaultResponse
   >;
   /** Delete person.  Any linked faces will be disassociated, but not deleted. */
   delete(
     options?: PersonDirectoriesDeletePersonParameters,
   ): StreamableMethod<
-    | PersonDirectoriesDeletePerson204Response
-    | PersonDirectoriesDeletePersonDefaultResponse
+    PersonDirectoriesDeletePerson204Response | PersonDirectoriesDeletePersonDefaultResponse
   >;
 }
 
@@ -259,8 +234,7 @@ export interface PersonDirectoriesListPersons {
   get(
     options?: PersonDirectoriesListPersonsParameters,
   ): StreamableMethod<
-    | PersonDirectoriesListPersons200Response
-    | PersonDirectoriesListPersonsDefaultResponse
+    PersonDirectoriesListPersons200Response | PersonDirectoriesListPersonsDefaultResponse
   >;
 }
 
@@ -269,15 +243,13 @@ export interface PersonDirectoriesAddFace {
   post(
     options: PersonDirectoriesAddFaceParameters,
   ): StreamableMethod<
-    | PersonDirectoriesAddFace201Response
-    | PersonDirectoriesAddFaceDefaultResponse
+    PersonDirectoriesAddFace201Response | PersonDirectoriesAddFaceDefaultResponse
   >;
   /** List faces. */
   get(
     options?: PersonDirectoriesListFacesParameters,
   ): StreamableMethod<
-    | PersonDirectoriesListFaces200Response
-    | PersonDirectoriesListFacesDefaultResponse
+    PersonDirectoriesListFaces200Response | PersonDirectoriesListFacesDefaultResponse
   >;
 }
 
@@ -286,22 +258,19 @@ export interface PersonDirectoriesUpdateFace {
   patch(
     options: PersonDirectoriesUpdateFaceParameters,
   ): StreamableMethod<
-    | PersonDirectoriesUpdateFace200Response
-    | PersonDirectoriesUpdateFaceDefaultResponse
+    PersonDirectoriesUpdateFace200Response | PersonDirectoriesUpdateFaceDefaultResponse
   >;
   /** Get face properties. */
   get(
     options?: PersonDirectoriesGetFaceParameters,
   ): StreamableMethod<
-    | PersonDirectoriesGetFace200Response
-    | PersonDirectoriesGetFaceDefaultResponse
+    PersonDirectoriesGetFace200Response | PersonDirectoriesGetFaceDefaultResponse
   >;
   /** Delete face.  Any linked person will be disassociated, but not deleted. */
   delete(
     options?: PersonDirectoriesDeleteFaceParameters,
   ): StreamableMethod<
-    | PersonDirectoriesDeleteFace204Response
-    | PersonDirectoriesDeleteFaceDefaultResponse
+    PersonDirectoriesDeleteFace204Response | PersonDirectoriesDeleteFaceDefaultResponse
   >;
 }
 
@@ -310,8 +279,7 @@ export interface PersonDirectoriesIdentifyPerson {
   post(
     options: PersonDirectoriesIdentifyPersonParameters,
   ): StreamableMethod<
-    | PersonDirectoriesIdentifyPerson200Response
-    | PersonDirectoriesIdentifyPersonDefaultResponse
+    PersonDirectoriesIdentifyPerson200Response | PersonDirectoriesIdentifyPersonDefaultResponse
   >;
 }
 
@@ -320,8 +288,7 @@ export interface PersonDirectoriesFindSimilarFaces {
   post(
     options: PersonDirectoriesFindSimilarFacesParameters,
   ): StreamableMethod<
-    | PersonDirectoriesFindSimilarFaces200Response
-    | PersonDirectoriesFindSimilarFacesDefaultResponse
+    PersonDirectoriesFindSimilarFaces200Response | PersonDirectoriesFindSimilarFacesDefaultResponse
   >;
 }
 
@@ -330,8 +297,7 @@ export interface PersonDirectoriesVerifyPerson {
   post(
     options: PersonDirectoriesVerifyPersonParameters,
   ): StreamableMethod<
-    | PersonDirectoriesVerifyPerson200Response
-    | PersonDirectoriesVerifyPersonDefaultResponse
+    PersonDirectoriesVerifyPerson200Response | PersonDirectoriesVerifyPersonDefaultResponse
   >;
 }
 
@@ -372,21 +338,17 @@ export interface ContentClassifiersCreateOrReplace {
   patch(
     options: ContentClassifiersUpdateParameters,
   ): StreamableMethod<
-    | ContentClassifiersUpdate200Response
-    | ContentClassifiersUpdateDefaultResponse
+    ContentClassifiersUpdate200Response | ContentClassifiersUpdateDefaultResponse
   >;
   /** Get classifier properties. */
   get(
     options?: ContentClassifiersGetParameters,
-  ): StreamableMethod<
-    ContentClassifiersGet200Response | ContentClassifiersGetDefaultResponse
-  >;
+  ): StreamableMethod<ContentClassifiersGet200Response | ContentClassifiersGetDefaultResponse>;
   /** Delete classifier. */
   delete(
     options?: ContentClassifiersDeleteParameters,
   ): StreamableMethod<
-    | ContentClassifiersDelete204Response
-    | ContentClassifiersDeleteDefaultResponse
+    ContentClassifiersDelete204Response | ContentClassifiersDeleteDefaultResponse
   >;
 }
 
@@ -394,9 +356,7 @@ export interface ContentClassifiersList {
   /** List classifiers. */
   get(
     options?: ContentClassifiersListParameters,
-  ): StreamableMethod<
-    ContentClassifiersList200Response | ContentClassifiersListDefaultResponse
-  >;
+  ): StreamableMethod<ContentClassifiersList200Response | ContentClassifiersListDefaultResponse>;
 }
 
 export interface ContentClassifiersClassify {
@@ -404,15 +364,13 @@ export interface ContentClassifiersClassify {
   post(
     options: ContentClassifiersClassifyParameters,
   ): StreamableMethod<
-    | ContentClassifiersClassify202Response
-    | ContentClassifiersClassifyDefaultResponse
+    ContentClassifiersClassify202Response | ContentClassifiersClassifyDefaultResponse
   >;
   /** Classify content with optional splitting. */
   post(
     options: ContentClassifiersClassifyBinaryParameters,
   ): StreamableMethod<
-    | ContentClassifiersClassifyBinary202Response
-    | ContentClassifiersClassifyBinaryDefaultResponse
+    ContentClassifiersClassifyBinary202Response | ContentClassifiersClassifyBinaryDefaultResponse
   >;
 }
 
@@ -421,8 +379,7 @@ export interface ContentClassifiersGetResult {
   get(
     options?: ContentClassifiersGetResultParameters,
   ): StreamableMethod<
-    | ContentClassifiersGetResult200Response
-    | ContentClassifiersGetResultDefaultResponse
+    ContentClassifiersGetResult200Response | ContentClassifiersGetResultDefaultResponse
   >;
 }
 
@@ -434,22 +391,13 @@ export interface Routes {
     operationId: string,
   ): ContentAnalyzersGetOperationStatus;
   /** Resource for '/analyzers/\{analyzerId\}' has methods for the following verbs: put, patch, get, delete */
-  (
-    path: "/analyzers/{analyzerId}",
-    analyzerId: string,
-  ): ContentAnalyzersCreateOrReplace;
+  (path: "/analyzers/{analyzerId}", analyzerId: string): ContentAnalyzersCreateOrReplace;
   /** Resource for '/analyzers' has methods for the following verbs: get */
   (path: "/analyzers"): ContentAnalyzersList;
   /** Resource for '/analyzers/\{analyzerId\}:analyze' has methods for the following verbs: post */
-  (
-    path: "/analyzers/{analyzerId}:analyze",
-    analyzerId: string,
-  ): ContentAnalyzersAnalyze;
+  (path: "/analyzers/{analyzerId}:analyze", analyzerId: string): ContentAnalyzersAnalyze;
   /** Resource for '/analyzerResults/\{operationId\}' has methods for the following verbs: get */
-  (
-    path: "/analyzerResults/{operationId}",
-    operationId: string,
-  ): ContentAnalyzersGetResult;
+  (path: "/analyzerResults/{operationId}", operationId: string): ContentAnalyzersGetResult;
   /** Resource for '/personDirectories/\{personDirectoryId\}' has methods for the following verbs: put, patch, get, delete */
   (
     path: "/personDirectories/{personDirectoryId}",
@@ -506,22 +454,13 @@ export interface Routes {
     operationId: string,
   ): ContentClassifiersGetOperationStatus;
   /** Resource for '/classifiers/\{classifierId\}' has methods for the following verbs: put, patch, get, delete */
-  (
-    path: "/classifiers/{classifierId}",
-    classifierId: string,
-  ): ContentClassifiersCreateOrReplace;
+  (path: "/classifiers/{classifierId}", classifierId: string): ContentClassifiersCreateOrReplace;
   /** Resource for '/classifiers' has methods for the following verbs: get */
   (path: "/classifiers"): ContentClassifiersList;
   /** Resource for '/classifiers/\{classifierId\}:classify' has methods for the following verbs: post */
-  (
-    path: "/classifiers/{classifierId}:classify",
-    classifierId: string,
-  ): ContentClassifiersClassify;
+  (path: "/classifiers/{classifierId}:classify", classifierId: string): ContentClassifiersClassify;
   /** Resource for '/classifierResults/\{operationId\}' has methods for the following verbs: get */
-  (
-    path: "/classifierResults/{operationId}",
-    operationId: string,
-  ): ContentClassifiersGetResult;
+  (path: "/classifierResults/{operationId}", operationId: string): ContentClassifiersGetResult;
 }
 
 export type ContentUnderstandingClient = Client & {

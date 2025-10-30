@@ -37,10 +37,9 @@ export interface ContentAnalyzersCreateOrReplaceHeaderParam {
   headers?: RawHttpHeadersInput & ContentAnalyzersCreateOrReplaceHeaders;
 }
 
-export type ContentAnalyzersCreateOrReplaceParameters =
-  ContentAnalyzersCreateOrReplaceHeaderParam &
-    ContentAnalyzersCreateOrReplaceBodyParam &
-    RequestParameters;
+export type ContentAnalyzersCreateOrReplaceParameters = ContentAnalyzersCreateOrReplaceHeaderParam &
+  ContentAnalyzersCreateOrReplaceBodyParam &
+  RequestParameters;
 
 export interface ContentAnalyzersUpdateHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -64,11 +63,10 @@ export interface ContentAnalyzersUpdateMediaTypesParam {
   contentType: "application/merge-patch+json";
 }
 
-export type ContentAnalyzersUpdateParameters =
-  ContentAnalyzersUpdateHeaderParam &
-    ContentAnalyzersUpdateMediaTypesParam &
-    ContentAnalyzersUpdateBodyParam &
-    RequestParameters;
+export type ContentAnalyzersUpdateParameters = ContentAnalyzersUpdateHeaderParam &
+  ContentAnalyzersUpdateMediaTypesParam &
+  ContentAnalyzersUpdateBodyParam &
+  RequestParameters;
 
 export interface ContentAnalyzersGetHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -79,8 +77,7 @@ export interface ContentAnalyzersGetHeaderParam {
   headers?: RawHttpHeadersInput & ContentAnalyzersGetHeaders;
 }
 
-export type ContentAnalyzersGetParameters = ContentAnalyzersGetHeaderParam &
-  RequestParameters;
+export type ContentAnalyzersGetParameters = ContentAnalyzersGetHeaderParam & RequestParameters;
 
 export interface ContentAnalyzersDeleteHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -91,8 +88,8 @@ export interface ContentAnalyzersDeleteHeaderParam {
   headers?: RawHttpHeadersInput & ContentAnalyzersDeleteHeaders;
 }
 
-export type ContentAnalyzersDeleteParameters =
-  ContentAnalyzersDeleteHeaderParam & RequestParameters;
+export type ContentAnalyzersDeleteParameters = ContentAnalyzersDeleteHeaderParam &
+  RequestParameters;
 
 export interface ContentAnalyzersListHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -103,8 +100,7 @@ export interface ContentAnalyzersListHeaderParam {
   headers?: RawHttpHeadersInput & ContentAnalyzersListHeaders;
 }
 
-export type ContentAnalyzersListParameters = ContentAnalyzersListHeaderParam &
-  RequestParameters;
+export type ContentAnalyzersListParameters = ContentAnalyzersListHeaderParam & RequestParameters;
 
 export interface ContentAnalyzersAnalyzeHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -138,11 +134,10 @@ export interface ContentAnalyzersAnalyzeHeaderParam {
   headers?: RawHttpHeadersInput & ContentAnalyzersAnalyzeHeaders;
 }
 
-export type ContentAnalyzersAnalyzeParameters =
-  ContentAnalyzersAnalyzeQueryParam &
-    ContentAnalyzersAnalyzeHeaderParam &
-    ContentAnalyzersAnalyzeBodyParam &
-    RequestParameters;
+export type ContentAnalyzersAnalyzeParameters = ContentAnalyzersAnalyzeQueryParam &
+  ContentAnalyzersAnalyzeHeaderParam &
+  ContentAnalyzersAnalyzeBodyParam &
+  RequestParameters;
 
 export interface ContentAnalyzersAnalyzeBinaryHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -182,12 +177,11 @@ export interface ContentAnalyzersAnalyzeBinaryMediaTypesParam {
   contentType: string;
 }
 
-export type ContentAnalyzersAnalyzeBinaryParameters =
-  ContentAnalyzersAnalyzeBinaryQueryParam &
-    ContentAnalyzersAnalyzeBinaryHeaderParam &
-    ContentAnalyzersAnalyzeBinaryMediaTypesParam &
-    ContentAnalyzersAnalyzeBinaryBodyParam &
-    RequestParameters;
+export type ContentAnalyzersAnalyzeBinaryParameters = ContentAnalyzersAnalyzeBinaryQueryParam &
+  ContentAnalyzersAnalyzeBinaryHeaderParam &
+  ContentAnalyzersAnalyzeBinaryMediaTypesParam &
+  ContentAnalyzersAnalyzeBinaryBodyParam &
+  RequestParameters;
 export type ContentAnalyzersGetResultParameters = RequestParameters;
 
 export interface PersonDirectoriesCreateHeaders {
@@ -204,10 +198,9 @@ export interface PersonDirectoriesCreateHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesCreateHeaders;
 }
 
-export type PersonDirectoriesCreateParameters =
-  PersonDirectoriesCreateHeaderParam &
-    PersonDirectoriesCreateBodyParam &
-    RequestParameters;
+export type PersonDirectoriesCreateParameters = PersonDirectoriesCreateHeaderParam &
+  PersonDirectoriesCreateBodyParam &
+  RequestParameters;
 
 export interface PersonDirectoriesUpdateHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -231,11 +224,10 @@ export interface PersonDirectoriesUpdateMediaTypesParam {
   contentType: "application/merge-patch+json";
 }
 
-export type PersonDirectoriesUpdateParameters =
-  PersonDirectoriesUpdateHeaderParam &
-    PersonDirectoriesUpdateMediaTypesParam &
-    PersonDirectoriesUpdateBodyParam &
-    RequestParameters;
+export type PersonDirectoriesUpdateParameters = PersonDirectoriesUpdateHeaderParam &
+  PersonDirectoriesUpdateMediaTypesParam &
+  PersonDirectoriesUpdateBodyParam &
+  RequestParameters;
 
 export interface PersonDirectoriesGetHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -246,8 +238,7 @@ export interface PersonDirectoriesGetHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesGetHeaders;
 }
 
-export type PersonDirectoriesGetParameters = PersonDirectoriesGetHeaderParam &
-  RequestParameters;
+export type PersonDirectoriesGetParameters = PersonDirectoriesGetHeaderParam & RequestParameters;
 
 export interface PersonDirectoriesDeleteHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -258,8 +249,8 @@ export interface PersonDirectoriesDeleteHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesDeleteHeaders;
 }
 
-export type PersonDirectoriesDeleteParameters =
-  PersonDirectoriesDeleteHeaderParam & RequestParameters;
+export type PersonDirectoriesDeleteParameters = PersonDirectoriesDeleteHeaderParam &
+  RequestParameters;
 
 export interface PersonDirectoriesListHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -270,8 +261,7 @@ export interface PersonDirectoriesListHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesListHeaders;
 }
 
-export type PersonDirectoriesListParameters = PersonDirectoriesListHeaderParam &
-  RequestParameters;
+export type PersonDirectoriesListParameters = PersonDirectoriesListHeaderParam & RequestParameters;
 
 export interface PersonDirectoriesUpdatePersonHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -279,8 +269,7 @@ export interface PersonDirectoriesUpdatePersonHeaders {
 }
 
 /** The resource instance. */
-export type PersonDirectoryPersonResourceMergeAndPatch =
-  Partial<PersonDirectoryPerson>;
+export type PersonDirectoryPersonResourceMergeAndPatch = Partial<PersonDirectoryPerson>;
 
 export interface PersonDirectoriesUpdatePersonBodyParam {
   /** The resource instance. */
@@ -296,11 +285,10 @@ export interface PersonDirectoriesUpdatePersonMediaTypesParam {
   contentType: "application/merge-patch+json";
 }
 
-export type PersonDirectoriesUpdatePersonParameters =
-  PersonDirectoriesUpdatePersonHeaderParam &
-    PersonDirectoriesUpdatePersonMediaTypesParam &
-    PersonDirectoriesUpdatePersonBodyParam &
-    RequestParameters;
+export type PersonDirectoriesUpdatePersonParameters = PersonDirectoriesUpdatePersonHeaderParam &
+  PersonDirectoriesUpdatePersonMediaTypesParam &
+  PersonDirectoriesUpdatePersonBodyParam &
+  RequestParameters;
 
 export interface PersonDirectoriesGetPersonHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -311,8 +299,8 @@ export interface PersonDirectoriesGetPersonHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesGetPersonHeaders;
 }
 
-export type PersonDirectoriesGetPersonParameters =
-  PersonDirectoriesGetPersonHeaderParam & RequestParameters;
+export type PersonDirectoriesGetPersonParameters = PersonDirectoriesGetPersonHeaderParam &
+  RequestParameters;
 
 export interface PersonDirectoriesDeletePersonHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -323,8 +311,8 @@ export interface PersonDirectoriesDeletePersonHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesDeletePersonHeaders;
 }
 
-export type PersonDirectoriesDeletePersonParameters =
-  PersonDirectoriesDeletePersonHeaderParam & RequestParameters;
+export type PersonDirectoriesDeletePersonParameters = PersonDirectoriesDeletePersonHeaderParam &
+  RequestParameters;
 
 export interface PersonDirectoriesListPersonsHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -335,8 +323,8 @@ export interface PersonDirectoriesListPersonsHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesListPersonsHeaders;
 }
 
-export type PersonDirectoriesListPersonsParameters =
-  PersonDirectoriesListPersonsHeaderParam & RequestParameters;
+export type PersonDirectoriesListPersonsParameters = PersonDirectoriesListPersonsHeaderParam &
+  RequestParameters;
 
 export interface PersonDirectoriesAddFaceHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -351,10 +339,9 @@ export interface PersonDirectoriesAddFaceHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesAddFaceHeaders;
 }
 
-export type PersonDirectoriesAddFaceParameters =
-  PersonDirectoriesAddFaceHeaderParam &
-    PersonDirectoriesAddFaceBodyParam &
-    RequestParameters;
+export type PersonDirectoriesAddFaceParameters = PersonDirectoriesAddFaceHeaderParam &
+  PersonDirectoriesAddFaceBodyParam &
+  RequestParameters;
 
 export interface PersonDirectoriesUpdateFaceHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -362,8 +349,7 @@ export interface PersonDirectoriesUpdateFaceHeaders {
 }
 
 /** The resource instance. */
-export type PersonDirectoryFaceResourceMergeAndPatch =
-  Partial<PersonDirectoryFace>;
+export type PersonDirectoryFaceResourceMergeAndPatch = Partial<PersonDirectoryFace>;
 
 export interface PersonDirectoriesUpdateFaceBodyParam {
   /** The resource instance. */
@@ -379,11 +365,10 @@ export interface PersonDirectoriesUpdateFaceMediaTypesParam {
   contentType: "application/merge-patch+json";
 }
 
-export type PersonDirectoriesUpdateFaceParameters =
-  PersonDirectoriesUpdateFaceHeaderParam &
-    PersonDirectoriesUpdateFaceMediaTypesParam &
-    PersonDirectoriesUpdateFaceBodyParam &
-    RequestParameters;
+export type PersonDirectoriesUpdateFaceParameters = PersonDirectoriesUpdateFaceHeaderParam &
+  PersonDirectoriesUpdateFaceMediaTypesParam &
+  PersonDirectoriesUpdateFaceBodyParam &
+  RequestParameters;
 
 export interface PersonDirectoriesGetFaceHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -394,8 +379,8 @@ export interface PersonDirectoriesGetFaceHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesGetFaceHeaders;
 }
 
-export type PersonDirectoriesGetFaceParameters =
-  PersonDirectoriesGetFaceHeaderParam & RequestParameters;
+export type PersonDirectoriesGetFaceParameters = PersonDirectoriesGetFaceHeaderParam &
+  RequestParameters;
 
 export interface PersonDirectoriesDeleteFaceHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -406,8 +391,8 @@ export interface PersonDirectoriesDeleteFaceHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesDeleteFaceHeaders;
 }
 
-export type PersonDirectoriesDeleteFaceParameters =
-  PersonDirectoriesDeleteFaceHeaderParam & RequestParameters;
+export type PersonDirectoriesDeleteFaceParameters = PersonDirectoriesDeleteFaceHeaderParam &
+  RequestParameters;
 
 export interface PersonDirectoriesListFacesHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -418,8 +403,8 @@ export interface PersonDirectoriesListFacesHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesListFacesHeaders;
 }
 
-export type PersonDirectoriesListFacesParameters =
-  PersonDirectoriesListFacesHeaderParam & RequestParameters;
+export type PersonDirectoriesListFacesParameters = PersonDirectoriesListFacesHeaderParam &
+  RequestParameters;
 
 export interface PersonDirectoriesIdentifyPersonHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -434,10 +419,9 @@ export interface PersonDirectoriesIdentifyPersonHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesIdentifyPersonHeaders;
 }
 
-export type PersonDirectoriesIdentifyPersonParameters =
-  PersonDirectoriesIdentifyPersonHeaderParam &
-    PersonDirectoriesIdentifyPersonBodyParam &
-    RequestParameters;
+export type PersonDirectoriesIdentifyPersonParameters = PersonDirectoriesIdentifyPersonHeaderParam &
+  PersonDirectoriesIdentifyPersonBodyParam &
+  RequestParameters;
 
 export interface PersonDirectoriesFindSimilarFacesHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -470,10 +454,9 @@ export interface PersonDirectoriesVerifyPersonHeaderParam {
   headers?: RawHttpHeadersInput & PersonDirectoriesVerifyPersonHeaders;
 }
 
-export type PersonDirectoriesVerifyPersonParameters =
-  PersonDirectoriesVerifyPersonHeaderParam &
-    PersonDirectoriesVerifyPersonBodyParam &
-    RequestParameters;
+export type PersonDirectoriesVerifyPersonParameters = PersonDirectoriesVerifyPersonHeaderParam &
+  PersonDirectoriesVerifyPersonBodyParam &
+  RequestParameters;
 
 export interface FacesDetectHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -551,11 +534,10 @@ export interface ContentClassifiersUpdateMediaTypesParam {
   contentType: "application/merge-patch+json";
 }
 
-export type ContentClassifiersUpdateParameters =
-  ContentClassifiersUpdateHeaderParam &
-    ContentClassifiersUpdateMediaTypesParam &
-    ContentClassifiersUpdateBodyParam &
-    RequestParameters;
+export type ContentClassifiersUpdateParameters = ContentClassifiersUpdateHeaderParam &
+  ContentClassifiersUpdateMediaTypesParam &
+  ContentClassifiersUpdateBodyParam &
+  RequestParameters;
 
 export interface ContentClassifiersGetHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -566,8 +548,7 @@ export interface ContentClassifiersGetHeaderParam {
   headers?: RawHttpHeadersInput & ContentClassifiersGetHeaders;
 }
 
-export type ContentClassifiersGetParameters = ContentClassifiersGetHeaderParam &
-  RequestParameters;
+export type ContentClassifiersGetParameters = ContentClassifiersGetHeaderParam & RequestParameters;
 
 export interface ContentClassifiersDeleteHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -578,8 +559,8 @@ export interface ContentClassifiersDeleteHeaderParam {
   headers?: RawHttpHeadersInput & ContentClassifiersDeleteHeaders;
 }
 
-export type ContentClassifiersDeleteParameters =
-  ContentClassifiersDeleteHeaderParam & RequestParameters;
+export type ContentClassifiersDeleteParameters = ContentClassifiersDeleteHeaderParam &
+  RequestParameters;
 
 export interface ContentClassifiersListHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -590,8 +571,8 @@ export interface ContentClassifiersListHeaderParam {
   headers?: RawHttpHeadersInput & ContentClassifiersListHeaders;
 }
 
-export type ContentClassifiersListParameters =
-  ContentClassifiersListHeaderParam & RequestParameters;
+export type ContentClassifiersListParameters = ContentClassifiersListHeaderParam &
+  RequestParameters;
 
 export interface ContentClassifiersClassifyHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -625,11 +606,10 @@ export interface ContentClassifiersClassifyHeaderParam {
   headers?: RawHttpHeadersInput & ContentClassifiersClassifyHeaders;
 }
 
-export type ContentClassifiersClassifyParameters =
-  ContentClassifiersClassifyQueryParam &
-    ContentClassifiersClassifyHeaderParam &
-    ContentClassifiersClassifyBodyParam &
-    RequestParameters;
+export type ContentClassifiersClassifyParameters = ContentClassifiersClassifyQueryParam &
+  ContentClassifiersClassifyHeaderParam &
+  ContentClassifiersClassifyBodyParam &
+  RequestParameters;
 
 export interface ContentClassifiersClassifyBinaryHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
