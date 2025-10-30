@@ -12,9 +12,10 @@ urlFragment: ai-content-understanding-rest-javascript
 
 These sample programs show how to use the JavaScript client libraries for Azure AI Content Understanding REST in common scenarios.
 
-| File Name | Description |
-| --- | --- |
-| [analyzeBinary.js](analyzeBinary.js) | Analyze a PDF using the prebuilt-documentAnalyzer. |
+| File Name                                          | Description                                                                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [analyzeBinary.js](analyzeBinary.js)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                                                  |
+| [analyzeBinaryRawJson.js](analyzeBinaryRawJson.js) | Analyze a PDF using the prebuilt-documentAnalyzer and save the raw JSON response (for demonstration purposes only). |
 
 ## Prerequisites
 

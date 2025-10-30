@@ -12,9 +12,10 @@ urlFragment: ai-content-understanding-rest-typescript
 
 These sample programs show how to use the TypeScript client libraries for Azure AI Content Understanding REST in some common scenarios.
 
-| File Name | Description |
-| --- | --- |
-| [analyzeBinary.ts](src/analyzeBinary.ts) | Analyze a PDF using the prebuilt-documentAnalyzer. |
+| File Name                                              | Description                                                                                                         |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| [analyzeBinary.ts](src/analyzeBinary.ts)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                                                  |
+| [analyzeBinaryRawJson.ts](src/analyzeBinaryRawJson.ts) | Analyze a PDF using the prebuilt-documentAnalyzer and save the raw JSON response (for demonstration purposes only). |
 
 ## Prerequisites
 
