@@ -16,6 +16,7 @@ These sample programs show how to use the TypeScript client libraries for Azure 
 | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
 | [analyzeBinary.ts](src/analyzeBinary.ts)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                                                  |
 | [analyzeBinaryRawJson.ts](src/analyzeBinaryRawJson.ts) | Analyze a PDF using the prebuilt-documentAnalyzer and save the raw JSON response (for demonstration purposes only). |
+| [analyzeUrl.ts](src/analyzeUrl.ts)                     | Analyze a document from a URL using the prebuilt-documentAnalyzer.                                                  |
 
 ## Prerequisites
 
@@ -53,6 +54,10 @@ Alternatively, run a single sample with the correct environment variables set (s
 
 ```bash
 cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/analyzeBinary.js
+```
+
+```bash
+cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/analyzeUrl.js
 ```
 
 ## Next Steps
