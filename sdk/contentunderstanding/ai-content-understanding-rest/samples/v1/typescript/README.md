@@ -12,12 +12,13 @@ urlFragment: ai-content-understanding-rest-typescript
 
 These sample programs show how to use the TypeScript client libraries for Azure AI Content Understanding REST in some common scenarios.
 
-| File Name                                                          | Description                                                                                                         |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| [analyzeBinary.ts](src/analyzeBinary.ts)                           | Analyze a PDF using the prebuilt-documentAnalyzer.                                                                  |
-| [analyzeBinaryRawJson.ts](src/analyzeBinaryRawJson.ts)             | Analyze a PDF using the prebuilt-documentAnalyzer and save the raw JSON response (for demonstration purposes only). |
-| [analyzeUrl.ts](src/analyzeUrl.ts)                                 | Analyze a document from a URL using the prebuilt-documentAnalyzer.                                                  |
-| [analyzeUrlPrebuiltInvoice.ts](src/analyzeUrlPrebuiltInvoice.ts)   | Analyze an invoice from a URL using the prebuilt-invoice analyzer and extract structured fields.                    |
+| File Name                                                        | Description                                                                                                         |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [analyzeBinary.ts](src/analyzeBinary.ts)                         | Analyze a PDF using the prebuilt-documentAnalyzer.                                                                  |
+| [analyzeBinaryRawJson.ts](src/analyzeBinaryRawJson.ts)           | Analyze a PDF using the prebuilt-documentAnalyzer and save the raw JSON response (for demonstration purposes only). |
+| [analyzeUrl.ts](src/analyzeUrl.ts)                               | Analyze a document from a URL using the prebuilt-documentAnalyzer.                                                  |
+| [analyzeUrlPrebuiltInvoice.ts](src/analyzeUrlPrebuiltInvoice.ts) | Analyze an invoice from a URL using the prebuilt-invoice analyzer and extract structured fields.                    |
+| [createOrReplaceAnalyzer.ts](src/createOrReplaceAnalyzer.ts)     | Create a custom analyzer with field schema, use it to analyze a document, and clean up.                             |
 
 ## Prerequisites
 
@@ -63,6 +64,10 @@ cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiv
 
 ```bash
 cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/analyzeUrlPrebuiltInvoice.js
+```
+
+```bash
+cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/createOrReplaceAnalyzer.js
 ```
 
 ## Next Steps
