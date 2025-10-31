@@ -21,6 +21,7 @@ These sample programs show how to use the JavaScript client libraries for Azure 
 | [createOrReplaceAnalyzer.js](createOrReplaceAnalyzer.js)     | Create a custom analyzer with field schema, use it to analyze a document, and clean up.                             |
 | [deleteAnalyzer.js](deleteAnalyzer.js)                       | Delete a custom analyzer using the Delete API.                                                                      |
 | [getAnalyzer.js](getAnalyzer.js)                             | Retrieve an analyzer using the Get API and display its properties.                                                  |
+| [getResultFile.js](getResultFile.js)                         | Get result files (like keyframe images) from a video analysis operation.                                            |
 
 ## Prerequisites
 
@@ -72,6 +73,10 @@ cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiv
 
 ```bash
 cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node getAnalyzer.js
+```
+
+```bash
+cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node getResultFile.js
 ```
 
 ## Next Steps
