@@ -34,31 +34,12 @@ import ContentUnderstanding, {
   isUnexpected,
 } from "@azure-rest/ai-content-understanding";
 
-// Minimal local interfaces for sample usage
-interface ContentAnalyzerConfig {
-  returnDetails?: boolean;
-}
-
-interface FieldSchema {
-  name?: string;
-  description?: string;
-  fields: Record<
-    string,
-    {
-      type: string;
-      method: string;
-      description?: string;
-    }
-  >;
-}
-
-interface ContentAnalyzer {
-  baseAnalyzerId: string;
-  description?: string;
-  config?: ContentAnalyzerConfig;
-  fieldSchema?: FieldSchema;
-  models?: Record<string, string>;
-}
+// Use SDK types for analyzer creation
+import type {
+  ContentAnalyzerConfigOutput as ContentAnalyzerConfig,
+  FieldSchemaOutput as FieldSchema,
+  ContentAnalyzerOutput as ContentAnalyzer
+} from "@azure-rest/ai-content-understanding/src/outputModels";
 
 // Helper to select credential based on environment
 function getCredential(): DefaultAzureCredential | AzureKeyCredential {
