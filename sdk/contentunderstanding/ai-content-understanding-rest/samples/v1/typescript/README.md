@@ -20,6 +20,7 @@ These sample programs show how to use the TypeScript client libraries for Azure 
 | [analyzeUrlPrebuiltInvoice.ts](src/analyzeUrlPrebuiltInvoice.ts) | Analyze an invoice from a URL using the prebuilt-invoice analyzer and extract structured fields.                    |
 | [createOrReplaceAnalyzer.ts](src/createOrReplaceAnalyzer.ts)     | Create a custom analyzer with field schema, use it to analyze a document, and clean up.                             |
 | [deleteAnalyzer.ts](src/deleteAnalyzer.ts)                       | Delete a custom analyzer using the Delete API.                                                                      |
+| [getAnalyzer.ts](src/getAnalyzer.ts)                             | Retrieve an analyzer using the Get API and display its properties.                                                  |
 
 ## Prerequisites
 
@@ -73,6 +74,10 @@ cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiv
 
 ```bash
 cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/deleteAnalyzer.js
+```
+
+```bash
+cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/getAnalyzer.js
 ```
 
 ## Next Steps
