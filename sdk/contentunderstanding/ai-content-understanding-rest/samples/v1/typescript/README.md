@@ -22,6 +22,7 @@ These sample programs show how to use the TypeScript client libraries for Azure 
 | [deleteAnalyzer.ts](src/deleteAnalyzer.ts)                       | Delete a custom analyzer using the Delete API.                                                                      |
 | [getAnalyzer.ts](src/getAnalyzer.ts)                             | Retrieve an analyzer using the Get API and display its properties.                                                  |
 | [getResultFile.ts](src/getResultFile.ts)                         | Get result files (like keyframe images) from a video analysis operation.                                            |
+| [listAnalyzers.ts](src/listAnalyzers.ts)                         | List all available analyzers and display their properties.                                                          |
 
 ## Prerequisites
 
@@ -83,6 +84,10 @@ cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiv
 
 ```bash
 cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/getResultFile.js
+```
+
+```bash
+cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node dist/listAnalyzers.js
 ```
 
 ## Next Steps
