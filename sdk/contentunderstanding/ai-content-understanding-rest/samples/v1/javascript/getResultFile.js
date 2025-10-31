@@ -128,11 +128,22 @@ async function main() {
           console.log(`  Video content found:`);
           console.log(`    Start time: ${content.startTimeMs}ms`);
           console.log(`    End time: ${content.endTimeMs}ms`);
-          console.log(`    KeyFrames count: ${content.keyFrames?.length ?? 0}`);
 
-          if (content.keyFrames && content.keyFrames.length > 0) {
-            console.log(`  Found ${content.keyFrames.length} keyframes in video content`);
-            keyframeTimeMs.push(...content.keyFrames.map((kf) => kf.frameTimeMs));
+          // The API returns KeyFrameTimesMs (PascalCase) as an array of numbers
+          // Check for both the SDK-defined keyFrames and the actual API response KeyFrameTimesMs
+          const keyFrameData = content.KeyFrameTimesMs || content.keyFrames;
+          const keyFrameCount = Array.isArray(keyFrameData) ? keyFrameData.length : 0;
+          console.log(`    KeyFrames count: ${keyFrameCount}`);
+
+          if (keyFrameData && keyFrameCount > 0) {
+            console.log(`  Found ${keyFrameCount} keyframes in video content`);
+            // If KeyFrameTimesMs exists, it's already an array of numbers
+            if (content.KeyFrameTimesMs) {
+              keyframeTimeMs.push(...content.KeyFrameTimesMs);
+            } else if (content.keyFrames) {
+              // If keyFrames exists, extract frameTimeMs from each object
+              keyframeTimeMs.push(...content.keyFrames.map((kf) => kf.frameTimeMs));
+            }
           }
           break;
         }
@@ -218,6 +229,9 @@ async function main() {
     console.log("  2. Extracting operation ID from Operation-Location header");
     console.log("  3. Downloading keyframe images using GetResultFile API");
     console.log("  4. Saving keyframe images to local files\n");
+    console.log("Note: The API currently returns KeyFrameTimesMs (PascalCase) as an array");
+    console.log("      of millisecond values, not keyFrames objects with frameTimeMs properties.");
+    console.log("      This sample handles both formats for compatibility.\n");
   } catch (err) {
     console.error();
     console.error("✗ An error occurred");
