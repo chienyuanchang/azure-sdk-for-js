@@ -12,11 +12,12 @@ urlFragment: ai-content-understanding-rest-javascript
 
 These sample programs show how to use the JavaScript client libraries for Azure AI Content Understanding REST in common scenarios.
 
-| File Name                                          | Description                                                                                                         |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| [analyzeBinary.js](analyzeBinary.js)               | Analyze a PDF using the prebuilt-documentAnalyzer.                                                                  |
-| [analyzeBinaryRawJson.js](analyzeBinaryRawJson.js) | Analyze a PDF using the prebuilt-documentAnalyzer and save the raw JSON response (for demonstration purposes only). |
-| [analyzeUrl.js](analyzeUrl.js)                     | Analyze a document from a URL using the prebuilt-documentAnalyzer.                                                  |
+| File Name                                                    | Description                                                                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| [analyzeBinary.js](analyzeBinary.js)                         | Analyze a PDF using the prebuilt-documentAnalyzer.                                                                  |
+| [analyzeBinaryRawJson.js](analyzeBinaryRawJson.js)           | Analyze a PDF using the prebuilt-documentAnalyzer and save the raw JSON response (for demonstration purposes only). |
+| [analyzeUrl.js](analyzeUrl.js)                               | Analyze a document from a URL using the prebuilt-documentAnalyzer.                                                  |
+| [analyzeUrlPrebuiltInvoice.js](analyzeUrlPrebuiltInvoice.js) | Analyze an invoice from a URL using the prebuilt-invoice analyzer and extract structured fields.                    |
 
 ## Prerequisites
 
@@ -52,6 +53,10 @@ cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiv
 
 ```bash
 cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node analyzeUrl.js
+```
+
+```bash
+cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node analyzeUrlPrebuiltInvoice.js
 ```
 
 ## Next Steps
