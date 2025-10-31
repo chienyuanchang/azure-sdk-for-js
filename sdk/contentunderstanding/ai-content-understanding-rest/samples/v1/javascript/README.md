@@ -19,6 +19,7 @@ These sample programs show how to use the JavaScript client libraries for Azure 
 | [analyzeUrl.js](analyzeUrl.js)                               | Analyze a document from a URL using the prebuilt-documentAnalyzer.                                                  |
 | [analyzeUrlPrebuiltInvoice.js](analyzeUrlPrebuiltInvoice.js) | Analyze an invoice from a URL using the prebuilt-invoice analyzer and extract structured fields.                    |
 | [createOrReplaceAnalyzer.js](createOrReplaceAnalyzer.js)     | Create a custom analyzer with field schema, use it to analyze a document, and clean up.                             |
+| [deleteAnalyzer.js](deleteAnalyzer.js)                       | Delete a custom analyzer using the Delete API.                                                                      |
 
 ## Prerequisites
 
@@ -62,6 +63,10 @@ cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiv
 
 ```bash
 cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node createOrReplaceAnalyzer.js
+```
+
+```bash
+cross-env AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com/" node deleteAnalyzer.js
 ```
 
 ## Next Steps
