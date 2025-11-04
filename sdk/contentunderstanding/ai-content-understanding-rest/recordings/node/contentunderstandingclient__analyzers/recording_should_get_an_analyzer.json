@@ -1,0 +1,471 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286042?api-version=2025-11-01",
+      "RequestMethod": "PUT",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Content-Length": "345",
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": {
+        "baseAnalyzerId": "prebuilt-document",
+        "description": "Test analyzer for extraction",
+        "config": {
+          "returnDetails": true
+        },
+        "fieldSchema": {
+          "name": "Sanitized",
+          "description": "Schema for test",
+          "fields": {
+            "test_field": {
+              "type": "string",
+              "method": "extract",
+              "description": "Test field"
+            }
+          }
+        },
+        "models": {
+          "completion": "gpt-4o-mini",
+          "embedding": "text-embedding-3-large"
+        }
+      },
+      "StatusCode": 201,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "c03ea237-5145-4dc2-abe1-3baa5a8240ff",
+        "Content-Type": "application/json",
+        "Date": "Tue, 04 Nov 2025 19:54:02 GMT",
+        "Operation-Location": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286042/operations/c03ea237-5145-4dc2-abe1-3baa5a8240ff?api-version=2025-11-01",
+        "request-id": "c03ea237-5145-4dc2-abe1-3baa5a8240ff",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "108",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "analyzerId": "test_analyzer_1762286042",
+        "description": "Test analyzer for extraction",
+        "createdAt": "2025-11-04T19:54:02Z",
+        "lastModifiedAt": "2025-11-04T19:54:02Z",
+        "baseAnalyzerId": "prebuilt-document",
+        "config": {
+          "returnDetails": true,
+          "enableOcr": true,
+          "enableLayout": true,
+          "enableFormula": true,
+          "enableFigureDescription": false,
+          "enableFigureAnalysis": false,
+          "chartFormat": "chartjs",
+          "tableFormat": "html",
+          "enableSegment": false,
+          "omitContent": false,
+          "segmentPerPage": false,
+          "enableAnnotations": false,
+          "annotationFormat": "markdown"
+        },
+        "fieldSchema": {
+          "name": "Sanitized",
+          "description": "Schema for test",
+          "fields": {
+            "test_field": {
+              "type": "string",
+              "method": "extract",
+              "description": "Test field"
+            }
+          }
+        },
+        "warnings": [],
+        "status": "creating",
+        "processingLocation": "geography",
+        "supportedModels": {
+          "completion": [
+            "gpt-4o",
+            "gpt-4o-mini",
+            "gpt-4.1",
+            "gpt-4.1-mini",
+            "gpt-4.1-nano"
+          ],
+          "embedding": [
+            "text-embedding-3-small",
+            "text-embedding-3-large",
+            "text-embedding-ada-002"
+          ]
+        },
+        "models": {
+          "completion": "gpt-4o-mini",
+          "embedding": "text-embedding-3-large"
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286042/operations/c03ea237-5145-4dc2-abe1-3baa5a8240ff?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "e1da6621-28a9-4f30-910f-162d510a1718",
+        "Content-Type": "application/json",
+        "Date": "Tue, 04 Nov 2025 19:54:02 GMT",
+        "request-id": "e1da6621-28a9-4f30-910f-162d510a1718",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "87",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "c03ea237-5145-4dc2-abe1-3baa5a8240ff",
+        "status": "Running",
+        "result": {
+          "analyzerId": "test_analyzer_1762286042",
+          "description": "Test analyzer for extraction",
+          "createdAt": "2025-11-04T19:54:02Z",
+          "lastModifiedAt": "2025-11-04T19:54:02Z",
+          "baseAnalyzerId": "prebuilt-document",
+          "config": {
+            "returnDetails": true,
+            "enableOcr": true,
+            "enableLayout": true,
+            "enableFormula": true,
+            "enableFigureDescription": false,
+            "enableFigureAnalysis": false,
+            "chartFormat": "chartjs",
+            "tableFormat": "html",
+            "enableSegment": false,
+            "omitContent": false,
+            "segmentPerPage": false,
+            "enableAnnotations": false,
+            "annotationFormat": "markdown"
+          },
+          "fieldSchema": {
+            "name": "Sanitized",
+            "description": "Schema for test",
+            "fields": {
+              "test_field": {
+                "type": "string",
+                "method": "extract",
+                "description": "Test field"
+              }
+            }
+          },
+          "warnings": [],
+          "status": "creating",
+          "processingLocation": "geography",
+          "supportedModels": {
+            "completion": [
+              "gpt-4o",
+              "gpt-4o-mini",
+              "gpt-4.1",
+              "gpt-4.1-mini",
+              "gpt-4.1-nano"
+            ],
+            "embedding": [
+              "text-embedding-3-small",
+              "text-embedding-3-large",
+              "text-embedding-ada-002"
+            ]
+          },
+          "models": {
+            "completion": "gpt-4o-mini",
+            "embedding": "text-embedding-3-large"
+          }
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286042/operations/c03ea237-5145-4dc2-abe1-3baa5a8240ff?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "473346b8-7fc4-49c0-b868-62e1dc60534d",
+        "Content-Type": "application/json",
+        "Date": "Tue, 04 Nov 2025 19:54:04 GMT",
+        "request-id": "473346b8-7fc4-49c0-b868-62e1dc60534d",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "63",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "c03ea237-5145-4dc2-abe1-3baa5a8240ff",
+        "status": "Succeeded",
+        "result": {
+          "analyzerId": "test_analyzer_1762286042",
+          "description": "Test analyzer for extraction",
+          "createdAt": "2025-11-04T19:54:02Z",
+          "lastModifiedAt": "2025-11-04T19:54:04Z",
+          "baseAnalyzerId": "prebuilt-document",
+          "config": {
+            "returnDetails": true,
+            "enableOcr": true,
+            "enableLayout": true,
+            "enableFormula": true,
+            "enableFigureDescription": false,
+            "enableFigureAnalysis": false,
+            "chartFormat": "chartjs",
+            "tableFormat": "html",
+            "enableSegment": false,
+            "omitContent": false,
+            "segmentPerPage": false,
+            "enableAnnotations": false,
+            "annotationFormat": "markdown"
+          },
+          "fieldSchema": {
+            "name": "Sanitized",
+            "description": "Schema for test",
+            "fields": {
+              "test_field": {
+                "type": "string",
+                "method": "extract",
+                "description": "Test field"
+              }
+            }
+          },
+          "warnings": [],
+          "status": "ready",
+          "processingLocation": "geography",
+          "supportedModels": {
+            "completion": [
+              "gpt-4o",
+              "gpt-4o-mini",
+              "gpt-4.1",
+              "gpt-4.1-mini",
+              "gpt-4.1-nano"
+            ],
+            "embedding": [
+              "text-embedding-3-small",
+              "text-embedding-3-large",
+              "text-embedding-ada-002"
+            ]
+          },
+          "models": {
+            "completion": "gpt-4o-mini",
+            "embedding": "text-embedding-3-large"
+          }
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286042?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "6af663dd-8d0b-4b07-8964-32a03b595fa7",
+        "Content-Type": "application/json",
+        "Date": "Tue, 04 Nov 2025 19:54:04 GMT",
+        "request-id": "6af663dd-8d0b-4b07-8964-32a03b595fa7",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "23",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "analyzerId": "test_analyzer_1762286042",
+        "description": "Test analyzer for extraction",
+        "createdAt": "2025-11-04T19:54:02Z",
+        "lastModifiedAt": "2025-11-04T19:54:04Z",
+        "baseAnalyzerId": "prebuilt-document",
+        "config": {
+          "returnDetails": true,
+          "enableOcr": true,
+          "enableLayout": true,
+          "enableFormula": true,
+          "enableFigureDescription": false,
+          "enableFigureAnalysis": false,
+          "chartFormat": "chartjs",
+          "tableFormat": "html",
+          "enableSegment": false,
+          "omitContent": false,
+          "segmentPerPage": false,
+          "enableAnnotations": false,
+          "annotationFormat": "markdown"
+        },
+        "fieldSchema": {
+          "name": "Sanitized",
+          "description": "Schema for test",
+          "fields": {
+            "test_field": {
+              "type": "string",
+              "method": "extract",
+              "description": "Test field"
+            }
+          }
+        },
+        "warnings": [],
+        "status": "ready",
+        "processingLocation": "geography",
+        "supportedModels": {
+          "completion": [
+            "gpt-4o",
+            "gpt-4o-mini",
+            "gpt-4.1",
+            "gpt-4.1-mini",
+            "gpt-4.1-nano"
+          ],
+          "embedding": [
+            "text-embedding-3-small",
+            "text-embedding-3-large",
+            "text-embedding-ada-002"
+          ]
+        },
+        "models": {
+          "completion": "gpt-4o-mini",
+          "embedding": "text-embedding-3-large"
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286042?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "fce7ac9a-6f87-45a2-98be-b47e476cf705",
+        "Content-Type": "application/json",
+        "Date": "Tue, 04 Nov 2025 19:54:04 GMT",
+        "request-id": "fce7ac9a-6f87-45a2-98be-b47e476cf705",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "25",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "analyzerId": "test_analyzer_1762286042",
+        "description": "Test analyzer for extraction",
+        "createdAt": "2025-11-04T19:54:02Z",
+        "lastModifiedAt": "2025-11-04T19:54:04Z",
+        "baseAnalyzerId": "prebuilt-document",
+        "config": {
+          "returnDetails": true,
+          "enableOcr": true,
+          "enableLayout": true,
+          "enableFormula": true,
+          "enableFigureDescription": false,
+          "enableFigureAnalysis": false,
+          "chartFormat": "chartjs",
+          "tableFormat": "html",
+          "enableSegment": false,
+          "omitContent": false,
+          "segmentPerPage": false,
+          "enableAnnotations": false,
+          "annotationFormat": "markdown"
+        },
+        "fieldSchema": {
+          "name": "Sanitized",
+          "description": "Schema for test",
+          "fields": {
+            "test_field": {
+              "type": "string",
+              "method": "extract",
+              "description": "Test field"
+            }
+          }
+        },
+        "warnings": [],
+        "status": "ready",
+        "processingLocation": "geography",
+        "supportedModels": {
+          "completion": [
+            "gpt-4o",
+            "gpt-4o-mini",
+            "gpt-4.1",
+            "gpt-4.1-mini",
+            "gpt-4.1-nano"
+          ],
+          "embedding": [
+            "text-embedding-3-small",
+            "text-embedding-3-large",
+            "text-embedding-ada-002"
+          ]
+        },
+        "models": {
+          "completion": "gpt-4o-mini",
+          "embedding": "text-embedding-3-large"
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286042?api-version=2025-11-01",
+      "RequestMethod": "DELETE",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 204,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "b5a5e32e-82d2-45f4-b84d-66036f4e77cd",
+        "Content-Length": "0",
+        "Date": "Tue, 04 Nov 2025 19:54:04 GMT",
+        "request-id": "b5a5e32e-82d2-45f4-b84d-66036f4e77cd",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "171",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": null
+    }
+  ],
+  "Variables": {
+    "testAnalyzerId": "test_analyzer_1762286042"
+  }
+}

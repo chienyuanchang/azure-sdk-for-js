@@ -53,3 +53,51 @@ setLogLevel("info");
 ```
 
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
+
+## Testing
+
+This SDK includes comprehensive tests that can be run in different modes:
+
+### Quick Start
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build the SDK
+npx turbo build --filter=@azure-rest/ai-content-understanding...
+
+# Run tests in playback mode (no Azure resources needed)
+pnpm test
+```
+
+### Test Modes
+
+- **Playback Mode** (default): Uses pre-recorded HTTP interactions, no Azure resources required
+- **Record Mode**: Runs against live Azure services and records interactions for future playback
+- **Live Mode**: Runs against live Azure services without recording
+
+### Run Tests in Record Mode
+
+To record new test interactions or update existing ones:
+
+```bash
+# 1. Set up environment variables in test/.env
+cp test/sample.env test/.env
+# Edit test/.env with your Azure credentials
+
+# 2. Run tests in record mode
+TEST_MODE=record pnpm test
+```
+
+### Run Tests in Playback Mode
+
+To run tests without Azure resources (using pre-recorded interactions):
+
+```bash
+# Simply run tests (playback is the default mode)
+pnpm test
+
+# Or explicitly set playback mode
+TEST_MODE=playback pnpm test
+```

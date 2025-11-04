@@ -29,7 +29,7 @@ export default function createClient(
 ): ContentUnderstandingClient {
   const endpointUrl =
     options.endpoint ?? `${endpointParam}/contentunderstanding`;
-  const userAgentInfo = `azsdk-js-ai-content-understanding-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-ai-content-understanding-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`

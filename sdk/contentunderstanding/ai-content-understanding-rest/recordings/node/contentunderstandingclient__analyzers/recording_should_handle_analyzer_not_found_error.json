@@ -1,0 +1,72 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/non-existent-analyzer-12345?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 404,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "c9bcaed8-3c5a-48bf-a6db-49c9214b799f",
+        "Content-Length": "146",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Tue, 04 Nov 2025 19:55:07 GMT",
+        "request-id": "c9bcaed8-3c5a-48bf-a6db-49c9214b799f",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "11",
+        "x-ms-error-code": "NotFound",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "error": {
+          "code": "NotFound",
+          "message": "Resource not found.",
+          "innererror": {
+            "code": "ModelNotFound",
+            "message": "The requested model was not found."
+          }
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762286108?api-version=2025-11-01",
+      "RequestMethod": "DELETE",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-ai-content-understanding-rest/1.0.0 core-rest-pipeline/1.22.2 Node/22.21.0 OS/(x64-Linux-5.15.167.4-microsoft-standard-WSL2)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 204,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "bb033b88-fe7e-49bc-825b-2f380886b378",
+        "Content-Length": "0",
+        "Date": "Tue, 04 Nov 2025 19:55:07 GMT",
+        "request-id": "bb033b88-fe7e-49bc-825b-2f380886b378",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "27",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": null
+    }
+  ],
+  "Variables": {
+    "testAnalyzerId": "test_analyzer_1762286108"
+  }
+}
