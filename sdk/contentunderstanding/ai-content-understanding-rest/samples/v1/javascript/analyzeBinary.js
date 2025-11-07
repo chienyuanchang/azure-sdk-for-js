@@ -13,8 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const { DefaultAzureCredential } = require("@azure/identity");
 const { AzureKeyCredential } = require("@azure/core-auth");
-const ContentUnderstanding = require("@azure-rest/ai-content-understanding").default;
-const { getLongRunningPoller, isUnexpected } = require("@azure-rest/ai-content-understanding");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 require("dotenv/config");
 
 // Helper to select credential based on environment
@@ -94,7 +93,7 @@ async function main() {
     console.log(
       `  Authentication: ${credential instanceof DefaultAzureCredential ? "DefaultAzureCredential" : "API Key"}`,
     );
-    const client = ContentUnderstanding(endpoint, credential);
+    const client = new ContentUnderstandingClient(endpoint, credential);
     console.log("  Client created successfully\n");
 
     // 3) Read PDF bytes from disk (try common locations)
@@ -138,29 +137,14 @@ async function main() {
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Analyzing...");
 
-    const initialResponse = await client
-      .path("/analyzers/{analyzerId}:analyzeBinary", analyzerId)
-      .post({
-        body: pdfBytes,
-        contentType: "application/pdf",
-        headers: { "Content-Type": "application/pdf" },
-      });
-
-    if (isUnexpected(initialResponse)) {
-      throw initialResponse.body.error;
-    }
-
-    const poller = await getLongRunningPoller(client, initialResponse);
-    const pollResult = await poller.pollUntilDone();
-    const analyzeResult = (pollResult?.body && pollResult.body.result) || pollResult?.body;
+    // Use the analyzeBinary method from the SDK
+    const poller = client.contentAnalyzers.analyzeBinary(analyzerId, "application/pdf", pdfBytes);
+    const analyzeResult = await poller.pollUntilDone();
 
     // 6) Print result
     printAnalysisResult(analyzeResult);
 
-    // Try to close DAC if supported
-    if (credential instanceof DefaultAzureCredential && typeof credential.close === "function") {
-      await credential.close();
-    }
+    // No need to manually close the credential - it will be cleaned up automatically
 
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");

@@ -1,4 +1,3 @@
-
 // --------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See License.txt in the project root for license information.
@@ -15,17 +14,10 @@
 import "dotenv/config";
 import * as fs from "fs";
 import * as path from "path";
-import { fileURLToPath } from "url";
-
-// Polyfill __dirname for ES module compatibility
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential } from "@azure/core-auth";
-import ContentUnderstanding, {
-  getLongRunningPoller,
-  isUnexpected,
-} from "@azure-rest/ai-content-understanding";
+import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
+import type { AnalyzeResult, DocumentContent } from "@azure-rest/ai-content-understanding";
 
 // Helper to select credential based on environment
 function getCredential(): DefaultAzureCredential | AzureKeyCredential {
@@ -37,7 +29,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Print markdown and document info (mirrors C# sample output)
-function printAnalysisResult(analyzeResult: any): void {
+function printAnalysisResult(analyzeResult: AnalyzeResult): void {
   if (!analyzeResult?.contents || analyzeResult.contents.length === 0) {
     console.log("(No content returned from analysis)");
     return;
@@ -51,7 +43,7 @@ function printAnalysisResult(analyzeResult: any): void {
   console.log("=============================================================\n");
 
   if (content?.kind === "document") {
-    const doc = content;
+    const doc = content as DocumentContent;
     console.log("Step 7: Displaying document information...");
     console.log(`  Document type: ${doc.mimeType ?? "(unknown)"}`);
     console.log(`  Start page: ${doc.startPageNumber}`);
@@ -72,7 +64,7 @@ function printAnalysisResult(analyzeResult: any): void {
     if (doc.tables && doc.tables.length > 0) {
       console.log("Step 9: Displaying table information...");
       console.log(`  Number of tables: ${doc.tables.length}`);
-      doc.tables.forEach((table: any, i: number) => {
+      doc.tables.forEach((table, i: number) => {
         console.log(`  Table ${i + 1}: ${table.rowCount} rows x ${table.columnCount} columns`);
       });
       console.log("");
@@ -105,16 +97,16 @@ async function main(): Promise<void> {
     console.log(
       `  Authentication: ${credential instanceof DefaultAzureCredential ? "DefaultAzureCredential" : "API Key"}`,
     );
-    const client = ContentUnderstanding(endpoint, credential);
+    const client = new ContentUnderstandingClient(endpoint, credential);
     console.log("  Client created successfully\n");
 
     // 3) Read PDF bytes from disk (try common locations)
     console.log("Step 3: Reading PDF file...");
     const possiblePaths = [
       // Package root sample_files (preferred)
-      path.join(__dirname, "..", "..", "..", "..", "sample_files", "sample_invoice.pdf"),
+      path.join(process.cwd(), "..", "..", "..", "sample_files", "sample_invoice.pdf"),
       // When copied next to this sample folder
-      path.join(__dirname, "..", "sample_files", "sample_invoice.pdf"),
+      path.join(process.cwd(), "..", "sample_files", "sample_invoice.pdf"),
       // From current working directory
       path.join(process.cwd(), "sample_files", "sample_invoice.pdf"),
     ];
@@ -149,30 +141,14 @@ async function main(): Promise<void> {
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Analyzing...");
 
-    // Send the raw PDF bytes as the body with contentType 'application/pdf'
-    const initialResponse = await client
-      .path("/analyzers/{analyzerId}:analyzeBinary", analyzerId)
-      .post({
-        body: pdfBytes,
-        contentType: "application/pdf",
-        headers: { "Content-Type": "application/pdf" }
-      });
-
-    if (isUnexpected(initialResponse)) {
-      throw initialResponse.body.error;
-    }
-
-    const poller = await getLongRunningPoller(client, initialResponse);
-    const pollResult = await poller.pollUntilDone();
-    const analyzeResult = (pollResult as any).body?.result ?? (pollResult as any).body;
+    // Use the analyzeBinary method from the SDK
+    const poller = client.contentAnalyzers.analyzeBinary(analyzerId, "application/pdf", pdfBytes);
+    const analyzeResult = await poller.pollUntilDone();
 
     // 6) Print result
     printAnalysisResult(analyzeResult);
 
-    // Try to close DAC if supported
-    if (credential instanceof DefaultAzureCredential && typeof (credential as any).close === "function") {
-      await (credential as any).close();
-    }
+    // No need to manually close the credential - it will be cleaned up automatically
 
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");
