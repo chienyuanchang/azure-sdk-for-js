@@ -1953,7 +1953,7 @@ export interface AudioVisualContent extends MediaContent {
   /** List of camera shot changes in the video, represented by its timestamp in milliseconds.  Only if returnDetails is true. */
   cameraShotTimesMs?: number[];
   /** List of key frames in the video, represented by its timestamp in milliseconds.  Only if returnDetails is true. */
-  keyFrameTimesMs?: number[];
+  KeyFrameTimesMs?: number[];
   /** List of transcript phrases.  Only if returnDetails is true. */
   transcriptPhrases?: TranscriptPhrase[];
   /** List of detected content segments.  Only if enableSegment is true. */
@@ -1980,9 +1980,9 @@ export function audioVisualContentDeserializer(item: any): AudioVisualContent {
       : item["cameraShotTimesMs"].map((p: any) => {
           return p;
         }),
-    keyFrameTimesMs: !item["keyFrameTimesMs"]
-      ? item["keyFrameTimesMs"]
-      : item["keyFrameTimesMs"].map((p: any) => {
+    KeyFrameTimesMs: !item["KeyFrameTimesMs"]
+      ? item["KeyFrameTimesMs"]
+      : item["KeyFrameTimesMs"].map((p: any) => {
           return p;
         }),
     transcriptPhrases: !item["transcriptPhrases"]
