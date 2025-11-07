@@ -11,13 +11,12 @@
 
 const { DefaultAzureCredential } = require("@azure/identity");
 const { AzureKeyCredential } = require("@azure/core-auth");
-const ContentUnderstanding = require("@azure-rest/ai-content-understanding").default;
-const { getLongRunningPoller, isUnexpected } = require("@azure-rest/ai-content-understanding");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 require("dotenv/config");
 
 // Helper to select credential based on environment
 function getCredential() {
-  const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
+  const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"]; // optional
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
   }
@@ -77,7 +76,7 @@ async function main() {
   console.log("=============================================================\n");
 
   try {
-    // Step 1: Load configuration
+    // Step 1: Load endpoint and choose credential
     console.log("Step 1: Loading configuration...");
     const endpoint = (process.env["AZURE_CONTENT_UNDERSTANDING_ENDPOINT"] || "").trim();
     if (!endpoint) {
@@ -93,7 +92,7 @@ async function main() {
     console.log(
       `  Authentication: ${credential instanceof DefaultAzureCredential ? "DefaultAzureCredential" : "API Key"}`,
     );
-    const client = ContentUnderstanding(endpoint, credential);
+    const client = new ContentUnderstandingClient(endpoint, credential);
     console.log("  Client created successfully\n");
 
     // Step 3: Get the ContentAnalyzers client
@@ -102,41 +101,32 @@ async function main() {
 
     // Step 4: Analyze document from URL
     console.log("Step 4: Analyzing document from URL...");
-    const fileUrl =
-      "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
-    const analyzerId = "prebuilt-documentAnalyzer";
+    const fileUrl = "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
     console.log(`  URL: ${fileUrl}`);
+    const analyzerId = "prebuilt-documentAnalyzer";
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Analyzing...");
 
-    // Submit analyze request with URL input
-    const initialResponse = await client.path("/analyzers/{analyzerId}:analyze", analyzerId).post({
-      body: {
-        inputs: [{ url: fileUrl }],
-      },
+    // Use the analyze method with inputs containing the URL
+    const poller = client.contentAnalyzers.analyze(analyzerId, {
+      inputs: [{ url: fileUrl }],
     });
+    await poller.pollUntilDone();
 
-    if (isUnexpected(initialResponse)) {
-      throw initialResponse.body.error;
-    }
-
-    const poller = await getLongRunningPoller(client, initialResponse);
-    const pollResult = await poller.pollUntilDone();
-    const analyzeResult = (pollResult?.body && pollResult.body.result) || pollResult?.body;
+    // Extract operation ID from the operation location to get the full result
+    const operationLocation = poller.operationState.config.operationLocation;
+    const url = new URL(operationLocation);
+    const operationId = url.pathname.split('/').pop().split('?')[0];
+    
+    // Get the complete result with all data
+    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const analyzeResult = operationStatus.result;
 
     console.log("  Analysis completed successfully");
-    console.log(
-      `  Result: AnalyzerId=${analyzeResult.analyzerId}, Contents count=${analyzeResult.contents?.length ?? 0}`,
-    );
-    console.log("");
+    console.log(`  Result: AnalyzerId=${analyzeResult.analyzerId}, Contents count=${analyzeResult.contents?.length ?? 0}\n`);
 
     // Step 5-8: Print result
     printAnalysisResult(analyzeResult);
-
-    // Try to close DAC if supported
-    if (credential instanceof DefaultAzureCredential && typeof credential.close === "function") {
-      await credential.close();
-    }
 
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");

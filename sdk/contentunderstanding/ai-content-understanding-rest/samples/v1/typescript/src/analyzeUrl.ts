@@ -14,10 +14,8 @@
 import "dotenv/config";
 import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential } from "@azure/core-auth";
-import ContentUnderstanding, {
-  getLongRunningPoller,
-  isUnexpected,
-} from "@azure-rest/ai-content-understanding";
+import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
+import type { AnalyzeResult, DocumentContent } from "@azure-rest/ai-content-understanding";
 
 // Helper to select credential based on environment
 function getCredential(): DefaultAzureCredential | AzureKeyCredential {
@@ -29,7 +27,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Print markdown and document info (mirrors C# sample output)
-function printAnalysisResult(analyzeResult: any): void {
+function printAnalysisResult(analyzeResult: AnalyzeResult): void {
   if (!analyzeResult?.contents || analyzeResult.contents.length === 0) {
     console.log("(No content returned from analysis)");
     return;
@@ -43,7 +41,7 @@ function printAnalysisResult(analyzeResult: any): void {
   console.log("=============================================================\n");
 
   if (content?.kind === "document") {
-    const doc = content;
+    const doc = content as DocumentContent;
     console.log("Step 6: Displaying document information...");
     console.log(`  Document type: ${doc.mimeType ?? "(unknown)"}`);
     console.log(`  Start page: ${doc.startPageNumber}`);
@@ -64,7 +62,7 @@ function printAnalysisResult(analyzeResult: any): void {
     if (doc.tables && doc.tables.length > 0) {
       console.log("Step 8: Displaying table information...");
       console.log(`  Number of tables: ${doc.tables.length}`);
-      doc.tables.forEach((table: any, i: number) => {
+      doc.tables.forEach((table, i: number) => {
         console.log(`  Table ${i + 1}: ${table.rowCount} rows x ${table.columnCount} columns`);
       });
       console.log("");
@@ -82,7 +80,7 @@ async function main(): Promise<void> {
   console.log("=============================================================\n");
 
   try {
-    // Step 1: Load configuration
+    // Step 1: Load endpoint and choose credential
     console.log("Step 1: Loading configuration...");
     const endpoint = (process.env["AZURE_CONTENT_UNDERSTANDING_ENDPOINT"] || "").trim();
     if (!endpoint) {
@@ -98,7 +96,7 @@ async function main(): Promise<void> {
     console.log(
       `  Authentication: ${credential instanceof DefaultAzureCredential ? "DefaultAzureCredential" : "API Key"}`,
     );
-    const client = ContentUnderstanding(endpoint, credential);
+    const client = new ContentUnderstandingClient(endpoint, credential);
     console.log("  Client created successfully\n");
 
     // Step 3: Get the ContentAnalyzers client
@@ -107,44 +105,32 @@ async function main(): Promise<void> {
 
     // Step 4: Analyze document from URL
     console.log("Step 4: Analyzing document from URL...");
-    const fileUrl =
-      "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
-    const analyzerId = "prebuilt-documentAnalyzer";
+    const fileUrl = "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
     console.log(`  URL: ${fileUrl}`);
+    const analyzerId = "prebuilt-documentAnalyzer";
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Analyzing...");
 
-    // Submit analyze request with URL input
-    const initialResponse = await client.path("/analyzers/{analyzerId}:analyze", analyzerId).post({
-      body: {
-        inputs: [{ url: fileUrl }],
-      },
+    // Use the analyze method with inputs containing the URL
+    const poller = client.contentAnalyzers.analyze(analyzerId, {
+      inputs: [{ url: fileUrl }],
     });
+    await poller.pollUntilDone();
 
-    if (isUnexpected(initialResponse)) {
-      throw initialResponse.body.error;
-    }
-
-    const poller = await getLongRunningPoller(client, initialResponse);
-    const pollResult = await poller.pollUntilDone();
-    const analyzeResult = (pollResult as any).body?.result ?? (pollResult as any).body;
+    // Extract operation ID from the operation location to get the full result
+    const operationLocation = (poller.operationState as any).config.operationLocation as string;
+    const url = new URL(operationLocation);
+    const operationId = url.pathname.split('/').pop()!.split('?')[0]!;
+    
+    // Get the complete result with all data
+    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const analyzeResult = operationStatus.result!;
 
     console.log("  Analysis completed successfully");
-    console.log(
-      `  Result: AnalyzerId=${analyzeResult.analyzerId}, Contents count=${analyzeResult.contents?.length ?? 0}`,
-    );
-    console.log("");
+    console.log(`  Result: AnalyzerId=${analyzeResult.analyzerId}, Contents count=${analyzeResult.contents?.length ?? 0}\n`);
 
     // Step 5-8: Print result
     printAnalysisResult(analyzeResult);
-
-    // Try to close DAC if supported
-    if (
-      credential instanceof DefaultAzureCredential &&
-      typeof (credential as any).close === "function"
-    ) {
-      await (credential as any).close();
-    }
 
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");
