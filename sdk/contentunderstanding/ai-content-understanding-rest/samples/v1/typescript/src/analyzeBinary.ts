@@ -143,7 +143,22 @@ async function main(): Promise<void> {
 
     // Use the analyzeBinary method from the SDK
     const poller = client.contentAnalyzers.analyzeBinary(analyzerId, "application/pdf", pdfBytes);
-    const analyzeResult = await poller.pollUntilDone();
+    await poller.pollUntilDone();
+    console.log("  Analysis completed successfully\n");
+
+    // Step 6: Process raw JSON response
+    console.log("Step 6: Processing raw JSON response...");
+
+    // Get the operation ID from the poller to retrieve the full result
+    const operationLocation = poller.operationState.config.operationLocation;
+    const operationIdMatch = operationLocation.match(/analyzerResults\/([^?]+)/);
+    if (!operationIdMatch) {
+      throw new Error("Could not extract operation ID from operation location");
+    }
+    const operationId = operationIdMatch[1];
+    // Get the full operation status which includes the complete result
+    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const analyzeResult = operationStatus.result;
 
     // 6) Print result
     printAnalysisResult(analyzeResult);
