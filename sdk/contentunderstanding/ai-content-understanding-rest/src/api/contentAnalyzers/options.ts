@@ -1,0 +1,132 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import {
+  ProcessingLocation,
+  AnalyzeInput,
+  StringEncoding,
+} from "../../models/models.js";
+import { OperationOptions } from "@azure-rest/core-client";
+
+/** Optional parameters. */
+export interface ContentAnalyzersUpdateDefaultsOptionalParams
+  extends OperationOptions {
+  /**
+   * Mapping of model names to deployments.
+   * Ex. { "gpt-4.1": "myGpt41Deployment", "text-embedding-3-large": "myTextEmbedding3LargeDeployment" }.
+   */
+  modelDeployments?: __PLACEHOLDER_o128__;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersGetDefaultsOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface ContentAnalyzersGrantCopyAuthorizationOptionalParams
+  extends OperationOptions {
+  /** Azure region of the target analyzer location.  Defaults to current region. */
+  targetRegion?: string;
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersCopyOptionalParams extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** Azure resource ID of the source analyzer location.  Defaults to the current resource. */
+  sourceAzureResourceId?: string;
+  /** Azure region of the source analyzer location.  Defaults to current region. */
+  sourceRegion?: string;
+  /** Allow the operation to replace an existing resource. */
+  allowReplace?: boolean;
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersDeleteResultOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface ContentAnalyzersGetResultFileOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface ContentAnalyzersGetResultOptionalParams
+  extends OperationOptions {}
+
+/** Optional parameters. */
+export interface ContentAnalyzersAnalyzeBinaryOptionalParams
+  extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** The encoding format for content spans in the response. */
+  stringEncoding?: StringEncoding;
+  /** The location where the data may be processed.  Defaults to global. */
+  processingLocation?: ProcessingLocation;
+  /** Range of the input to analyze (ex. `1-3,5,9-`).  Document content uses 1-based page numbers, while audio visual content uses integer milliseconds. */
+  range?: string;
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersAnalyzeOptionalParams
+  extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** The encoding format for content spans in the response. */
+  stringEncoding?: StringEncoding;
+  /** The location where the data may be processed.  Defaults to global. */
+  processingLocation?: ProcessingLocation;
+  /** Inputs to analyze.  Currently, only pro mode supports multiple inputs. */
+  inputs?: AnalyzeInput[];
+  /**
+   * Override default mapping of model names to deployments.
+   * Ex. { "gpt-4.1": "myGpt41Deployment", "text-embedding-3-large": "myTextEmbedding3LargeDeployment" }.
+   */
+  modelDeployments?: Record<string, string>;
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersListOptionalParams extends OperationOptions {
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersDeleteOptionalParams extends OperationOptions {
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersGetOptionalParams extends OperationOptions {
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersUpdateOptionalParams extends OperationOptions {
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersCreateOrReplaceOptionalParams
+  extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** Allow the operation to replace an existing resource. */
+  allowReplace?: boolean;
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  clientRequestId?: string;
+}
+
+/** Optional parameters. */
+export interface ContentAnalyzersGetOperationStatusOptionalParams
+  extends OperationOptions {}
