@@ -10,7 +10,7 @@
  * - The SDK returns analysis results with an object model, which is easier to navigate and retrieve
  *   the desired results compared to parsing raw JSON
  * - This sample is ONLY for demonstration purposes to show how to access raw JSON responses
- * - For production use, prefer the object model approach shown in analyzeBinary.ts
+ * - For production use, prefer the object model approach shown in the analyzeBinary sample
  *
  * Environment variables:
  *   AZURE_CONTENT_UNDERSTANDING_ENDPOINT   (required)
@@ -20,17 +20,10 @@
 import "dotenv/config";
 import * as fs from "fs";
 import * as path from "path";
-import { fileURLToPath } from "url";
-
-// Polyfill __dirname for ES module compatibility
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential } from "@azure/core-auth";
-import ContentUnderstanding, {
-  getLongRunningPoller,
-  isUnexpected,
-} from "@azure-rest/ai-content-understanding";
+import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
+import type { AnalyzeResult } from "@azure-rest/ai-content-understanding";
 
 // Helper to select credential based on environment
 function getCredential(): DefaultAzureCredential | AzureKeyCredential {
@@ -48,7 +41,7 @@ async function main(): Promise<void> {
   console.log("=============================================================\n");
 
   try {
-    // Step 1: Load configuration from environment
+    // Step 1: Load configuration
     console.log("Step 1: Loading configuration...");
     const endpoint = (process.env["AZURE_CONTENT_UNDERSTANDING_ENDPOINT"] || "").trim();
     if (!endpoint) {
@@ -64,16 +57,16 @@ async function main(): Promise<void> {
     console.log(
       `  Authentication: ${credential instanceof DefaultAzureCredential ? "DefaultAzureCredential" : "API Key"}`,
     );
-    const client = ContentUnderstanding(endpoint, credential);
+    const client = new ContentUnderstandingClient(endpoint, credential);
     console.log("  Client created successfully\n");
 
     // Step 3: Read the PDF file
     console.log("Step 3: Reading PDF file...");
     const possiblePaths = [
       // Package root sample_files (preferred)
-      path.join(__dirname, "..", "..", "..", "..", "sample_files", "sample_invoice.pdf"),
+      path.join(process.cwd(), "..", "..", "..", "sample_files", "sample_invoice.pdf"),
       // When copied next to this sample folder
-      path.join(__dirname, "..", "sample_files", "sample_invoice.pdf"),
+      path.join(process.cwd(), "..", "sample_files", "sample_invoice.pdf"),
       // From current working directory
       path.join(process.cwd(), "sample_files", "sample_invoice.pdf"),
     ];
@@ -103,100 +96,91 @@ async function main(): Promise<void> {
     console.log("Step 4: Getting ContentAnalyzers client...");
     console.log("  Client is ready\n");
 
-    // Step 5: Analyze document using protocol method to get raw response
+    // Step 5: Analyze document using the poller
     console.log("Step 5: Analyzing document...");
     const analyzerId = "prebuilt-documentAnalyzer";
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Using protocol method to access raw JSON response");
     console.log("  Analyzing...");
 
-    // Send the raw PDF bytes as the body with contentType 'application/pdf'
-    const initialResponse = await client
-      .path("/analyzers/{analyzerId}:analyzeBinary", analyzerId)
-      .post({
-        body: pdfBytes,
-        contentType: "application/pdf",
-        headers: { "Content-Type": "application/pdf" },
-      });
-
-    if (isUnexpected(initialResponse)) {
-      throw initialResponse.body.error;
-    }
-
-    const poller = await getLongRunningPoller(client, initialResponse);
-    const pollResult = await poller.pollUntilDone();
+    const poller = client.contentAnalyzers.analyzeBinary(analyzerId, "application/pdf", pdfBytes);
+    await poller.pollUntilDone();
     console.log("  Analysis completed successfully\n");
 
-    // Step 6: Parse and pretty-print the raw JSON
+    // Step 6: Process raw JSON response
     console.log("Step 6: Processing raw JSON response...");
 
-    // The poll result contains the full response body
-    const responseBody = (pollResult as any).body;
+    // Get the operation ID from the poller to retrieve the full result
+    // The poller's operationState contains internal configuration we can use
+    const operationLocation = (poller as any).operationState?.config?.operationLocation;
+    if (!operationLocation) {
+      throw new Error("Could not retrieve operation location from poller");
+    }
 
-    // Pretty-print the JSON
-    const prettyJson = JSON.stringify(responseBody, null, 2);
+    const operationIdMatch = operationLocation.match(/analyzerResults\/([^?]+)/);
+    if (!operationIdMatch) {
+      throw new Error("Could not extract operation ID from operation location");
+    }
+    const operationId = operationIdMatch[1];
+
+    // Get the full operation status which includes the complete result
+    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const analyzeResult: AnalyzeResult = operationStatus.result!;
+
+    // Convert the result object to JSON string
+    const rawJson = JSON.stringify(analyzeResult, null, 2);
 
     // Create output directory if it doesn't exist
-    const outputDir = "sample_output";
+    const outputDir = path.join(process.cwd(), "sample_output");
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
 
     // Save to file
-    const timestamp = new Date().toISOString().replace(/[:.]/g, "-").split(".")[0];
+    const timestamp = new Date()
+      .toISOString()
+      .replace(/[:.]/g, "-")
+      .split("T")
+      .join("_")
+      .slice(0, 19);
     const outputFileName = `analyze_result_${timestamp}.json`;
     const outputPath = path.join(outputDir, outputFileName);
-    fs.writeFileSync(outputPath, prettyJson);
+    fs.writeFileSync(outputPath, rawJson);
 
     console.log(`  Raw JSON response saved to: ${outputPath}`);
-    console.log(`  File size: ${prettyJson.length.toLocaleString()} characters\n`);
+    console.log(`  File size: ${rawJson.length.toLocaleString()} characters\n`);
 
-    // Step 7: Display some key information from the response
+    // Step 7: Display key information from the response
     console.log("Step 7: Displaying key information from response...");
-    const result = responseBody.result;
-
-    if (result?.analyzerId) {
-      console.log(`  Analyzer ID: ${result.analyzerId}`);
+    if (analyzeResult.analyzerId) {
+      console.log(`  Analyzer ID: ${analyzeResult.analyzerId}`);
     }
 
-    if (result?.contents && Array.isArray(result.contents)) {
-      console.log(`  Contents count: ${result.contents.length}`);
+    if (analyzeResult.contents && analyzeResult.contents.length > 0) {
+      console.log(`  Contents count: ${analyzeResult.contents.length}`);
 
-      if (result.contents.length > 0) {
-        const firstContent = result.contents[0];
-        if (firstContent.kind) {
-          console.log(`  Content kind: ${firstContent.kind}`);
-        }
-        if (firstContent.mimeType) {
-          console.log(`  MIME type: ${firstContent.mimeType}`);
-        }
+      const firstContent = analyzeResult.contents[0];
+      if (firstContent.kind) {
+        console.log(`  Content kind: ${firstContent.kind}`);
+      }
+      if (firstContent.mimeType) {
+        console.log(`  MIME type: ${firstContent.mimeType}`);
       }
     }
-    console.log();
+    console.log("");
 
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");
     console.log("=============================================================\n");
     console.log("NOTE: For easier data access, prefer using the object model");
-    console.log("      approach shown in the analyzeBinary.ts sample instead of");
+    console.log("      approach shown in the analyzeBinary sample instead of");
     console.log("      parsing raw JSON manually.");
-
-    // Try to close DAC if supported
-    if (
-      credential instanceof DefaultAzureCredential &&
-      typeof (credential as any).close === "function"
-    ) {
-      await (credential as any).close();
-    }
   } catch (err: any) {
     console.error();
     console.error("✗ An error occurred");
     console.error("  ", err?.message ?? err);
-    if (err?.status) {
-      console.error(`  Status: ${err.status}`);
-    }
-    if (err?.code) {
-      console.error(`  Error Code: ${err.code}`);
+    if (err?.statusCode === 401) {
+      console.error("  Please check your credentials and ensure they are valid.");
     }
     process.exit(1);
   }

@@ -256,14 +256,13 @@ export async function _copyDeserialize(
     throw createRestError(result);
   }
 
-  if (result?.body?.result === undefined) {
-    throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
-      result,
-    );
+  if (result?.body !== undefined) {
+    return contentAnalyzerDeserializer(result.body);
   }
-
-  return contentAnalyzerDeserializer(result.body.result);
+  throw createRestError(
+    `Expected a result in the response at position "result.body"`,
+    result,
+  );
 }
 
 /** Create a copy of the source analyzer to the current location. */
@@ -460,15 +459,14 @@ export async function _analyzeBinaryDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
-  if (result?.body?.result === undefined) {
-    throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
-      result,
-    );
+  // Only check result.body for analyzeBinary
+  if (result?.body !== undefined) {
+    return analyzeResultDeserializer(result.body);
   }
-
-  return analyzeResultDeserializer(result.body.result);
+  throw createRestError(
+    `Expected a result in the response at position "result.body"`,
+    result,
+  );
 }
 
 /** Extract content and fields from input. */
@@ -538,15 +536,14 @@ export async function _analyzeDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
-  if (result?.body?.result === undefined) {
-    throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
-      result,
-    );
+  // Only check result.body for analyze
+  if (result?.body !== undefined) {
+    return analyzeResultDeserializer(result.body);
   }
-
-  return analyzeResultDeserializer(result.body.result);
+  throw createRestError(
+    `Expected a result in the response at position "result.body"`,
+    result,
+  );
 }
 
 /** Extract content and fields from input. */
@@ -815,15 +812,14 @@ export async function _createOrReplaceDeserialize(
   if (!expectedStatuses.includes(result.status)) {
     throw createRestError(result);
   }
-
-  if (result?.body?.result === undefined) {
-    throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
-      result,
-    );
+  // Only check result.body for analyzer creation
+  if (result?.body !== undefined) {
+    return contentAnalyzerDeserializer(result.body);
   }
-
-  return contentAnalyzerDeserializer(result.body.result);
+  throw createRestError(
+    `Expected a result in the response at position "result.body"`,
+    result,
+  );
 }
 
 /** Create a new analyzer asynchronously. */

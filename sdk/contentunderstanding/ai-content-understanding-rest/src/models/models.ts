@@ -105,8 +105,10 @@ export function contentAnalyzerDeserializer(item: any): ContentAnalyzer {
     description: item["description"],
     tags: item["tags"],
     status: item["status"],
-    createdAt: new Date(item["createdAt"]),
-    lastModifiedAt: new Date(item["lastModifiedAt"]),
+    createdAt: !item["createdAt"] ? item["createdAt"] : new Date(item["createdAt"]),
+    lastModifiedAt: !item["lastModifiedAt"]
+      ? item["lastModifiedAt"]
+      : new Date(item["lastModifiedAt"]),
     warnings: !item["warnings"]
       ? item["warnings"]
       : item["warnings"].map((p: any) => {
@@ -316,7 +318,9 @@ export function contentFieldSchemaSerializer(item: ContentFieldSchema): any {
   return {
     name: item["name"],
     description: item["description"],
-    fields: contentFieldDefinitionRecordSerializer(item["fields"]),
+    fields: !item["fields"]
+      ? item["fields"]
+      : contentFieldDefinitionRecordSerializer(item["fields"]),
     definitions: !item["definitions"]
       ? item["definitions"]
       : contentFieldDefinitionRecordSerializer(item["definitions"]),
@@ -327,7 +331,9 @@ export function contentFieldSchemaDeserializer(item: any): ContentFieldSchema {
   return {
     name: item["name"],
     description: item["description"],
-    fields: contentFieldDefinitionRecordDeserializer(item["fields"]),
+    fields: !item["fields"]
+      ? item["fields"]
+      : contentFieldDefinitionRecordDeserializer(item["fields"]),
     definitions: !item["definitions"]
       ? item["definitions"]
       : contentFieldDefinitionRecordDeserializer(item["definitions"]),
@@ -349,6 +355,9 @@ export function contentFieldDefinitionRecordSerializer(
 export function contentFieldDefinitionRecordDeserializer(
   item: Record<string, any>,
 ): Record<string, ContentFieldDefinition> {
+  if (!item) {
+    return item as any;
+  }
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
     result[key] = !item[key]
@@ -707,7 +716,9 @@ export function analyzeResultDeserializer(item: any): AnalyzeResult {
           return p;
         }),
     stringEncoding: item["stringEncoding"],
-    contents: mediaContentUnionArrayDeserializer(item["contents"]),
+    contents: !item["contents"]
+      ? item["contents"]
+      : mediaContentUnionArrayDeserializer(item["contents"]),
   };
 }
 
