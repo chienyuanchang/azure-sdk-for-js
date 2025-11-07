@@ -15,7 +15,7 @@ export interface ContentAnalyzersUpdateDefaultsOptionalParams
    * Mapping of model names to deployments.
    * Ex. { "gpt-4.1": "myGpt41Deployment", "text-embedding-3-large": "myTextEmbedding3LargeDeployment" }.
    */
-  modelDeployments?: __PLACEHOLDER_o128__;
+  modelDeployments?: Record<string, string>;
 }
 
 /** Optional parameters. */
