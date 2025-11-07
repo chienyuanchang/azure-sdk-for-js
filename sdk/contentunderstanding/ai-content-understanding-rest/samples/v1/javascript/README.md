@@ -22,8 +22,8 @@ These sample programs show how to use the JavaScript client libraries for Azure 
 | [deleteAnalyzer.js](deleteAnalyzer.js)                       | Delete a custom analyzer using the Delete API.                                                                      |
 | [getAnalyzer.js](getAnalyzer.js)                             | Retrieve an analyzer using the Get API and display its properties.                                                  |
 | [getResultFile.js](getResultFile.js)                         | Get result files (like keyframe images) from a video analysis operation.                                            |
-| [listAnalyzers.js](listAnalyzers.js)                         | List all available analyzers and display their properties.                                                          |
-| [updateAnalyzer.js](updateAnalyzer.js)                       | Update a custom analyzer with new description and tags using the Update API.                                        |
+| [listAnalyzers.js](listAnalyzers.js)                         | List all available content analyzers and display their properties.                                                  |
+| [updateAnalyzer.js](updateAnalyzer.js)                       | Update a custom analyzer using the Update API.                                                                      |
 
 ## Prerequisites
 

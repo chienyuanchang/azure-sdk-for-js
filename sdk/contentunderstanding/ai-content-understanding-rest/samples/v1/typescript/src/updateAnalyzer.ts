@@ -4,37 +4,18 @@
 // --------------------------------------------------------------------------
 
 /**
- * This sample demonstrates how to update a custom analyzer using the Update API.
+ * Update a custom analyzer using the Update API.
  *
- * Prerequisites:
- *   - Azure subscription
- *   - Azure Content Understanding resource
- *
- * Setup:
- *   Set the following environment variables or add them to .env file:
- *   - AZURE_CONTENT_UNDERSTANDING_ENDPOINT (required)
- *   - AZURE_CONTENT_UNDERSTANDING_KEY (optional - DefaultAzureCredential will be used if not set)
- *
- * To run:
- *   npm run build && node dist/updateAnalyzer.js
- *
- * This sample demonstrates:
- * 1. Create an initial analyzer
- * 2. Get the analyzer to verify initial state
- * 3. Update the analyzer with new description and tags
- * 4. Get the analyzer again to verify changes persisted
- * 5. Clean up the created analyzer
+ * Environment variables:
+ *   AZURE_CONTENT_UNDERSTANDING_ENDPOINT   (required)
+ *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
 import "dotenv/config";
 import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential } from "@azure/core-auth";
-import ContentUnderstanding, {
-  getLongRunningPoller,
-  isUnexpected,
-} from "@azure-rest/ai-content-understanding";
-
-import type { ContentAnalyzerOutput as ContentAnalyzer } from "@azure-rest/ai-content-understanding/src/outputModels";
+import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
+import type { ContentAnalyzer, ContentAnalyzerConfig, ContentFieldSchema } from "@azure-rest/ai-content-understanding";
 
 // Helper to select credential based on environment
 function getCredential(): DefaultAzureCredential | AzureKeyCredential {
@@ -51,11 +32,8 @@ async function main(): Promise<void> {
   console.log("Azure Content Understanding Sample: Update Analyzer");
   console.log("=============================================================\n");
 
-  let analyzerId: string | null = null;
-  let analyzerCreated = false;
-
   try {
-    // Step 1: Load configuration
+    // Step 1: Load endpoint and choose credential
     console.log("Step 1: Loading configuration...");
     const endpoint = (process.env["AZURE_CONTENT_UNDERSTANDING_ENDPOINT"] || "").trim();
     if (!endpoint) {
@@ -71,7 +49,7 @@ async function main(): Promise<void> {
     console.log(
       `  Authentication: ${credential instanceof DefaultAzureCredential ? "DefaultAzureCredential" : "API Key"}`,
     );
-    const client = ContentUnderstanding(endpoint, credential);
+    const client = new ContentUnderstandingClient(endpoint, credential);
     console.log("  Client created successfully\n");
 
     // Step 3: Get the ContentAnalyzers client
@@ -82,35 +60,40 @@ async function main(): Promise<void> {
     console.log("Step 4: Creating initial analyzer...");
 
     // Generate a unique analyzer ID using timestamp
-    analyzerId = `sdk_sample_analyzer_for_update_${Math.floor(Date.now() / 1000)}`;
+    // Note: Analyzer IDs cannot contain hyphens
+    const analyzerId = `sdk_sample_analyzer_for_update_${Math.floor(Date.now() / 1000)}`;
     console.log(`  Analyzer ID: ${analyzerId}`);
+
+    const fieldSchema: ContentFieldSchema = {
+      name: "update_demo_schema",
+      description: "Schema for update demo",
+      fields: {
+        total_amount: {
+          type: "number",
+          method: "extract",
+          description: "Total amount of this document",
+        },
+        company_name: {
+          type: "string",
+          method: "extract",
+          description: "Name of the company",
+        },
+      },
+    };
+
+    const config: ContentAnalyzerConfig = {
+      enableFormula: true,
+      enableLayout: true,
+      enableOcr: true,
+      estimateFieldSourceAndConfidence: true,
+      returnDetails: true,
+    };
 
     const initialAnalyzer = {
       baseAnalyzerId: "prebuilt-document",
       description: "Initial description",
-      config: {
-        enableFormula: true,
-        enableLayout: true,
-        enableOcr: true,
-        estimateFieldSourceAndConfidence: true,
-        returnDetails: true,
-      },
-      fieldSchema: {
-        name: "update_demo_schema",
-        description: "Schema for update demo",
-        fields: {
-          total_amount: {
-            type: "number",
-            method: "extract",
-            description: "Total amount of this document",
-          },
-          company_name: {
-            type: "string",
-            method: "extract",
-            description: "Name of the company",
-          },
-        },
-      },
+      config: config,
+      fieldSchema: fieldSchema,
       models: {
         completion: "gpt-4o-mini",
         embedding: "text-embedding-3-large",
@@ -123,24 +106,17 @@ async function main(): Promise<void> {
 
     try {
       console.log("  Creating analyzer (this may take a few moments)...");
-      const createResponse = await client.path("/analyzers/{analyzerId}", analyzerId).put({
-        body: initialAnalyzer,
-      });
-
-      if (isUnexpected(createResponse)) {
-        throw createResponse.body.error;
-      }
-
-      const poller = await getLongRunningPoller(client, createResponse);
-      const pollResult = await poller.pollUntilDone();
-      const result = (pollResult as any).body;
-
-      analyzerCreated = true;
+      const poller = client.contentAnalyzers.createOrReplace(
+        analyzerId,
+        initialAnalyzer as unknown as ContentAnalyzer,
+      );
+      const createdAnalyzer = await poller.pollUntilDone();
       console.log(`  ✅ Analyzer '${analyzerId}' created successfully!`);
-      console.log(`  Status: ${result.status}`);
+      console.log(`  Status: ${createdAnalyzer.status}`);
       console.log("");
-    } catch (error: any) {
-      console.error(`  Failed to create analyzer: ${error.message}`);
+    } catch (error: unknown) {
+      const err = error as any;
+      console.error(`  Failed to create analyzer: ${err.message}`);
       throw error;
     }
 
@@ -148,20 +124,17 @@ async function main(): Promise<void> {
     console.log("Step 5: Getting analyzer before update...");
     let analyzerBeforeUpdate: ContentAnalyzer;
     try {
-      const getResponse = await client.path("/analyzers/{analyzerId}", analyzerId).get();
-      if (isUnexpected(getResponse)) {
-        throw getResponse.body.error;
-      }
-      analyzerBeforeUpdate = getResponse.body;
+      analyzerBeforeUpdate = await client.contentAnalyzers.get(analyzerId);
       console.log("  ✅ Initial analyzer state verified:");
       console.log(`    Description: ${analyzerBeforeUpdate.description}`);
-      const tagEntries = Object.entries(analyzerBeforeUpdate.tags || {})
-        .map(([k, v]) => `${k}=${v}`)
+      const tagsList = Object.entries(analyzerBeforeUpdate.tags || {})
+        .map(([key, value]) => `${key}=${value}`)
         .join(", ");
-      console.log(`    Tags: ${tagEntries}`);
+      console.log(`    Tags: ${tagsList}`);
       console.log("");
-    } catch (error: any) {
-      console.error(`  Failed to get analyzer: ${error.message}`);
+    } catch (error: unknown) {
+      const err = error as any;
+      console.error(`  Failed to get analyzer: ${err.message}`);
       throw error;
     }
 
@@ -174,7 +147,9 @@ async function main(): Promise<void> {
     console.log("");
 
     try {
-      const updatePayload = {
+      // For Update API, we need to send the fields that should be changed
+      // Note: The service currently requires baseAnalyzerId and models even in PATCH requests
+      const updateData = {
         baseAnalyzerId: analyzerBeforeUpdate.baseAnalyzerId,
         description: "Updated description",
         tags: {
@@ -188,19 +163,13 @@ async function main(): Promise<void> {
         },
       };
 
-      const updateResponse = await client.path("/analyzers/{analyzerId}", analyzerId).patch({
-        contentType: "application/merge-patch+json",
-        body: updatePayload,
-      });
-
-      if (isUnexpected(updateResponse)) {
-        throw updateResponse.body.error;
-      }
+      await client.contentAnalyzers.update(analyzerId, updateData as unknown as ContentAnalyzer);
 
       console.log("  ✅ Analyzer updated successfully!");
       console.log("");
-    } catch (error: any) {
-      console.error(`  Failed to update analyzer: ${error.message}`);
+    } catch (error: unknown) {
+      const err = error as any;
+      console.error(`  Failed to update analyzer: ${err.message}`);
       throw error;
     }
 
@@ -208,17 +177,13 @@ async function main(): Promise<void> {
     console.log("Step 7: Getting analyzer after update to verify changes...");
     let analyzerAfterUpdate: ContentAnalyzer;
     try {
-      const getResponse = await client.path("/analyzers/{analyzerId}", analyzerId).get();
-      if (isUnexpected(getResponse)) {
-        throw getResponse.body.error;
-      }
-      analyzerAfterUpdate = getResponse.body;
+      analyzerAfterUpdate = await client.contentAnalyzers.get(analyzerId);
       console.log("  ✅ Updated analyzer state verified:");
       console.log(`    Description: ${analyzerAfterUpdate.description}`);
-      const tagEntries = Object.entries(analyzerAfterUpdate.tags || {})
-        .map(([k, v]) => `${k}=${v}`)
+      const tagsList = Object.entries(analyzerAfterUpdate.tags || {})
+        .map(([key, value]) => `${key}=${value}`)
         .join(", ");
-      console.log(`    Tags: ${tagEntries}`);
+      console.log(`    Tags: ${tagsList}`);
       console.log("");
 
       // Verify the changes
@@ -226,68 +191,76 @@ async function main(): Promise<void> {
       if (analyzerAfterUpdate.description === "Updated description") {
         console.log("    ✓ Description updated correctly");
       }
-      if (analyzerAfterUpdate.tags && analyzerAfterUpdate.tags.tag1 === "tag1_updated_value") {
+      if (analyzerAfterUpdate.tags?.tag1 === "tag1_updated_value") {
         console.log("    ✓ tag1 updated correctly");
       }
-      const tag2Value = analyzerAfterUpdate.tags ? analyzerAfterUpdate.tags.tag2 : null;
-      if (!tag2Value || tag2Value === "") {
+      const tag2Value = analyzerAfterUpdate.tags?.tag2 ?? null;
+      if (!tag2Value) {
         console.log("    ✓ tag2 removed correctly");
       }
-      if (analyzerAfterUpdate.tags && analyzerAfterUpdate.tags.tag3 === "tag3_value") {
+      if (analyzerAfterUpdate.tags?.tag3 === "tag3_value") {
         console.log("    ✓ tag3 added correctly");
       }
       console.log("");
-    } catch (error: any) {
-      console.error(`  Failed to get analyzer after update: ${error.message}`);
+    } catch (error: unknown) {
+      const err = error as any;
+      console.error(`  Failed to get analyzer after update: ${err.message}`);
       throw error;
     }
 
     // Step 8: Clean up (delete the created analyzer)
-    if (analyzerCreated && analyzerId) {
-      console.log("Step 8: Cleaning up (deleting analyzer)...");
-      try {
-        const deleteResponse = await client.path("/analyzers/{analyzerId}", analyzerId).delete();
-        if (isUnexpected(deleteResponse)) {
-          throw deleteResponse.body.error;
-        }
-        console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
-        console.log("");
-      } catch (error: any) {
-        console.error(`  Failed to delete analyzer: ${error.message}`);
-        // Don't throw - cleanup failure shouldn't fail the sample
-      }
-    }
-
-    // Try to close DAC if supported
-    if (
-      credential instanceof DefaultAzureCredential &&
-      typeof (credential as any).close === "function"
-    ) {
-      await (credential as any).close();
+    console.log("Step 8: Cleaning up (deleting analyzer)...");
+    try {
+      await client.contentAnalyzers.delete(analyzerId);
+      console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
+      console.log("");
+    } catch (error: unknown) {
+      const err = error as any;
+      console.error(`  Failed to delete analyzer: ${err.message}`);
+      // Don't throw - cleanup failure shouldn't fail the sample
     }
 
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");
-    console.log("=============================================================\n");
+    console.log("=============================================================");
+    console.log("");
     console.log("This sample demonstrated:");
     console.log("  1. Creating a custom analyzer with initial configuration");
     console.log("  2. Updating analyzer properties (description and tags)");
     console.log("  3. Verifying the updates persisted");
-    console.log("  4. Cleaning up by deleting the analyzer\n");
+    console.log("  4. Cleaning up by deleting the analyzer");
+    console.log("");
     console.log("Related samples:");
     console.log("  - To create analyzers: see createOrReplaceAnalyzer sample");
     console.log("  - To delete analyzers: see deleteAnalyzer sample");
     console.log("  - To list analyzers: see listAnalyzers sample");
-  } catch (err: any) {
-    console.error();
-    console.error("✗ An error occurred");
-    console.error("  ", err?.message ?? err);
-    process.exit(1);
+  } catch (error: unknown) {
+    const err = error as any;
+    if (err?.status === 401) {
+      console.error("");
+      console.error("✗ Authentication failed");
+      console.error(`  Error: ${err.message}`);
+      console.error("  Please check your credentials and ensure they are valid.");
+      process.exit(1);
+    } else if (err?.status) {
+      console.error("");
+      console.error("✗ Service request failed");
+      console.error(`  Status: ${err.status}`);
+      console.error(`  Error Code: ${err.code}`);
+      console.error(`  Message: ${err.message}`);
+      process.exit(1);
+    } else {
+      console.error("");
+      console.error("✗ An unexpected error occurred");
+      console.error(`  Error: ${err?.message}`);
+      console.error(`  Type: ${err?.constructor?.name}`);
+      process.exit(1);
+    }
   }
 }
 
 // Entry point
-main().catch((err: any) => {
+main().catch((err: unknown) => {
   console.error("Unhandled error:", err);
   process.exit(1);
 });

@@ -28,11 +28,8 @@
 import "dotenv/config";
 import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential } from "@azure/core-auth";
-import ContentUnderstanding, {
-  paginate,
-  isUnexpected,
-} from "@azure-rest/ai-content-understanding";
-import type { ContentAnalyzerOutput } from "@azure-rest/ai-content-understanding/src/outputModels";
+import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
+import type { ContentAnalyzer } from "@azure-rest/ai-content-understanding";
 
 // Helper to select credential based on environment
 function getCredential(): DefaultAzureCredential | AzureKeyCredential {
@@ -66,7 +63,7 @@ async function main(): Promise<void> {
     console.log(
       `  Authentication: ${credential instanceof DefaultAzureCredential ? "DefaultAzureCredential" : "API Key"}`,
     );
-    const client = ContentUnderstanding(endpoint, credential);
+    const client = new ContentUnderstandingClient(endpoint, credential);
     console.log("  Client created successfully\n");
 
     // Step 3: Get the ContentAnalyzers client
@@ -75,41 +72,40 @@ async function main(): Promise<void> {
 
     // Step 4: List all available analyzers
     console.log("Step 4: Listing all available analyzers...");
-    const analyzers: ContentAnalyzerOutput[] = [];
+    const analyzers: ContentAnalyzer[] = [];
 
     try {
-      const initialResponse = await client.path("/analyzers").get();
-
-      if (isUnexpected(initialResponse)) {
-        throw initialResponse.body.error;
-      }
-
-      // Use paginate helper to iterate through all pages
-      const analyzerPages = paginate(client, initialResponse);
-
-      for await (const analyzer of analyzerPages) {
+      for await (const analyzer of client.contentAnalyzers.list()) {
         analyzers.push(analyzer);
       }
 
       console.log(`  Found ${analyzers.length} analyzer(s)\n`);
-    } catch (error: any) {
-      console.error(`  Failed to list analyzers: ${error.message}`);
+    } catch (error: unknown) {
+      const err = error as any;
+      console.error(`  Failed to list analyzers: ${err.message}`);
+      if (err.code) {
+        console.error(`  Error Code: ${err.code}`);
+      }
       throw error;
     }
+    console.log("");
 
     // Step 5: Display summary
     console.log("Step 5: Summary...");
     console.log(`  Total analyzers: ${analyzers.length}`);
 
-    const prebuiltCount = analyzers.filter((a) => a.analyzerId?.startsWith("prebuilt-")).length;
-    const customCount = analyzers.filter((a) => !a.analyzerId?.startsWith("prebuilt-")).length;
+    const prebuiltCount = analyzers.filter((a) => a.analyzerId?.startsWith("prebuilt-"))
+      .length;
+    const customCount = analyzers.length - prebuiltCount;
     console.log(`  Prebuilt analyzers: ${prebuiltCount}`);
-    console.log(`  Custom analyzers: ${customCount}\n`);
+    console.log(`  Custom analyzers: ${customCount}`);
+    console.log("");
 
     // Step 6: Display detailed information about each analyzer
     if (analyzers.length > 0) {
       console.log("Step 6: Displaying analyzer details...");
-      console.log("=============================================================\n");
+      console.log("=============================================================");
+      console.log("");
 
       for (let i = 0; i < analyzers.length; i++) {
         const analyzer = analyzers[i];
@@ -117,20 +113,12 @@ async function main(): Promise<void> {
         console.log(`  ID: ${analyzer.analyzerId}`);
         console.log(`  Description: ${analyzer.description ?? "(none)"}`);
         console.log(`  Status: ${analyzer.status}`);
-
-        if (analyzer.createdAt) {
-          const createdDate = new Date(analyzer.createdAt);
-          console.log(
-            `  Created at: ${createdDate.toISOString().replace("T", " ").substring(0, 19)} UTC`,
-          );
-        }
-
-        if (analyzer.lastModifiedAt) {
-          const modifiedDate = new Date(analyzer.lastModifiedAt);
-          console.log(
-            `  Last modified: ${modifiedDate.toISOString().replace("T", " ").substring(0, 19)} UTC`,
-          );
-        }
+        console.log(
+          `  Created at: ${new Date(analyzer.createdAt).toLocaleString()} UTC`,
+        );
+        console.log(
+          `  Last modified: ${new Date(analyzer.lastModifiedAt).toLocaleString()} UTC`,
+        );
 
         // Check if it's a prebuilt analyzer
         if (analyzer.analyzerId?.startsWith("prebuilt-")) {
@@ -141,43 +129,55 @@ async function main(): Promise<void> {
 
         // Show tags if available
         if (analyzer.tags && Object.keys(analyzer.tags).length > 0) {
-          const tagList = Object.entries(analyzer.tags)
-            .map(([key, value]) => `${key}=${value}`)
-            .join(", ");
-          console.log(`  Tags: ${tagList}`);
+          const tagStrings = Object.entries(analyzer.tags).map(
+            ([key, value]) => `${key}=${value}`,
+          );
+          console.log(`  Tags: ${tagStrings.join(", ")}`);
         }
 
-        console.log();
+        console.log("");
       }
     } else {
-      console.log("No analyzers found in this Content Understanding resource.\n");
-    }
-
-    // Try to close DAC if supported
-    if (
-      credential instanceof DefaultAzureCredential &&
-      typeof (credential as any).close === "function"
-    ) {
-      await (credential as any).close();
+      console.log("No analyzers found in this Content Understanding resource.");
+      console.log("");
     }
 
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");
-    console.log("=============================================================\n");
+    console.log("=============================================================");
+    console.log("");
     console.log("This sample demonstrated:");
-    console.log("  1. Authenticating with the Content Understanding service");
-    console.log("  2. Listing all available analyzers using pagination");
-    console.log("  3. Displaying summary statistics");
-    console.log("  4. Showing detailed properties for each analyzer\n");
+    console.log("  1. Listing all available analyzers");
+    console.log("  2. Counting prebuilt and custom analyzers");
+    console.log("  3. Displaying analyzer properties");
+    console.log("");
     console.log("Related samples:");
     console.log("  - To create analyzers: see createOrReplaceAnalyzer sample");
-    console.log("  - To retrieve a specific analyzer: see getAnalyzer sample");
+    console.log("  - To get a specific analyzer: see getAnalyzer sample");
     console.log("  - To delete analyzers: see deleteAnalyzer sample");
-  } catch (err: any) {
-    console.error();
-    console.error("✗ An error occurred");
-    console.error("  ", err?.message ?? err);
-    process.exit(1);
+    console.log("");
+  } catch (error: unknown) {
+    const err = error as any;
+    if (err?.status === 401) {
+      console.error("");
+      console.error("✗ Authentication failed");
+      console.error(`  Error: ${err.message}`);
+      console.error("  Please check your credentials and ensure they are valid.");
+      process.exit(1);
+    } else if (err?.status) {
+      console.error("");
+      console.error("✗ Service request failed");
+      console.error(`  Status: ${err.status}`);
+      console.error(`  Error Code: ${err.code}`);
+      console.error(`  Message: ${err.message}`);
+      process.exit(1);
+    } else {
+      console.error("");
+      console.error("✗ An unexpected error occurred");
+      console.error(`  Error: ${err?.message}`);
+      console.error(`  Type: ${err?.constructor?.name}`);
+      process.exit(1);
+    }
   }
 }
 
