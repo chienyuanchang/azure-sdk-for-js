@@ -39,7 +39,7 @@ export interface AudioVisualContent extends MediaContent {
     cameraShotTimesMs?: number[];
     endTimeMs: number;
     height?: number;
-    keyFrameTimesMs?: number[];
+    KeyFrameTimesMs?: number[];
     kind: "audioVisual";
     segments?: AudioVisualContentSegment[];
     startTimeMs: number;

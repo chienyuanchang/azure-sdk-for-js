@@ -78,9 +78,21 @@ async function main(): Promise<void> {
       inputs: [{ url: videoUrl }],
     });
 
-    // Extract operation ID from the operation location
-    const operationLocation = (analyzePoller.operationState as any).config
-      .operationLocation as string;
+    // Prime the poller so that the initial request is sent and state is populated
+    await analyzePoller.poll();
+
+    // Extract operation ID from the operation location. Depending on core-lro version,
+    // the poller may expose getOperationState() or an operationState property; handle both.
+    const pollerState: any =
+      typeof (analyzePoller as any).getOperationState === "function"
+        ? (analyzePoller as any).getOperationState()
+        : (analyzePoller as any).operationState;
+    const operationLocation = pollerState?.config?.operationLocation as string | undefined;
+    if (!operationLocation) {
+      throw new Error(
+        "Failed to obtain operation location from initial analyze request (operationLocation header missing).",
+      );
+    }
     const url = new URL(operationLocation);
     const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
     console.log(`  Analysis started, Operation ID: ${operationId}`);
@@ -119,13 +131,13 @@ async function main(): Promise<void> {
           console.log(`  Video content found:`);
           console.log(`    Start time: ${videoContent.startTimeMs}ms`);
           console.log(`    End time: ${videoContent.endTimeMs}ms`);
-          console.log(`    KeyFrames count: ${videoContent.keyFrameTimesMs?.length ?? 0}`);
+          console.log(`    KeyFrames count: ${videoContent.KeyFrameTimesMs?.length ?? 0}`);
 
-          if (videoContent.keyFrameTimesMs && videoContent.keyFrameTimesMs.length > 0) {
+          if (videoContent.KeyFrameTimesMs && videoContent.KeyFrameTimesMs.length > 0) {
             console.log(
-              `  Found ${videoContent.keyFrameTimesMs.length} keyframes in video content`,
+              `  Found ${videoContent.KeyFrameTimesMs.length} keyframes in video content`,
             );
-            keyframeTimeMs.push(...videoContent.keyFrameTimesMs);
+            keyframeTimeMs.push(...videoContent.KeyFrameTimesMs);
           }
           break;
         }
