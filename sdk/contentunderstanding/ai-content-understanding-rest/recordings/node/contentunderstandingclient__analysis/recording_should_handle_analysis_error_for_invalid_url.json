@@ -1,0 +1,286 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/prebuilt-documentAnalyzer:analyze?api-version=2025-11-01",
+      "RequestMethod": "POST",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Content-Length": "82",
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": {
+        "inputs": [
+          {
+            "url": "https://invalid-url-that-does-not-exist.com/nonexistent.pdf"
+          }
+        ]
+      },
+      "StatusCode": 202,
+      "ResponseHeaders": {
+        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
+        "apim-request-id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "Content-Type": "application/json",
+        "Date": "Sat, 08 Nov 2025 00:26:51 GMT",
+        "Operation-Location": "https://endpoint/contentunderstanding/analyzerResults/6aecf144-f02e-41af-9c3f-094af5834f57?api-version=2025-11-01",
+        "request-id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "419",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "status": "Running",
+        "result": {
+          "analyzerId": "prebuilt-documentAnalyzer",
+          "apiVersion": "2025-11-01",
+          "createdAt": "2025-11-08T00:26:51Z",
+          "warnings": [],
+          "contents": []
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/6aecf144-f02e-41af-9c3f-094af5834f57?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
+        "apim-request-id": "ea4a22ce-de63-42c0-bdc0-339cdd3ef013",
+        "Content-Type": "application/json",
+        "Date": "Sat, 08 Nov 2025 00:26:51 GMT",
+        "request-id": "ea4a22ce-de63-42c0-bdc0-339cdd3ef013",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "28",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "status": "Running",
+        "result": {
+          "analyzerId": "prebuilt-documentAnalyzer",
+          "apiVersion": "2025-11-01",
+          "createdAt": "2025-11-08T00:26:51Z",
+          "warnings": [],
+          "contents": []
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/6aecf144-f02e-41af-9c3f-094af5834f57?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
+        "apim-request-id": "b71b89b1-20d2-408d-98e9-c44e42e5e3dc",
+        "Content-Type": "application/json",
+        "Date": "Sat, 08 Nov 2025 00:26:53 GMT",
+        "request-id": "b71b89b1-20d2-408d-98e9-c44e42e5e3dc",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "25",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "status": "Running",
+        "result": {
+          "analyzerId": "prebuilt-documentAnalyzer",
+          "apiVersion": "2025-11-01",
+          "createdAt": "2025-11-08T00:26:51Z",
+          "warnings": [],
+          "contents": []
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/6aecf144-f02e-41af-9c3f-094af5834f57?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
+        "apim-request-id": "b1dd02b2-23a5-4031-9185-9b1f443513c3",
+        "Content-Type": "application/json",
+        "Date": "Sat, 08 Nov 2025 00:26:56 GMT",
+        "request-id": "b1dd02b2-23a5-4031-9185-9b1f443513c3",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "36",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "status": "Running",
+        "result": {
+          "analyzerId": "prebuilt-documentAnalyzer",
+          "apiVersion": "2025-11-01",
+          "createdAt": "2025-11-08T00:26:51Z",
+          "warnings": [],
+          "contents": []
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/6aecf144-f02e-41af-9c3f-094af5834f57?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
+        "apim-request-id": "2c263174-86f1-4fed-963b-f3ca52be923b",
+        "Content-Type": "application/json",
+        "Date": "Sat, 08 Nov 2025 00:26:58 GMT",
+        "request-id": "2c263174-86f1-4fed-963b-f3ca52be923b",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "25",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "status": "Succeeded",
+        "result": {
+          "analyzerId": "prebuilt-documentAnalyzer",
+          "apiVersion": "2025-11-01",
+          "createdAt": "2025-11-08T00:26:51Z",
+          "warnings": [],
+          "contents": [
+            {
+              "path": "input1",
+              "markdown": "```json\n{\"message\":\"Success\"}\n```\n",
+              "fields": {
+                "Summary": {
+                  "type": "string"
+                }
+              },
+              "kind": "document",
+              "startPageNumber": 1,
+              "endPageNumber": 1,
+              "analyzerId": "prebuilt-documentAnalyzer"
+            }
+          ]
+        },
+        "usage": {
+          "documentPagesMinimal": 1,
+          "contextualizationTokens": 1000,
+          "tokens": {
+            "gpt-4.1-mini-input": 1390,
+            "gpt-4.1-mini-output": 13
+          }
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/6aecf144-f02e-41af-9c3f-094af5834f57?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
+        "apim-request-id": "9d85befa-2c3a-4f6d-948f-b87a29167cb5",
+        "Content-Type": "application/json",
+        "Date": "Sat, 08 Nov 2025 00:26:58 GMT",
+        "request-id": "9d85befa-2c3a-4f6d-948f-b87a29167cb5",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "24",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "6aecf144-f02e-41af-9c3f-094af5834f57",
+        "status": "Succeeded",
+        "result": {
+          "analyzerId": "prebuilt-documentAnalyzer",
+          "apiVersion": "2025-11-01",
+          "createdAt": "2025-11-08T00:26:51Z",
+          "warnings": [],
+          "contents": [
+            {
+              "path": "input1",
+              "markdown": "```json\n{\"message\":\"Success\"}\n```\n",
+              "fields": {
+                "Summary": {
+                  "type": "string"
+                }
+              },
+              "kind": "document",
+              "startPageNumber": 1,
+              "endPageNumber": 1,
+              "analyzerId": "prebuilt-documentAnalyzer"
+            }
+          ]
+        },
+        "usage": {
+          "documentPagesMinimal": 1,
+          "contextualizationTokens": 1000,
+          "tokens": {
+            "gpt-4.1-mini-input": 1390,
+            "gpt-4.1-mini-output": 13
+          }
+        }
+      }
+    }
+  ],
+  "Variables": {}
+}

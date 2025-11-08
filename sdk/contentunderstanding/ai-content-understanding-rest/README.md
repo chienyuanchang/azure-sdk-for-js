@@ -94,6 +94,94 @@ setLogLevel("info");
 
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
 
+## Testing
+
+This SDK includes comprehensive tests that can be run in different modes:
+
+### Quick Start
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build the SDK
+npx turbo build --filter=@azure-rest/ai-content-understanding...
+
+# Run tests in playback mode (no Azure resources needed)
+pnpm test
+```
+
+### Test Modes
+
+- **Playback Mode** (default): Uses pre-recorded HTTP interactions, no Azure resources required
+- **Record Mode**: Runs against live Azure services and records interactions for future playback
+- **Live Mode**: Runs against live Azure services without recording
+
+### Run Tests in Record Mode
+
+To record new test interactions or update existing ones:
+
+```bash
+# 1. Set up environment variables in test/.env
+cp test/sample.env test/.env
+# Edit test/.env with your Azure credentials
+
+# 2. Run tests in record mode
+TEST_MODE=record pnpm test
+```
+
+### Run Tests in Playback Mode
+
+To run tests without Azure resources (using pre-recorded interactions):
+
+```bash
+# Simply run tests (playback is the default mode)
+pnpm test
+
+# Or explicitly set playback mode
+TEST_MODE=playback pnpm test
+```
+
+### Package-scoped / faster workflows
+
+- Build only this package and its dependencies (faster than building the whole monorepo):
+
+```bash
+npx turbo build --filter=@azure-rest/ai-content-understanding... --token 1
+```
+
+- Run only Node tests for faster iteration (skip browser tests):
+
+```bash
+# from package root
+TEST_MODE=record pnpm test:node   # or TEST_MODE=playback pnpm test:node
+```
+
+### .env locations and debug tips
+
+- Preferred: create `test/.env` by copying `test/sample.env` and filling your values. The test harness will load `test/.env` first.
+- Fallback: you may also place a `.env` at the package root (same directory as `package.json` for this package); the test setup will load it as a fallback.
+- You can also export credentials in your shell instead of using a file:
+
+```bash
+export AZURE_CONTENT_UNDERSTANDING_ENDPOINT="https://<your-resource>.cognitiveservices.azure.com"
+export AZURE_CONTENT_UNDERSTANDING_KEY="<your_key_here>"
+TEST_MODE=record pnpm test:node
+```
+
+- When running tests in record mode, watch for debug lines printed by the test setup. They show presence (not value) of credentials:
+
+```
+DEBUG ENV ENDPOINT DEFINED: true
+DEBUG ENV KEY DEFINED: true
+```
+
+- Do NOT commit real keys. Keep `test/sample.env` as the template and commit `test/.env` to your local only (or better: use CI secrets to run recordings in CI).
+
+### Troubleshooting
+
+- "key must be a non-empty string": the test process couldn't find your `AZURE_CONTENT_UNDERSTANDING_KEY`. Ensure `test/.env` or package-root `.env` is present and contains the key (or export it in your shell) before running tests.
+- If you see "Invalid request" LRO errors during analyze tests, the tests were updated to fetch the operation result from the LRO status; ensure your service/region supports the analyzer used by the tests (prebuilt-documentAnalyzer) and that network access is available for URL-based inputs.
 
 ## Contributing
 

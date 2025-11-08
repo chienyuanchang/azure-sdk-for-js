@@ -1,0 +1,72 @@
+{
+  "Entries": [
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/non-existent-analyzer-12345?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 404,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "add9a95f-6624-4151-b8e7-235475bd3971",
+        "Content-Length": "146",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Sat, 08 Nov 2025 00:28:12 GMT",
+        "request-id": "add9a95f-6624-4151-b8e7-235475bd3971",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "13",
+        "x-ms-error-code": "NotFound",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "error": {
+          "code": "NotFound",
+          "message": "Resource not found.",
+          "innererror": {
+            "code": "ModelNotFound",
+            "message": "The requested model was not found."
+          }
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1762561693?api-version=2025-11-01",
+      "RequestMethod": "DELETE",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 204,
+      "ResponseHeaders": {
+        "api-supported-versions": "2025-05-01-preview,2025-11-01",
+        "apim-request-id": "d304caec-7d17-4f2e-b9eb-ea0b2149e959",
+        "Content-Length": "0",
+        "Date": "Sat, 08 Nov 2025 00:28:13 GMT",
+        "request-id": "d304caec-7d17-4f2e-b9eb-ea0b2149e959",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "29",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": null
+    }
+  ],
+  "Variables": {
+    "testAnalyzerId": "test_analyzer_1762561693"
+  }
+}
