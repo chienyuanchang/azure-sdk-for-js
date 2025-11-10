@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ErrorModel } from "@azure-rest/core-client";
+import type { ErrorModel } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 
 /** Provides status details for analyzer creation operations. */

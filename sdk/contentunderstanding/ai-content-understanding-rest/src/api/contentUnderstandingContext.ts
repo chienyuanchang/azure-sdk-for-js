@@ -3,8 +3,9 @@
 
 import { logger } from "../logger.js";
 import { KnownVersions } from "../models/models.js";
-import { Client, ClientOptions, getClient } from "@azure-rest/core-client";
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
+import type { Client, ClientOptions } from "@azure-rest/core-client";
+import { getClient } from "@azure-rest/core-client";
+import type { KeyCredential, TokenCredential } from "@azure/core-auth";
 
 /** The Content Understanding service extracts content and fields from multimodal input. */
 export interface ContentUnderstandingContext extends Client {

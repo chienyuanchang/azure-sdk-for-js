@@ -1,17 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createContentUnderstanding,
+import type {
   ContentUnderstandingContext,
   ContentUnderstandingClientOptionalParams,
 } from "./api/index.js";
-import {
-  ContentAnalyzersOperations,
-  _getContentAnalyzersOperations,
-} from "./classic/contentAnalyzers/index.js";
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import { createContentUnderstanding } from "./api/index.js";
+import type { ContentAnalyzersOperations } from "./classic/contentAnalyzers/index.js";
+import { _getContentAnalyzersOperations } from "./classic/contentAnalyzers/index.js";
+import type { KeyCredential, TokenCredential } from "@azure/core-auth";
+import type { Pipeline } from "@azure/core-rest-pipeline";
 
 export { ContentUnderstandingClientOptionalParams } from "./api/contentUnderstandingContext.js";
 

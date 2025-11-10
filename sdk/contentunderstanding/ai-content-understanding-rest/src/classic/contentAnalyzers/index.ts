@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ContentUnderstandingContext } from "../../api/contentUnderstandingContext.js";
+import type { ContentUnderstandingContext } from "../../api/contentUnderstandingContext.js";
 import {
   updateDefaults,
   getDefaults,
@@ -19,7 +19,7 @@ import {
   createOrReplace,
   getOperationStatus,
 } from "../../api/contentAnalyzers/operations.js";
-import {
+import type {
   ContentAnalyzersUpdateDefaultsOptionalParams,
   ContentAnalyzersGetDefaultsOptionalParams,
   ContentAnalyzersGrantCopyAuthorizationOptionalParams,
@@ -36,7 +36,7 @@ import {
   ContentAnalyzersCreateOrReplaceOptionalParams,
   ContentAnalyzersGetOperationStatusOptionalParams,
 } from "../../api/contentAnalyzers/options.js";
-import {
+import type {
   ContentAnalyzerOperationStatus,
   ContentAnalyzer,
   AnalyzeResult,
@@ -44,8 +44,8 @@ import {
   CopyAuthorization,
   ContentUnderstandingDefaults,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
+import type { PagedAsyncIterableIterator } from "../../static-helpers/pagingHelpers.js";
+import type { PollerLike, OperationState } from "@azure/core-lro";
 
 /** Interface representing a ContentAnalyzers operations. */
 export interface ContentAnalyzersOperations {
