@@ -107,10 +107,7 @@ export interface ContentAnalyzersOperations {
    *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
    *         to the operation to override the generated name.
    */
-  delete: (
-    analyzerId: string,
-    options?: ContentAnalyzersDeleteOptionalParams,
-  ) => Promise<void>;
+  delete: (analyzerId: string, options?: ContentAnalyzersDeleteOptionalParams) => Promise<void>;
   /** Get analyzer properties. */
   get: (
     analyzerId: string,
@@ -146,47 +143,32 @@ function _getContentAnalyzers(context: ContentUnderstandingContext) {
       analyzerId: string,
       targetAzureResourceId: string,
       options?: ContentAnalyzersGrantCopyAuthorizationOptionalParams,
-    ) =>
-      grantCopyAuthorization(
-        context,
-        analyzerId,
-        targetAzureResourceId,
-        options,
-      ),
+    ) => grantCopyAuthorization(context, analyzerId, targetAzureResourceId, options),
     copy: (
       analyzerId: string,
       sourceAnalyzerId: string,
       options?: ContentAnalyzersCopyOptionalParams,
     ) => copy(context, analyzerId, sourceAnalyzerId, options),
-    deleteResult: (
-      operationId: string,
-      options?: ContentAnalyzersDeleteResultOptionalParams,
-    ) => deleteResult(context, operationId, options),
+    deleteResult: (operationId: string, options?: ContentAnalyzersDeleteResultOptionalParams) =>
+      deleteResult(context, operationId, options),
     getResultFile: (
       operationId: string,
       path: string,
       options?: ContentAnalyzersGetResultFileOptionalParams,
     ) => getResultFile(context, operationId, path, options),
-    getResult: (
-      operationId: string,
-      options?: ContentAnalyzersGetResultOptionalParams,
-    ) => getResult(context, operationId, options),
+    getResult: (operationId: string, options?: ContentAnalyzersGetResultOptionalParams) =>
+      getResult(context, operationId, options),
     analyzeBinary: (
       analyzerId: string,
       contentType: string,
       input: Uint8Array,
       options?: ContentAnalyzersAnalyzeBinaryOptionalParams,
     ) => analyzeBinary(context, analyzerId, contentType, input, options),
-    analyze: (
-      analyzerId: string,
-      options?: ContentAnalyzersAnalyzeOptionalParams,
-    ) => analyze(context, analyzerId, options),
-    list: (options?: ContentAnalyzersListOptionalParams) =>
-      list(context, options),
-    delete: (
-      analyzerId: string,
-      options?: ContentAnalyzersDeleteOptionalParams,
-    ) => $delete(context, analyzerId, options),
+    analyze: (analyzerId: string, options?: ContentAnalyzersAnalyzeOptionalParams) =>
+      analyze(context, analyzerId, options),
+    list: (options?: ContentAnalyzersListOptionalParams) => list(context, options),
+    delete: (analyzerId: string, options?: ContentAnalyzersDeleteOptionalParams) =>
+      $delete(context, analyzerId, options),
     get: (analyzerId: string, options?: ContentAnalyzersGetOptionalParams) =>
       get(context, analyzerId, options),
     update: (

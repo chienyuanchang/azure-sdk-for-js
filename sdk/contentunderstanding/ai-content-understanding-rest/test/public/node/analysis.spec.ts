@@ -56,62 +56,64 @@ describe("ContentUnderstandingClient - Analysis", () => {
       testPollingOptions,
     );
 
-  await poller.pollUntilDone();
-  // Poller may not return the full AnalyzeResult directly. Extract the operationId from the operation-location
-  const operationLocation = (poller.operationState as any).config.operationLocation as string;
-  const url = new URL(operationLocation);
-  const operationId = url.pathname.split("/").pop()!.split('?')[0]!;
+    await poller.pollUntilDone();
+    // Poller may not return the full AnalyzeResult directly. Extract the operationId from the operation-location
+    const operationLocation = (poller.operationState as any).config.operationLocation as string;
+    const url = new URL(operationLocation);
+    const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
-  const operationStatus = await client.contentAnalyzers.getResult(operationId);
-  const analyzeResult = operationStatus.result!;
-  assert.ok(analyzeResult, "Expected analyzeResult in response");
+    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const analyzeResult = operationStatus.result!;
+    assert.ok(analyzeResult, "Expected analyzeResult in response");
 
-  const contents = analyzeResult?.contents;
-  assert.ok(contents && contents.length > 0, "Expected contents in analyzeResult");
+    const contents = analyzeResult?.contents;
+    assert.ok(contents && contents.length > 0, "Expected contents in analyzeResult");
   });
 
   it("should analyze a document from URL", async () => {
     // Using a public PDF URL for testing
-    const testUrl = "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
+    const testUrl =
+      "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
 
     const poller = client.contentAnalyzers.analyze(testAnalyzerId, {
       inputs: [{ url: testUrl }],
       ...testPollingOptions,
     });
 
-  await poller.pollUntilDone();
-  const operationLocation = (poller.operationState as any).config.operationLocation as string;
-  const url = new URL(operationLocation);
-  const operationId = url.pathname.split("/").pop()!.split('?')[0]!;
+    await poller.pollUntilDone();
+    const operationLocation = (poller.operationState as any).config.operationLocation as string;
+    const url = new URL(operationLocation);
+    const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
-  const operationStatus = await client.contentAnalyzers.getResult(operationId);
-  const analyzeResult = operationStatus.result!;
-  assert.ok(analyzeResult, "Expected analyzeResult in response");
+    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const analyzeResult = operationStatus.result!;
+    assert.ok(analyzeResult, "Expected analyzeResult in response");
 
-  const contents = analyzeResult?.contents;
-  assert.ok(contents && contents.length > 0, "Expected contents in analyzeResult");
+    const contents = analyzeResult?.contents;
+    assert.ok(contents && contents.length > 0, "Expected contents in analyzeResult");
   });
 
   it("should analyze with markdown output", async () => {
-    const testUrl = "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
+    const testUrl =
+      "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
 
     const poller = client.contentAnalyzers.analyze(testAnalyzerId, {
       inputs: [{ url: testUrl }],
       ...testPollingOptions,
     });
 
-  await poller.pollUntilDone();
-  const operationLocation = (poller.operationState as any).config.operationLocation as string;
-  const url = new URL(operationLocation);
-  const operationId = url.pathname.split("/").pop()!.split('?')[0]!;
+    await poller.pollUntilDone();
+    const operationLocation = (poller.operationState as any).config.operationLocation as string;
+    const url = new URL(operationLocation);
+    const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
-  const operationStatus = await client.contentAnalyzers.getResult(operationId);
-  const analyzeResult = operationStatus.result!;
-  assert.ok(analyzeResult, "Expected analyzeResult in response");
+    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const analyzeResult = operationStatus.result!;
+    assert.ok(analyzeResult, "Expected analyzeResult in response");
 
-  const contents = analyzeResult?.contents;
-  assert.ok(contents && contents.length > 0, "Expected contents in analyzeResult");
-    
+    const contents = analyzeResult?.contents;
+    assert.ok(contents && contents.length > 0, "Expected contents in analyzeResult");
+
     // Check if markdown is present in the result
     const firstContent = contents[0];
     if (firstContent.kind === "document") {
@@ -133,7 +135,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
       // If the poller completes without throwing, try to fetch the result to see the error
       const operationLocation = (poller.operationState as any).config.operationLocation as string;
       const url = new URL(operationLocation);
-      const operationId = url.pathname.split("/").pop()!.split('?')[0]!;
+      const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
       const operationStatus = await client.contentAnalyzers.getResult(operationId);
       if (operationStatus.status === "Failed") {

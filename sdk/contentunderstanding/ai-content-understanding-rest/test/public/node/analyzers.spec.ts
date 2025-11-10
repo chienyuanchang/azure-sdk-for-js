@@ -23,7 +23,10 @@ describe("ContentUnderstandingClient - Analyzers", () => {
     );
     // Note: Analyzer IDs cannot contain hyphens
     // Use recorder.variable to ensure consistent IDs between record and playback modes
-    testAnalyzerId = recorder.variable("testAnalyzerId", `test_analyzer_${Math.floor(Date.now() / 1000)}`);
+    testAnalyzerId = recorder.variable(
+      "testAnalyzerId",
+      `test_analyzer_${Math.floor(Date.now() / 1000)}`,
+    );
   });
 
   afterEach(async () => {
@@ -249,7 +252,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
 
   it("should handle analyzer not found error", async () => {
     const nonExistentId = "non-existent-analyzer-12345";
-    
+
     try {
       await client.contentAnalyzers.get(nonExistentId);
       assert.fail("Expected error for non-existent analyzer");

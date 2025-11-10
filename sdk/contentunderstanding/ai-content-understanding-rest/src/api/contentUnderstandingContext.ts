@@ -14,8 +14,7 @@ export interface ContentUnderstandingContext extends Client {
 }
 
 /** Optional parameters for the client. */
-export interface ContentUnderstandingClientOptionalParams
-  extends ClientOptions {
+export interface ContentUnderstandingClientOptionalParams extends ClientOptions {
   /** The API version to use for this operation. */
   /** Known values of {@link KnownVersions} that the service accepts. */
   apiVersion?: string;
@@ -27,8 +26,7 @@ export function createContentUnderstanding(
   credential: KeyCredential | TokenCredential,
   options: ContentUnderstandingClientOptionalParams = {},
 ): ContentUnderstandingContext {
-  const endpointUrl =
-    options.endpoint ?? `${endpointParam}/contentunderstanding`;
+  const endpointUrl = options.endpoint ?? `${endpointParam}/contentunderstanding`;
   const prefixFromOptions = options?.userAgentOptions?.userAgentPrefix;
   const userAgentInfo = `azsdk-js-ai-content-understanding/1.0.0-beta.1`;
   const userAgentPrefix = prefixFromOptions
@@ -39,11 +37,8 @@ export function createContentUnderstanding(
     userAgentOptions: { userAgentPrefix },
     loggingOptions: { logger: options.loggingOptions?.logger ?? logger.info },
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://cognitiveservices.azure.com/.default",
-      ],
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+      scopes: options.credentials?.scopes ?? ["https://cognitiveservices.azure.com/.default"],
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
   const clientContext = getClient(endpointUrl, credential, updatedOptions);

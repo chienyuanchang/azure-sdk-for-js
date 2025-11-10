@@ -1,16 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  ProcessingLocation,
-  AnalyzeInput,
-  StringEncoding,
-} from "../../models/models.js";
+import { ProcessingLocation, AnalyzeInput, StringEncoding } from "../../models/models.js";
 import { OperationOptions } from "@azure-rest/core-client";
 
 /** Optional parameters. */
-export interface ContentAnalyzersUpdateDefaultsOptionalParams
-  extends OperationOptions {
+export interface ContentAnalyzersUpdateDefaultsOptionalParams extends OperationOptions {
   /**
    * Mapping of model names to deployments.
    * Ex. { "gpt-4.1": "myGpt41Deployment", "text-embedding-3-large": "myTextEmbedding3LargeDeployment" }.
@@ -19,12 +14,10 @@ export interface ContentAnalyzersUpdateDefaultsOptionalParams
 }
 
 /** Optional parameters. */
-export interface ContentAnalyzersGetDefaultsOptionalParams
-  extends OperationOptions {}
+export interface ContentAnalyzersGetDefaultsOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ContentAnalyzersGrantCopyAuthorizationOptionalParams
-  extends OperationOptions {
+export interface ContentAnalyzersGrantCopyAuthorizationOptionalParams extends OperationOptions {
   /** Azure region of the target analyzer location.  Defaults to current region. */
   targetRegion?: string;
   /** An opaque, globally-unique, client-generated string identifier for the request. */
@@ -46,20 +39,16 @@ export interface ContentAnalyzersCopyOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface ContentAnalyzersDeleteResultOptionalParams
-  extends OperationOptions {}
+export interface ContentAnalyzersDeleteResultOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ContentAnalyzersGetResultFileOptionalParams
-  extends OperationOptions {}
+export interface ContentAnalyzersGetResultFileOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ContentAnalyzersGetResultOptionalParams
-  extends OperationOptions {}
+export interface ContentAnalyzersGetResultOptionalParams extends OperationOptions {}
 
 /** Optional parameters. */
-export interface ContentAnalyzersAnalyzeBinaryOptionalParams
-  extends OperationOptions {
+export interface ContentAnalyzersAnalyzeBinaryOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** The encoding format for content spans in the response. */
@@ -73,8 +62,7 @@ export interface ContentAnalyzersAnalyzeBinaryOptionalParams
 }
 
 /** Optional parameters. */
-export interface ContentAnalyzersAnalyzeOptionalParams
-  extends OperationOptions {
+export interface ContentAnalyzersAnalyzeOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** The encoding format for content spans in the response. */
@@ -117,8 +105,7 @@ export interface ContentAnalyzersUpdateOptionalParams extends OperationOptions {
 }
 
 /** Optional parameters. */
-export interface ContentAnalyzersCreateOrReplaceOptionalParams
-  extends OperationOptions {
+export interface ContentAnalyzersCreateOrReplaceOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** Allow the operation to replace an existing resource. */
@@ -128,5 +115,4 @@ export interface ContentAnalyzersCreateOrReplaceOptionalParams
 }
 
 /** Optional parameters. */
-export interface ContentAnalyzersGetOperationStatusOptionalParams
-  extends OperationOptions {}
+export interface ContentAnalyzersGetOperationStatusOptionalParams extends OperationOptions {}

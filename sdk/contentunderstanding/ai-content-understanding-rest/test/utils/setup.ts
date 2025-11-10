@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-
 import dotenv from "dotenv";
 import path from "path";
 import type { TestProject } from "vitest/node";
@@ -15,7 +14,10 @@ dotenv.config({ path: path.join(__dirname, "..", ".env") });
 dotenv.config(); // loads from process.cwd()/.env
 
 // DEBUG: indicate presence of key/endpoint (do NOT print secret values)
-console.log("DEBUG ENV ENDPOINT DEFINED:", Boolean(process.env.AZURE_CONTENT_UNDERSTANDING_ENDPOINT));
+console.log(
+  "DEBUG ENV ENDPOINT DEFINED:",
+  Boolean(process.env.AZURE_CONTENT_UNDERSTANDING_ENDPOINT),
+);
 console.log("DEBUG ENV KEY DEFINED:", Boolean(process.env.AZURE_CONTENT_UNDERSTANDING_KEY));
 
 declare module "vitest" {
@@ -47,7 +49,7 @@ export default async function ({ provide }: TestProject): Promise<void> {
   if (["live", "record"].includes(testMode ?? "")) {
     const endpoint = assertEnvironmentVariable(EnvVarKeys.ENDPOINT);
     const key = assertEnvironmentVariable(EnvVarKeys.KEY);
-    
+
     // For testing container SAS URL - optional for basic tests
     let testingContainerSasUrl = MOCKS.TESTING_CONTAINER_SAS_URL;
     try {
