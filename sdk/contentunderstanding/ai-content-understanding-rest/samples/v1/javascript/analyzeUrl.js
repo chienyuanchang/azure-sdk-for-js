@@ -108,7 +108,7 @@ async function main() {
     console.log("  Analyzing...");
 
     // Use the analyze method with inputs containing the URL
-    const poller = client.contentAnalyzers.analyze(analyzerId, {
+    const poller = client.analyze(analyzerId, {
       inputs: [{ url: fileUrl }],
     });
     await poller.pollUntilDone();
@@ -119,7 +119,7 @@ async function main() {
     const operationId = url.pathname.split('/').pop().split('?')[0];
     
     // Get the complete result with all data
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result;
 
     console.log("  Analysis completed successfully");

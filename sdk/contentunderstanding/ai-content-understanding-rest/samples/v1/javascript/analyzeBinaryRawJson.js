@@ -99,7 +99,7 @@ async function main() {
     console.log("  Using protocol method to access raw JSON response");
     console.log("  Analyzing...");
 
-    const poller = client.contentAnalyzers.analyzeBinary(analyzerId, "application/pdf", pdfBytes);
+    const poller = client.analyzeBinary(analyzerId, "application/pdf", pdfBytes);
     await poller.pollUntilDone();
     console.log("  Analysis completed successfully\n");
 
@@ -115,7 +115,7 @@ async function main() {
     const operationId = operationIdMatch[1];
 
     // Get the full operation status which includes the complete result
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result;
 
     // Convert the result object to JSON string

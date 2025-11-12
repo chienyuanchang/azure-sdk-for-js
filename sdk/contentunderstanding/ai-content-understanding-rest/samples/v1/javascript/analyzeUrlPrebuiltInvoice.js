@@ -211,7 +211,7 @@ async function main() {
     console.log(`  Analyzer: prebuilt-invoice`);
     console.log(`  Analyzing...`);
 
-    const poller = client.contentAnalyzers.analyze("prebuilt-invoice", {
+    const poller = client.analyze("prebuilt-invoice", {
       inputs: [{ url: fileUrl }],
     });
     await poller.pollUntilDone();
@@ -222,7 +222,7 @@ async function main() {
     const operationId = url.pathname.split("/").pop().split("?")[0];
 
     // Get the complete result with all data
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result;
 
     console.log("  Analysis completed successfully");

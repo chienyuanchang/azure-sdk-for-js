@@ -114,7 +114,7 @@ async function main() {
     let result = null;
     let created = false;
     try {
-      const poller = client.contentAnalyzers.createOrReplace(analyzerId, customAnalyzer);
+      const poller = client.createOrReplace(analyzerId, customAnalyzer);
       result = await poller.pollUntilDone();
       created = true;
       console.log(`  ✅ Analyzer '${analyzerId}' created successfully!`);
@@ -134,7 +134,7 @@ async function main() {
       console.log("  Analyzing...");
 
       try {
-        const analyzePoller = client.contentAnalyzers.analyze(analyzerId, {
+        const analyzePoller = client.analyze(analyzerId, {
           inputs: [{ url: fileUrl }],
         });
         await analyzePoller.pollUntilDone();
@@ -145,7 +145,7 @@ async function main() {
         const operationId = url.pathname.split("/").pop().split("?")[0];
 
         // Get the complete result with all data
-        const operationStatus = await client.contentAnalyzers.getResult(operationId);
+        const operationStatus = await client.getResult(operationId);
         const analyzeResult = operationStatus.result;
 
         console.log("  ✅ Analysis completed successfully!");
@@ -186,7 +186,7 @@ async function main() {
     if (created && result) {
       console.log("Step 7: Cleaning up (deleting analyzer)...");
       try {
-        await client.contentAnalyzers.delete(analyzerId);
+        await client.delete(analyzerId);
         console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
         console.log("");
       } catch (error) {

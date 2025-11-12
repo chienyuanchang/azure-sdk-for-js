@@ -98,7 +98,7 @@ async function main() {
 
     try {
       console.log("  Creating analyzer (this may take a few moments)...");
-      const poller = client.contentAnalyzers.createOrReplace(analyzerId, initialAnalyzer);
+      const poller = client.createOrReplace(analyzerId, initialAnalyzer);
       const createdAnalyzer = await poller.pollUntilDone();
       console.log(`  ✅ Analyzer '${analyzerId}' created successfully!`);
       console.log(`  Status: ${createdAnalyzer.status}`);
@@ -112,7 +112,7 @@ async function main() {
     console.log("Step 5: Getting analyzer before update...");
     let analyzerBeforeUpdate;
     try {
-      analyzerBeforeUpdate = await client.contentAnalyzers.get(analyzerId);
+      analyzerBeforeUpdate = await client.get(analyzerId);
       console.log("  ✅ Initial analyzer state verified:");
       console.log(`    Description: ${analyzerBeforeUpdate.description}`);
       const tagsList = Object.entries(analyzerBeforeUpdate.tags || {})
@@ -150,7 +150,7 @@ async function main() {
         },
       };
 
-      await client.contentAnalyzers.update(analyzerId, updateData);
+      await client.update(analyzerId, updateData);
 
       console.log("  ✅ Analyzer updated successfully!");
       console.log("");
@@ -163,7 +163,7 @@ async function main() {
     console.log("Step 7: Getting analyzer after update to verify changes...");
     let analyzerAfterUpdate;
     try {
-      analyzerAfterUpdate = await client.contentAnalyzers.get(analyzerId);
+      analyzerAfterUpdate = await client.get(analyzerId);
       console.log("  ✅ Updated analyzer state verified:");
       console.log(`    Description: ${analyzerAfterUpdate.description}`);
       const tagsList = Object.entries(analyzerAfterUpdate.tags || {})
@@ -198,7 +198,7 @@ async function main() {
     // Step 8: Clean up (delete the created analyzer)
     console.log("Step 8: Cleaning up (deleting analyzer)...");
     try {
-      await client.contentAnalyzers.delete(analyzerId);
+      await client.delete(analyzerId);
       console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
       console.log("");
     } catch (error) {

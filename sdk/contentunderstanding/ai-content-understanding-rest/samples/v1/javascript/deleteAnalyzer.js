@@ -94,7 +94,7 @@ async function main() {
     };
 
     try {
-      const poller = client.contentAnalyzers.createOrReplace(analyzerId, tempAnalyzer);
+      const poller = client.createOrReplace(analyzerId, tempAnalyzer);
       const createdAnalyzer = await poller.pollUntilDone();
       console.log(`  ✅ Analyzer '${analyzerId}' created successfully!`);
       console.log(`  Status: ${createdAnalyzer.status}`);
@@ -107,7 +107,7 @@ async function main() {
     // Step 5: Delete the analyzer
     console.log("Step 5: Deleting the analyzer...");
     try {
-      await client.contentAnalyzers.delete(analyzerId);
+      await client.delete(analyzerId);
       console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
       console.log("");
     } catch (error) {

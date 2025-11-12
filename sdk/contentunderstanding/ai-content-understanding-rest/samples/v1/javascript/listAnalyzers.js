@@ -59,7 +59,7 @@ async function main() {
     const analyzers = [];
 
     try {
-      for await (const analyzer of client.contentAnalyzers.list()) {
+      for await (const analyzer of client.list()) {
         analyzers.push(analyzer);
       }
 
