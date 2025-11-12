@@ -106,7 +106,7 @@ async function main(): Promise<void> {
 
     try {
       console.log("  Creating analyzer (this may take a few moments)...");
-      const poller = client.contentAnalyzers.createOrReplace(
+      const poller = client.createOrReplace(
         analyzerId,
         tempAnalyzer as unknown as ContentAnalyzer,
       );
@@ -123,7 +123,7 @@ async function main(): Promise<void> {
     // Step 5: Retrieve the analyzer
     console.log("Step 5: Retrieving the analyzer...");
     try {
-      retrievedAnalyzer = (await client.contentAnalyzers.get(
+      retrievedAnalyzer = (await client.get(
         analyzerId,
       )) as any;
       console.log(`  ✅ Analyzer '${analyzerId}' retrieved successfully!`);
@@ -188,7 +188,7 @@ async function main(): Promise<void> {
     if (created) {
       console.log("Step 7: Cleaning up (deleting analyzer)...");
       try {
-        await client.contentAnalyzers.delete(analyzerId);
+        await client.delete(analyzerId);
         console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
         console.log("");
       } catch (error: unknown) {

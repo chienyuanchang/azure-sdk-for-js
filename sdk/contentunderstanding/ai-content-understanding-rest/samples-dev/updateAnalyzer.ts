@@ -106,7 +106,7 @@ async function main(): Promise<void> {
 
     try {
       console.log("  Creating analyzer (this may take a few moments)...");
-      const poller = client.contentAnalyzers.createOrReplace(
+      const poller = client.createOrReplace(
         analyzerId,
         initialAnalyzer as unknown as ContentAnalyzer,
       );
@@ -124,7 +124,7 @@ async function main(): Promise<void> {
     console.log("Step 5: Getting analyzer before update...");
     let analyzerBeforeUpdate: ContentAnalyzer;
     try {
-      analyzerBeforeUpdate = await client.contentAnalyzers.get(analyzerId);
+      analyzerBeforeUpdate = await client.get(analyzerId);
       console.log("  ✅ Initial analyzer state verified:");
       console.log(`    Description: ${analyzerBeforeUpdate.description}`);
       const tagsList = Object.entries(analyzerBeforeUpdate.tags || {})
@@ -163,7 +163,7 @@ async function main(): Promise<void> {
         },
       };
 
-      await client.contentAnalyzers.update(analyzerId, updateData as unknown as ContentAnalyzer);
+      await client.update(analyzerId, updateData as unknown as ContentAnalyzer);
 
       console.log("  ✅ Analyzer updated successfully!");
       console.log("");
@@ -177,7 +177,7 @@ async function main(): Promise<void> {
     console.log("Step 7: Getting analyzer after update to verify changes...");
     let analyzerAfterUpdate: ContentAnalyzer;
     try {
-      analyzerAfterUpdate = await client.contentAnalyzers.get(analyzerId);
+      analyzerAfterUpdate = await client.get(analyzerId);
       console.log("  ✅ Updated analyzer state verified:");
       console.log(`    Description: ${analyzerAfterUpdate.description}`);
       const tagsList = Object.entries(analyzerAfterUpdate.tags || {})
@@ -211,7 +211,7 @@ async function main(): Promise<void> {
     // Step 8: Clean up (delete the created analyzer)
     console.log("Step 8: Cleaning up (deleting analyzer)...");
     try {
-      await client.contentAnalyzers.delete(analyzerId);
+      await client.delete(analyzerId);
       console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
       console.log("");
     } catch (error: unknown) {

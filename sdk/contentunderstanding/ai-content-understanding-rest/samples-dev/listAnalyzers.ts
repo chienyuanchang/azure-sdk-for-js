@@ -75,7 +75,7 @@ async function main(): Promise<void> {
     const analyzers: ContentAnalyzer[] = [];
 
     try {
-      for await (const analyzer of client.contentAnalyzers.list()) {
+      for await (const analyzer of client.list()) {
         analyzers.push(analyzer);
       }
 

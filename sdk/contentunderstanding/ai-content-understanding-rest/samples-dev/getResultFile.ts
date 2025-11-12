@@ -74,7 +74,7 @@ async function main(): Promise<void> {
     console.log("  Starting video analysis (this may take several moments)...");
 
     // Start the analysis
-    const analyzePoller = client.contentAnalyzers.analyze(analyzerId, {
+    const analyzePoller = client.analyze(analyzerId, {
       inputs: [{ url: videoUrl }],
     });
 
@@ -100,7 +100,7 @@ async function main(): Promise<void> {
     console.log("  Polling for completion (this may take several minutes for video)...");
     await analyzePoller.pollUntilDone();
 
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result!;
 
     console.log("  ✅ Video analysis completed!");
@@ -131,13 +131,13 @@ async function main(): Promise<void> {
           console.log(`  Video content found:`);
           console.log(`    Start time: ${videoContent.startTimeMs}ms`);
           console.log(`    End time: ${videoContent.endTimeMs}ms`);
-          console.log(`    KeyFrames count: ${videoContent.KeyFrameTimesMs?.length ?? 0}`);
+          console.log(`    KeyFrames count: ${videoContent.keyFrameTimesMs?.length ?? 0}`);
 
-          if (videoContent.KeyFrameTimesMs && videoContent.KeyFrameTimesMs.length > 0) {
+          if (videoContent.keyFrameTimesMs && videoContent.keyFrameTimesMs.length > 0) {
             console.log(
-              `  Found ${videoContent.KeyFrameTimesMs.length} keyframes in video content`,
+              `  Found ${videoContent.keyFrameTimesMs.length} keyframes in video content`,
             );
-            keyframeTimeMs.push(...videoContent.KeyFrameTimesMs);
+            keyframeTimeMs.push(...videoContent.keyFrameTimesMs);
           }
           break;
         }
@@ -184,7 +184,7 @@ async function main(): Promise<void> {
         console.log(`  📥 Getting result file: ${framePath}`);
 
         try {
-          const fileResponse = await client.contentAnalyzers.getResultFile(operationId, framePath);
+          const fileResponse = await client.getResultFile(operationId, framePath);
 
           const imageBytes = fileResponse;
           console.log(`    ✅ Retrieved (${imageBytes.length.toLocaleString()} bytes)`);

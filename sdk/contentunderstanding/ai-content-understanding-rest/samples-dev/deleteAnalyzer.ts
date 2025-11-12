@@ -102,7 +102,7 @@ async function main(): Promise<void> {
     };
 
     try {
-      const poller = client.contentAnalyzers.createOrReplace(
+      const poller = client.createOrReplace(
         analyzerId,
         tempAnalyzer as unknown as ContentAnalyzer,
       );
@@ -119,7 +119,7 @@ async function main(): Promise<void> {
     // Step 5: Delete the analyzer
     console.log("Step 5: Deleting the analyzer...");
     try {
-      await client.contentAnalyzers.delete(analyzerId);
+      await client.delete(analyzerId);
       console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
       console.log("");
     } catch (error: unknown) {
