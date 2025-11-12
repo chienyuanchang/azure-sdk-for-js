@@ -16,18 +16,12 @@
  *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
-import "dotenv/config";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type {
-  ContentAnalyzer,
-  ContentAnalyzerConfig,
-  ContentFieldSchema,
-} from "@azure-rest/ai-content-understanding";
-
+require("dotenv/config");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -36,7 +30,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: Delete Analyzer");
   console.log("=============================================================\n");
@@ -74,7 +68,7 @@ async function main(): Promise<void> {
     console.log(`  Analyzer ID: ${analyzerId}`);
 
     // Create field schema
-    const fieldSchema: ContentFieldSchema = {
+    const fieldSchema = {
       name: "demo_schema",
       description: "Schema for deletion demo",
       fields: {
@@ -87,7 +81,7 @@ async function main(): Promise<void> {
     };
 
     // Create analyzer configuration
-    const config: ContentAnalyzerConfig = {
+    const config = {
       returnDetails: true,
     };
 
@@ -104,16 +98,13 @@ async function main(): Promise<void> {
     };
 
     try {
-      const poller = client.createOrReplace(
-        analyzerId,
-        tempAnalyzer as unknown as ContentAnalyzer,
-      );
-      const createdAnalyzer = (await poller.pollUntilDone()) as any;
+      const poller = client.createOrReplace(analyzerId, tempAnalyzer);
+      const createdAnalyzer = await poller.pollUntilDone();
       console.log(`  ✅ Analyzer '${analyzerId}' created successfully!`);
       console.log(`  Status: ${createdAnalyzer.status}`);
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to create analyzer: ${err.message}`);
       throw error;
     }
@@ -124,8 +115,8 @@ async function main(): Promise<void> {
       await client.delete(analyzerId);
       console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to delete analyzer: ${err.message}`);
       throw error;
     }
@@ -142,8 +133,8 @@ async function main(): Promise<void> {
     console.log("  - To create analyzers: see createOrReplaceAnalyzer sample");
     console.log("  - To list analyzers: see listAnalyzers sample");
     console.log("");
-  } catch (error: unknown) {
-    const err = error as any;
+  } catch (error) {
+    const err = error;
     if (err?.status === 401) {
       console.error("");
       console.error("✗ Authentication failed");
@@ -168,7 +159,7 @@ async function main(): Promise<void> {
 }
 
 // Entry point
-main().catch((err: unknown) => {
+main().catch((err) => {
   console.error("Unhandled error:", err);
   process.exit(1);
 });

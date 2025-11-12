@@ -165,5 +165,19 @@
   },
   "main": "./dist/commonjs/index.js",
   "types": "./dist/commonjs/index.d.ts",
-  "module": "./dist/esm/index.js"
+  "module": "./dist/esm/index.js",
+  "//sampleConfiguration": {
+    "productName": "Azure Content Understanding",
+    "productSlugs": [
+      "azure"
+    ],
+    "disableDocsMs": true,
+    "apiRefLink": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview",
+    "extraFiles": {
+      "./samples-dev/example-data": [
+        "javascript/example-data",
+        "typescript/src/example-data"
+      ]
+    }
+  }
 }

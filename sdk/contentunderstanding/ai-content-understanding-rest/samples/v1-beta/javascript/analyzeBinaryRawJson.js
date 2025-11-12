@@ -19,16 +19,14 @@
  *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
-import "dotenv/config";
-import * as fs from "fs";
-import * as path from "path";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type { AnalyzeResult } from "@azure-rest/ai-content-understanding";
-
+require("dotenv/config");
+const fs = require("fs");
+const path = require("path");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -37,7 +35,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: Analyze Binary (Raw JSON)");
   console.log("=============================================================\n");
@@ -67,7 +65,7 @@ async function main(): Promise<void> {
     // when available (CommonJS). If it's not available (ESM/TS direct exec),
     // fall back to the executing script's directory or repo-relative samples-dev.
     console.log("Step 3: Reading sample file...");
-    const baseDir = ((): string => {
+    const baseDir = (() => {
       if (typeof __dirname !== "undefined") return __dirname;
       if (typeof process !== "undefined" && process.argv && process.argv[1]) {
         return path.dirname(process.argv[1]);
@@ -80,7 +78,9 @@ async function main(): Promise<void> {
     if (!fs.existsSync(doc_path)) {
       console.error("Error: Sample file not found. Expected file:");
       console.error(`  - ${doc_path}`);
-      console.error("\nPlease ensure sample_invoice.pdf exists in the sample's example-data directory.");
+      console.error(
+        "\nPlease ensure sample_invoice.pdf exists in the sample's example-data directory.",
+      );
       process.exit(1);
     }
 
@@ -108,7 +108,7 @@ async function main(): Promise<void> {
 
     // Get the operation ID from the poller to retrieve the full result
     // The poller's operationState contains internal configuration we can use
-    const operationLocation = (poller as any).operationState?.config?.operationLocation;
+    const operationLocation = poller.operationState?.config?.operationLocation;
     if (!operationLocation) {
       throw new Error("Could not retrieve operation location from poller");
     }
@@ -121,7 +121,7 @@ async function main(): Promise<void> {
 
     // Get the full operation status which includes the complete result
     const operationStatus = await client.getResult(operationId);
-    const analyzeResult: AnalyzeResult = operationStatus.result!;
+    const analyzeResult = operationStatus.result;
 
     // Convert the result object to JSON string
     const rawJson = JSON.stringify(analyzeResult, null, 2);
@@ -171,7 +171,7 @@ async function main(): Promise<void> {
     console.log("NOTE: For easier data access, prefer using the object model");
     console.log("      approach shown in the analyzeBinary sample instead of");
     console.log("      parsing raw JSON manually.");
-  } catch (err: any) {
+  } catch (err) {
     console.error();
     console.error("✗ An error occurred");
     console.error("  ", err?.message ?? err);

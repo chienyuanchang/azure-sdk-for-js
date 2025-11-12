@@ -13,19 +13,12 @@
  *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
-import "dotenv/config";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type {
-  ContentAnalyzer,
-  ContentAnalyzerConfig,
-  ContentFieldSchema,
-  AnalyzeResult,
-} from "@azure-rest/ai-content-understanding";
-
+require("dotenv/config");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -34,7 +27,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: Create Custom Analyzer");
   console.log("=============================================================\n");
@@ -72,7 +65,7 @@ async function main(): Promise<void> {
     console.log(`  Analyzer ID: ${analyzerId}`);
 
     // Create field schema with custom fields
-    const fieldSchema: ContentFieldSchema = {
+    const fieldSchema = {
       name: "company_schema",
       description: "Schema for extracting company information",
       fields: {
@@ -90,7 +83,7 @@ async function main(): Promise<void> {
     };
 
     // Create analyzer configuration
-    const config: ContentAnalyzerConfig = {
+    const config = {
       enableFormula: true,
       enableLayout: true,
       enableOcr: true,
@@ -122,21 +115,18 @@ async function main(): Promise<void> {
     console.log("Step 5: Creating custom analyzer...");
     console.log("  This may take a few moments...");
 
-    let result: ContentAnalyzer | null = null;
+    let result = null;
     let created = false;
     try {
-      const poller = client.createOrReplace(
-        analyzerId,
-        customAnalyzer as unknown as ContentAnalyzer,
-      );
+      const poller = client.createOrReplace(analyzerId, customAnalyzer);
       result = await poller.pollUntilDone();
       created = true;
       console.log(`  ✅ Analyzer '${analyzerId}' created successfully!`);
       console.log(`  Status: ${result.status}`);
       console.log(`  Created at: ${new Date(result.createdAt).toUTCString()}`);
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to create analyzer: ${err.message}`);
       throw error;
     }
@@ -156,7 +146,7 @@ async function main(): Promise<void> {
         await analyzePoller.pollUntilDone();
 
         // Extract operation ID from the operation location to get the full result
-        const operationLocation = (analyzePoller.operationState as any).config.operationLocation;
+        const operationLocation = analyzePoller.operationState.config.operationLocation;
         const url = new URL(operationLocation);
         const operationId = url.pathname.split("/").pop()?.split("?")[0];
 
@@ -166,7 +156,7 @@ async function main(): Promise<void> {
 
         // Get the complete result with all data
         const operationStatus = await client.getResult(operationId);
-        const analyzeResult = operationStatus.result as AnalyzeResult;
+        const analyzeResult = operationStatus.result;
 
         console.log("  ✅ Analysis completed successfully!");
         console.log("");
@@ -180,12 +170,12 @@ async function main(): Promise<void> {
 
             // Extract the custom fields we defined
             if (content.fields.company_name) {
-              const companyName = (content.fields.company_name as any)?.valueString ?? "(not found)";
+              const companyName = content.fields.company_name?.valueString ?? "(not found)";
               console.log(`    Company Name: ${companyName}`);
             }
 
             if (content.fields.total_amount) {
-              const totalAmount = (content.fields.total_amount as any)?.valueNumber;
+              const totalAmount = content.fields.total_amount?.valueNumber;
               const formattedAmount = totalAmount ? totalAmount.toFixed(2) : "(not found)";
               console.log(`    Total Amount: ${formattedAmount}`);
             }
@@ -196,8 +186,8 @@ async function main(): Promise<void> {
             console.log("");
           }
         }
-      } catch (error: unknown) {
-        const err = error as any;
+      } catch (error) {
+        const err = error;
         console.error(`  Failed to analyze with custom analyzer: ${err.message}`);
         // Continue to cleanup even if analysis fails
       }
@@ -210,8 +200,8 @@ async function main(): Promise<void> {
         await client.delete(analyzerId);
         console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
         console.log("");
-      } catch (error: unknown) {
-        const err = error as any;
+      } catch (error) {
+        const err = error;
         console.error(`  Failed to delete analyzer: ${err.message}`);
         // Don't throw - cleanup failure shouldn't fail the sample
       }
@@ -230,8 +220,8 @@ async function main(): Promise<void> {
     console.log("  - To retrieve analyzers: see listAnalyzers sample");
     console.log("  - To analyze with prebuilt analyzers: see analyzeBinary or analyzeUrl samples");
     console.log("");
-  } catch (error: unknown) {
-    const err = error as any;
+  } catch (error) {
+    const err = error;
     if (err?.status === 401) {
       console.error("");
       console.error("✗ Authentication failed");
@@ -256,7 +246,7 @@ async function main(): Promise<void> {
 }
 
 // Entry point
-main().catch((err: unknown) => {
+main().catch((err) => {
   console.error("Unhandled error:", err);
   process.exit(1);
 });

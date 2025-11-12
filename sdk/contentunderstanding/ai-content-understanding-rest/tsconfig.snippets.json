@@ -1,3 +1,9 @@
 {
-  "extends": ["../../../tsconfig.snippets.base.json"]
+  "extends": ["../../../tsconfig.snippets.base.json"],
+  "compilerOptions": {
+    "paths": {
+      "@azure-rest/ai-content-understanding": ["./src/index"]
+    }
+  },
+  "include": ["./src/**/*.ts", "./test/**/*.ts", "samples-dev/**/*.ts"]
 }

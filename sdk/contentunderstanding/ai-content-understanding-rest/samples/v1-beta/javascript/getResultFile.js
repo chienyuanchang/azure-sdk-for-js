@@ -19,16 +19,14 @@
  *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
-import "dotenv/config";
-import * as fs from "fs";
-import * as path from "path";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type { AudioVisualContent } from "@azure-rest/ai-content-understanding";
-
+require("dotenv/config");
+const fs = require("fs");
+const path = require("path");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -37,7 +35,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: Get Result File");
   console.log("=============================================================\n");
@@ -85,25 +83,25 @@ async function main(): Promise<void> {
 
     // Extract operation ID from the operation location. Depending on core-lro version,
     // the poller may expose getOperationState() or an operationState property; handle both.
-    const pollerState: any =
-      typeof (analyzePoller as any).getOperationState === "function"
-        ? (analyzePoller as any).getOperationState()
-        : (analyzePoller as any).operationState;
-    const operationLocation = pollerState?.config?.operationLocation as string | undefined;
+    const pollerState =
+      typeof analyzePoller.getOperationState === "function"
+        ? analyzePoller.getOperationState()
+        : analyzePoller.operationState;
+    const operationLocation = pollerState?.config?.operationLocation;
     if (!operationLocation) {
       throw new Error(
         "Failed to obtain operation location from initial analyze request (operationLocation header missing).",
       );
     }
     const url = new URL(operationLocation);
-    const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
+    const operationId = url.pathname.split("/").pop().split("?")[0];
     console.log(`  Analysis started, Operation ID: ${operationId}`);
 
     console.log("  Polling for completion (this may take several minutes for video)...");
     await analyzePoller.pollUntilDone();
 
     const operationStatus = await client.getResult(operationId);
-    const analyzeResult = operationStatus.result!;
+    const analyzeResult = operationStatus.result;
 
     console.log("  ✅ Video analysis completed!");
     console.log(`  Contents count: ${analyzeResult.contents?.length ?? 0}\n`);
@@ -124,12 +122,12 @@ async function main(): Promise<void> {
     // Step 5: Find keyframes in the analysis result
     console.log("Step 5: Finding keyframes in analysis result...");
 
-    const keyframeTimeMs: number[] = [];
+    const keyframeTimeMs = [];
 
     if (analyzeResult.contents && analyzeResult.contents.length > 0) {
       for (const content of analyzeResult.contents) {
         if (content.kind === "audioVisual") {
-          const videoContent = content as AudioVisualContent;
+          const videoContent = content;
           console.log(`  Video content found:`);
           console.log(`    Start time: ${videoContent.startTimeMs}ms`);
           console.log(`    End time: ${videoContent.endTimeMs}ms`);
@@ -165,7 +163,7 @@ async function main(): Promise<void> {
       console.log("Step 6: Downloading keyframe images...");
 
       // Download a few keyframe images as examples (first, middle, last)
-      const framesToDownload: number[] = [];
+      const framesToDownload = [];
       if (keyframeTimeMs.length >= 3) {
         framesToDownload.push(keyframeTimeMs[0]); // First
         framesToDownload.push(keyframeTimeMs[Math.floor(keyframeTimeMs.length / 2)]); // Middle
@@ -196,7 +194,7 @@ async function main(): Promise<void> {
           const filePath = path.join(outputDir, fileName);
           fs.writeFileSync(filePath, Buffer.from(imageBytes));
           console.log(`    💾 Saved to: ${filePath}`);
-        } catch (error: any) {
+        } catch (error) {
           console.error(`    Failed to get result file: ${error?.message ?? error}`);
           // Continue with next file
         }
@@ -220,7 +218,7 @@ async function main(): Promise<void> {
     console.log("API Notes:");
     console.log("  - AudioVisualContent has keyFrameTimesMs (array of timestamps in milliseconds)");
     console.log('  - Path format for GetResultFile: "keyframes/{frameTimeMs}"');
-  } catch (err: any) {
+  } catch (err) {
     console.error();
     if (err?.status === 401) {
       console.error("✗ Authentication failed");

@@ -13,14 +13,12 @@
  *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
-import "dotenv/config";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type { AnalyzeResult, DocumentContent } from "@azure-rest/ai-content-understanding";
-
+require("dotenv/config");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -29,7 +27,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Print markdown and document info (mirrors C# sample output)
-function printAnalysisResult(analyzeResult: AnalyzeResult): void {
+function printAnalysisResult(analyzeResult) {
   if (!analyzeResult?.contents || analyzeResult.contents.length === 0) {
     console.log("(No content returned from analysis)");
     return;
@@ -43,7 +41,7 @@ function printAnalysisResult(analyzeResult: AnalyzeResult): void {
   console.log("=============================================================\n");
 
   if (content?.kind === "document") {
-    const doc = content as DocumentContent;
+    const doc = content;
     console.log("Step 6: Displaying document information...");
     console.log(`  Document type: ${doc.mimeType ?? "(unknown)"}`);
     console.log(`  Start page: ${doc.startPageNumber}`);
@@ -64,7 +62,7 @@ function printAnalysisResult(analyzeResult: AnalyzeResult): void {
     if (doc.tables && doc.tables.length > 0) {
       console.log("Step 8: Displaying table information...");
       console.log(`  Number of tables: ${doc.tables.length}`);
-      doc.tables.forEach((table, i: number) => {
+      doc.tables.forEach((table, i) => {
         console.log(`  Table ${i + 1}: ${table.rowCount} rows x ${table.columnCount} columns`);
       });
       console.log("");
@@ -76,7 +74,7 @@ function printAnalysisResult(analyzeResult: AnalyzeResult): void {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: Analyze URL");
   console.log("=============================================================\n");
@@ -107,7 +105,8 @@ async function main(): Promise<void> {
 
     // Step 4: Analyze document from URL
     console.log("Step 4: Analyzing document from URL...");
-    const fileUrl = "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
+    const fileUrl =
+      "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
     console.log(`  URL: ${fileUrl}`);
     const analyzerId = "prebuilt-documentAnalyzer";
     console.log(`  Analyzer: ${analyzerId}`);
@@ -120,16 +119,18 @@ async function main(): Promise<void> {
     await poller.pollUntilDone();
 
     // Extract operation ID from the operation location to get the full result
-    const operationLocation = (poller.operationState as any).config.operationLocation as string;
+    const operationLocation = poller.operationState.config.operationLocation;
     const url = new URL(operationLocation);
-    const operationId = url.pathname.split('/').pop()!.split('?')[0]!;
-    
+    const operationId = url.pathname.split("/").pop().split("?")[0];
+
     // Get the complete result with all data
     const operationStatus = await client.getResult(operationId);
-    const analyzeResult = operationStatus.result!;
+    const analyzeResult = operationStatus.result;
 
     console.log("  Analysis completed successfully");
-    console.log(`  Result: AnalyzerId=${analyzeResult.analyzerId}, Contents count=${analyzeResult.contents?.length ?? 0}\n`);
+    console.log(
+      `  Result: AnalyzerId=${analyzeResult.analyzerId}, Contents count=${analyzeResult.contents?.length ?? 0}\n`,
+    );
 
     // Step 5-8: Print result
     printAnalysisResult(analyzeResult);
@@ -137,7 +138,7 @@ async function main(): Promise<void> {
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");
     console.log("=============================================================");
-  } catch (err: any) {
+  } catch (err) {
     console.error();
     console.error("✗ An error occurred");
     console.error("  ", err?.message ?? err);

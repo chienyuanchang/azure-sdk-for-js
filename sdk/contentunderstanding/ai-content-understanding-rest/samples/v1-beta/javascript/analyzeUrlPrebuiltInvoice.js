@@ -13,16 +13,15 @@
  *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
-import "dotenv/config";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type { AnalyzeResult, ContentField } from "@azure-rest/ai-content-understanding";
-import * as fs from "fs";
-import * as path from "path";
+require("dotenv/config");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
+const fs = require("fs");
+const path = require("path");
 
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -33,10 +32,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 /**
  * Helper method to extract the value from a ContentField.
  */
-function getFieldValue<T>(
-  fields: Record<string, ContentField> | undefined,
-  fieldName: string,
-): T | undefined {
+function getFieldValue(fields, fieldName) {
   if (!fields || !fields[fieldName]) {
     return undefined;
   }
@@ -45,28 +41,28 @@ function getFieldValue<T>(
 
   switch (field.type) {
     case "string":
-      if (typeof (field as any).valueString !== "undefined") {
-        return (field as any).valueString as T;
+      if (typeof field.valueString !== "undefined") {
+        return field.valueString;
       }
       break;
     case "number":
-      if (typeof (field as any).valueNumber !== "undefined") {
-        return (field as any).valueNumber as T;
+      if (typeof field.valueNumber !== "undefined") {
+        return field.valueNumber;
       }
       break;
     case "integer":
-      if (typeof (field as any).valueInteger !== "undefined") {
-        return (field as any).valueInteger as T;
+      if (typeof field.valueInteger !== "undefined") {
+        return field.valueInteger;
       }
       break;
     case "date":
-      if ((field as any).valueDate) {
-        return new Date((field as any).valueDate).toString() as T;
+      if (field.valueDate) {
+        return new Date(field.valueDate).toString();
       }
       break;
     case "boolean":
-      if (typeof (field as any).valueBoolean !== "undefined") {
-        return (field as any).valueBoolean as T;
+      if (typeof field.valueBoolean !== "undefined") {
+        return field.valueBoolean;
       }
       break;
   }
@@ -75,7 +71,7 @@ function getFieldValue<T>(
 }
 
 // Print invoice analysis result
-function printAnalysisResult(analyzeResult: AnalyzeResult): void {
+function printAnalysisResult(analyzeResult) {
   if (!analyzeResult?.contents || analyzeResult.contents.length === 0) {
     console.log("(No content returned from analysis)");
     return;
@@ -93,17 +89,17 @@ function printAnalysisResult(analyzeResult: AnalyzeResult): void {
   console.log("-".padEnd(40, "-"));
 
   // Example 1: Simple string fields
-  const customerName = getFieldValue<string>(content.fields, "CustomerName");
-  const invoiceDate = getFieldValue<string>(content.fields, "InvoiceDate");
+  const customerName = getFieldValue(content.fields, "CustomerName");
+  const invoiceDate = getFieldValue(content.fields, "InvoiceDate");
 
   console.log(`Customer Name: ${customerName ?? "(None)"}`);
   console.log(`Invoice Date: ${invoiceDate ?? "(None)"}`);
 
   // Example 1b: Currency field (TotalAmount is an object with Amount and CurrencyCode)
-  const totalAmountField = content.fields["TotalAmount"] as any;
+  const totalAmountField = content.fields["TotalAmount"];
   if (totalAmountField && totalAmountField.type === "object" && totalAmountField.valueObject) {
-    const amount = getFieldValue<number>(totalAmountField.valueObject, "Amount");
-    const currency = getFieldValue<string>(totalAmountField.valueObject, "CurrencyCode");
+    const amount = getFieldValue(totalAmountField.valueObject, "Amount");
+    const currency = getFieldValue(totalAmountField.valueObject, "CurrencyCode");
     console.log(
       `Invoice Total: ${currency ?? "$"}${amount !== undefined ? amount.toFixed(2) : "(None)"}`,
     );
@@ -114,7 +110,7 @@ function printAnalysisResult(analyzeResult: AnalyzeResult): void {
   // Example 2: Array field (LineItems)
   console.log();
   console.log("🛒 Invoice Line Items (Array):");
-  const itemsField = content.fields["LineItems"] as any;
+  const itemsField = content.fields["LineItems"];
   if (itemsField && itemsField.type === "array" && itemsField.valueArray) {
     if (itemsField.valueArray.length > 0) {
       for (let i = 0; i < itemsField.valueArray.length; i++) {
@@ -123,33 +119,27 @@ function printAnalysisResult(analyzeResult: AnalyzeResult): void {
           console.log(`  Item ${i + 1}:`);
 
           // Extract common item fields
-          const description = getFieldValue<string>(item.valueObject, "Description");
-          const quantity = getFieldValue<number>(item.valueObject, "Quantity");
+          const description = getFieldValue(item.valueObject, "Description");
+          const quantity = getFieldValue(item.valueObject, "Quantity");
 
           console.log(`    Description: ${description ?? "N/A"}`);
           console.log(`    Quantity: ${quantity !== undefined ? quantity.toString() : "N/A"}`);
 
           // UnitPrice is a currency object with Amount and CurrencyCode sub-fields
-          const unitPriceField = item.valueObject["UnitPrice"] as any;
+          const unitPriceField = item.valueObject["UnitPrice"];
           if (unitPriceField && unitPriceField.type === "object" && unitPriceField.valueObject) {
-            const unitAmount = getFieldValue<number>(unitPriceField.valueObject, "Amount");
-            const unitCurrency = getFieldValue<string>(
-              unitPriceField.valueObject,
-              "CurrencyCode",
-            );
+            const unitAmount = getFieldValue(unitPriceField.valueObject, "Amount");
+            const unitCurrency = getFieldValue(unitPriceField.valueObject, "CurrencyCode");
             console.log(
               `    Unit Price: ${unitCurrency ?? "$"}${unitAmount !== undefined ? unitAmount.toFixed(2) : "N/A"}`,
             );
           }
 
           // Amount is a currency object with Amount and CurrencyCode sub-fields
-          const amountField = item.valueObject["Amount"] as any;
+          const amountField = item.valueObject["Amount"];
           if (amountField && amountField.type === "object" && amountField.valueObject) {
-            const itemAmount = getFieldValue<number>(amountField.valueObject, "Amount");
-            const itemCurrency = getFieldValue<string>(
-              amountField.valueObject,
-              "CurrencyCode",
-            );
+            const itemAmount = getFieldValue(amountField.valueObject, "Amount");
+            const itemCurrency = getFieldValue(amountField.valueObject, "CurrencyCode");
             console.log(
               `    Total Price: ${itemCurrency ?? "$"}${itemAmount !== undefined ? itemAmount.toFixed(2) : "N/A"}`,
             );
@@ -172,7 +162,7 @@ function printAnalysisResult(analyzeResult: AnalyzeResult): void {
 /**
  * Save the analysis result to a JSON file.
  */
-function saveResultToJson(result: AnalyzeResult, filenamePrefix: string): void {
+function saveResultToJson(result, filenamePrefix) {
   const outputDir = "sample_output";
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
@@ -189,7 +179,7 @@ function saveResultToJson(result: AnalyzeResult, filenamePrefix: string): void {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: Prebuilt Invoice");
   console.log("=============================================================");
@@ -231,14 +221,13 @@ async function main(): Promise<void> {
     await poller.pollUntilDone();
 
     // Extract operation ID from the operation location to get the full result
-    const operationLocation = (poller.operationState as any).config
-      .operationLocation as string;
+    const operationLocation = poller.operationState.config.operationLocation;
     const url = new URL(operationLocation);
-    const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
+    const operationId = url.pathname.split("/").pop().split("?")[0];
 
     // Get the complete result with all data
     const operationStatus = await client.getResult(operationId);
-    const analyzeResult = operationStatus.result!;
+    const analyzeResult = operationStatus.result;
 
     console.log("  Analysis completed successfully");
     console.log();
@@ -258,7 +247,7 @@ async function main(): Promise<void> {
     console.log("=============================================================");
     console.log("✓ Sample completed successfully");
     console.log("=============================================================");
-  } catch (err: any) {
+  } catch (err) {
     console.error();
     if (err.status === 401) {
       console.error("✗ Authentication failed");

@@ -27,14 +27,12 @@
  * 4. Display detailed information about each analyzer
  */
 
-import "dotenv/config";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type { ContentAnalyzer } from "@azure-rest/ai-content-understanding";
-
+require("dotenv/config");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -43,7 +41,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: List Analyzers");
   console.log("=============================================================\n");
@@ -74,7 +72,7 @@ async function main(): Promise<void> {
 
     // Step 4: List all available analyzers
     console.log("Step 4: Listing all available analyzers...");
-    const analyzers: ContentAnalyzer[] = [];
+    const analyzers = [];
 
     try {
       for await (const analyzer of client.list()) {
@@ -82,8 +80,8 @@ async function main(): Promise<void> {
       }
 
       console.log(`  Found ${analyzers.length} analyzer(s)\n`);
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to list analyzers: ${err.message}`);
       if (err.code) {
         console.error(`  Error Code: ${err.code}`);
@@ -96,8 +94,7 @@ async function main(): Promise<void> {
     console.log("Step 5: Summary...");
     console.log(`  Total analyzers: ${analyzers.length}`);
 
-    const prebuiltCount = analyzers.filter((a) => a.analyzerId?.startsWith("prebuilt-"))
-      .length;
+    const prebuiltCount = analyzers.filter((a) => a.analyzerId?.startsWith("prebuilt-")).length;
     const customCount = analyzers.length - prebuiltCount;
     console.log(`  Prebuilt analyzers: ${prebuiltCount}`);
     console.log(`  Custom analyzers: ${customCount}`);
@@ -115,12 +112,8 @@ async function main(): Promise<void> {
         console.log(`  ID: ${analyzer.analyzerId}`);
         console.log(`  Description: ${analyzer.description ?? "(none)"}`);
         console.log(`  Status: ${analyzer.status}`);
-        console.log(
-          `  Created at: ${new Date(analyzer.createdAt).toLocaleString()} UTC`,
-        );
-        console.log(
-          `  Last modified: ${new Date(analyzer.lastModifiedAt).toLocaleString()} UTC`,
-        );
+        console.log(`  Created at: ${new Date(analyzer.createdAt).toLocaleString()} UTC`);
+        console.log(`  Last modified: ${new Date(analyzer.lastModifiedAt).toLocaleString()} UTC`);
 
         // Check if it's a prebuilt analyzer
         if (analyzer.analyzerId?.startsWith("prebuilt-")) {
@@ -131,9 +124,7 @@ async function main(): Promise<void> {
 
         // Show tags if available
         if (analyzer.tags && Object.keys(analyzer.tags).length > 0) {
-          const tagStrings = Object.entries(analyzer.tags).map(
-            ([key, value]) => `${key}=${value}`,
-          );
+          const tagStrings = Object.entries(analyzer.tags).map(([key, value]) => `${key}=${value}`);
           console.log(`  Tags: ${tagStrings.join(", ")}`);
         }
 
@@ -158,8 +149,8 @@ async function main(): Promise<void> {
     console.log("  - To get a specific analyzer: see getAnalyzer sample");
     console.log("  - To delete analyzers: see deleteAnalyzer sample");
     console.log("");
-  } catch (error: unknown) {
-    const err = error as any;
+  } catch (error) {
+    const err = error;
     if (err?.status === 401) {
       console.error("");
       console.error("✗ Authentication failed");

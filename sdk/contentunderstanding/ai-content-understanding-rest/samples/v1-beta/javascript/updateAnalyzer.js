@@ -13,14 +13,12 @@
  *   AZURE_CONTENT_UNDERSTANDING_KEY        (optional; DefaultAzureCredential used if not set)
  */
 
-import "dotenv/config";
-import { DefaultAzureCredential } from "@azure/identity";
-import { AzureKeyCredential } from "@azure/core-auth";
-import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type { ContentAnalyzer, ContentAnalyzerConfig, ContentFieldSchema } from "@azure-rest/ai-content-understanding";
-
+require("dotenv/config");
+const { DefaultAzureCredential } = require("@azure/identity");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const { ContentUnderstandingClient } = require("@azure-rest/ai-content-understanding");
 // Helper to select credential based on environment
-function getCredential(): DefaultAzureCredential | AzureKeyCredential {
+function getCredential() {
   const key = process.env["AZURE_CONTENT_UNDERSTANDING_KEY"];
   if (key && key.trim().length > 0) {
     return new AzureKeyCredential(key.trim());
@@ -29,7 +27,7 @@ function getCredential(): DefaultAzureCredential | AzureKeyCredential {
 }
 
 // Main sample logic
-async function main(): Promise<void> {
+async function main() {
   console.log("=============================================================");
   console.log("Azure Content Understanding Sample: Update Analyzer");
   console.log("=============================================================\n");
@@ -66,7 +64,7 @@ async function main(): Promise<void> {
     const analyzerId = `sdk_sample_analyzer_for_update_${Math.floor(Date.now() / 1000)}`;
     console.log(`  Analyzer ID: ${analyzerId}`);
 
-    const fieldSchema: ContentFieldSchema = {
+    const fieldSchema = {
       name: "update_demo_schema",
       description: "Schema for update demo",
       fields: {
@@ -83,7 +81,7 @@ async function main(): Promise<void> {
       },
     };
 
-    const config: ContentAnalyzerConfig = {
+    const config = {
       enableFormula: true,
       enableLayout: true,
       enableOcr: true,
@@ -108,23 +106,20 @@ async function main(): Promise<void> {
 
     try {
       console.log("  Creating analyzer (this may take a few moments)...");
-      const poller = client.createOrReplace(
-        analyzerId,
-        initialAnalyzer as unknown as ContentAnalyzer,
-      );
+      const poller = client.createOrReplace(analyzerId, initialAnalyzer);
       const createdAnalyzer = await poller.pollUntilDone();
       console.log(`  ✅ Analyzer '${analyzerId}' created successfully!`);
       console.log(`  Status: ${createdAnalyzer.status}`);
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to create analyzer: ${err.message}`);
       throw error;
     }
 
     // Step 5: Get the analyzer before update to verify initial state
     console.log("Step 5: Getting analyzer before update...");
-    let analyzerBeforeUpdate: ContentAnalyzer;
+    let analyzerBeforeUpdate;
     try {
       analyzerBeforeUpdate = await client.get(analyzerId);
       console.log("  ✅ Initial analyzer state verified:");
@@ -134,8 +129,8 @@ async function main(): Promise<void> {
         .join(", ");
       console.log(`    Tags: ${tagsList}`);
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to get analyzer: ${err.message}`);
       throw error;
     }
@@ -165,19 +160,19 @@ async function main(): Promise<void> {
         },
       };
 
-      await client.update(analyzerId, updateData as unknown as ContentAnalyzer);
+      await client.update(analyzerId, updateData);
 
       console.log("  ✅ Analyzer updated successfully!");
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to update analyzer: ${err.message}`);
       throw error;
     }
 
     // Step 7: Get the analyzer after update to verify changes persisted
     console.log("Step 7: Getting analyzer after update to verify changes...");
-    let analyzerAfterUpdate: ContentAnalyzer;
+    let analyzerAfterUpdate;
     try {
       analyzerAfterUpdate = await client.get(analyzerId);
       console.log("  ✅ Updated analyzer state verified:");
@@ -204,8 +199,8 @@ async function main(): Promise<void> {
         console.log("    ✓ tag3 added correctly");
       }
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to get analyzer after update: ${err.message}`);
       throw error;
     }
@@ -216,8 +211,8 @@ async function main(): Promise<void> {
       await client.delete(analyzerId);
       console.log(`  ✅ Analyzer '${analyzerId}' deleted successfully!`);
       console.log("");
-    } catch (error: unknown) {
-      const err = error as any;
+    } catch (error) {
+      const err = error;
       console.error(`  Failed to delete analyzer: ${err.message}`);
       // Don't throw - cleanup failure shouldn't fail the sample
     }
@@ -236,8 +231,8 @@ async function main(): Promise<void> {
     console.log("  - To create analyzers: see createOrReplaceAnalyzer sample");
     console.log("  - To delete analyzers: see deleteAnalyzer sample");
     console.log("  - To list analyzers: see listAnalyzers sample");
-  } catch (error: unknown) {
-    const err = error as any;
+  } catch (error) {
+    const err = error;
     if (err?.status === 401) {
       console.error("");
       console.error("✗ Authentication failed");
@@ -262,7 +257,7 @@ async function main(): Promise<void> {
 }
 
 // Entry point
-main().catch((err: unknown) => {
+main().catch((err) => {
   console.error("Unhandled error:", err);
   process.exit(1);
 });
