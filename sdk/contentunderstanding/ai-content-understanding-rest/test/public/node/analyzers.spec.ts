@@ -32,7 +32,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
   afterEach(async () => {
     // Clean up: try to delete test analyzer if it exists
     try {
-      await client.contentAnalyzers.delete(testAnalyzerId);
+      await client.delete(testAnalyzerId);
       console.log(`Cleaned up test analyzer: ${testAnalyzerId}`);
     } catch (error) {
       // Ignore errors during cleanup
@@ -64,7 +64,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
       },
     };
 
-    const poller = client.contentAnalyzers.createOrReplace(
+    const poller = client.createOrReplace(
       testAnalyzerId,
       analyzerConfig as any,
       testPollingOptions,
@@ -100,7 +100,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
       },
     };
 
-    const createPoller = client.contentAnalyzers.createOrReplace(
+    const createPoller = client.createOrReplace(
       testAnalyzerId,
       analyzerConfig as any,
       testPollingOptions,
@@ -109,7 +109,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
     await createPoller.pollUntilDone();
 
     // Now get the analyzer
-    const getResponse = await client.contentAnalyzers.get(testAnalyzerId);
+    const getResponse = await client.get(testAnalyzerId);
 
     assert.equal(getResponse.analyzerId, testAnalyzerId);
     assert.equal(getResponse.baseAnalyzerId, "prebuilt-document");
@@ -140,7 +140,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
       },
     };
 
-    const createPoller = client.contentAnalyzers.createOrReplace(
+    const createPoller = client.createOrReplace(
       testAnalyzerId,
       analyzerConfig as any,
       testPollingOptions,
@@ -149,7 +149,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
     await createPoller.pollUntilDone();
 
     // Update the analyzer with a description
-    const updateResponse = await client.contentAnalyzers.update(testAnalyzerId, {
+    const updateResponse = await client.update(testAnalyzerId, {
       baseAnalyzerId: "prebuilt-document",
       description: "Updated test analyzer",
       models: {
@@ -186,7 +186,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
       },
     };
 
-    const createPoller = client.contentAnalyzers.createOrReplace(
+    const createPoller = client.createOrReplace(
       testAnalyzerId,
       analyzerConfig as any,
       testPollingOptions,
@@ -196,7 +196,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
 
     // List analyzers
     const analyzers = [];
-    for await (const analyzer of client.contentAnalyzers.list()) {
+    for await (const analyzer of client.list()) {
       analyzers.push(analyzer);
     }
 
@@ -230,7 +230,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
       },
     };
 
-    const createPoller = client.contentAnalyzers.createOrReplace(
+    const createPoller = client.createOrReplace(
       testAnalyzerId,
       analyzerConfig as any,
       testPollingOptions,
@@ -239,11 +239,11 @@ describe("ContentUnderstandingClient - Analyzers", () => {
     await createPoller.pollUntilDone();
 
     // Delete the analyzer
-    await client.contentAnalyzers.delete(testAnalyzerId);
+    await client.delete(testAnalyzerId);
 
     // Try to get the deleted analyzer - should fail
     try {
-      await client.contentAnalyzers.get(testAnalyzerId);
+      await client.get(testAnalyzerId);
       assert.fail("Expected error when getting deleted analyzer");
     } catch (error) {
       assert.ok(error, "Expected error when getting deleted analyzer");
@@ -254,7 +254,7 @@ describe("ContentUnderstandingClient - Analyzers", () => {
     const nonExistentId = "non-existent-analyzer-12345";
 
     try {
-      await client.contentAnalyzers.get(nonExistentId);
+      await client.get(nonExistentId);
       assert.fail("Expected error for non-existent analyzer");
     } catch (error) {
       assert.ok(error, "Expected error for non-existent analyzer");

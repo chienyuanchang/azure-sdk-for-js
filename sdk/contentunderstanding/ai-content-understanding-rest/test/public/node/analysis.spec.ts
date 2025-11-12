@@ -49,7 +49,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
     const pdfBytes = fs.readFileSync(filePath);
 
     // Use the analyzeBinary method from the SDK
-    const poller = client.contentAnalyzers.analyzeBinary(
+    const poller = client.analyzeBinary(
       testAnalyzerId,
       "application/pdf",
       pdfBytes,
@@ -62,7 +62,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
     const url = new URL(operationLocation);
     const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result!;
     assert.ok(analyzeResult, "Expected analyzeResult in response");
 
@@ -75,7 +75,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
     const testUrl =
       "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
 
-    const poller = client.contentAnalyzers.analyze(testAnalyzerId, {
+    const poller = client.analyze(testAnalyzerId, {
       inputs: [{ url: testUrl }],
       ...testPollingOptions,
     });
@@ -85,7 +85,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
     const url = new URL(operationLocation);
     const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result!;
     assert.ok(analyzeResult, "Expected analyzeResult in response");
 
@@ -97,7 +97,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
     const testUrl =
       "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
 
-    const poller = client.contentAnalyzers.analyze(testAnalyzerId, {
+    const poller = client.analyze(testAnalyzerId, {
       inputs: [{ url: testUrl }],
       ...testPollingOptions,
     });
@@ -107,7 +107,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
     const url = new URL(operationLocation);
     const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result!;
     assert.ok(analyzeResult, "Expected analyzeResult in response");
 
@@ -127,7 +127,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
 
     // The error should occur during polling
     try {
-      const poller = client.contentAnalyzers.analyze(testAnalyzerId, {
+      const poller = client.analyze(testAnalyzerId, {
         inputs: [{ url: invalidUrl }],
         ...testPollingOptions,
       });
@@ -137,7 +137,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
       const url = new URL(operationLocation);
       const operationId = url.pathname.split("/").pop()!.split("?")[0]!;
 
-      const operationStatus = await client.contentAnalyzers.getResult(operationId);
+      const operationStatus = await client.getResult(operationId);
       if (operationStatus.status === "Failed") {
         throw new Error("Expected error for invalid URL");
       }

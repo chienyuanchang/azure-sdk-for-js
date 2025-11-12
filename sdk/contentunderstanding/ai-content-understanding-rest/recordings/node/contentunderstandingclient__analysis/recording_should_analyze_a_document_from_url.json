@@ -23,32 +23,32 @@
       "StatusCode": 202,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "8696cacb-9f5e-48e2-bf87-0b8039d3dc21",
+        "apim-request-id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:04 GMT",
-        "Operation-Location": "https://endpoint/contentunderstanding/analyzerResults/8696cacb-9f5e-48e2-bf87-0b8039d3dc21?api-version=2025-11-01",
-        "request-id": "8696cacb-9f5e-48e2-bf87-0b8039d3dc21",
+        "Date": "Wed, 12 Nov 2025 07:26:19 GMT",
+        "Operation-Location": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
+        "request-id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "662",
+        "x-envoy-upstream-service-time": "740",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "8696cacb-9f5e-48e2-bf87-0b8039d3dc21",
+        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:45:05Z",
+          "createdAt": "2025-11-12T07:26:20Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/8696cacb-9f5e-48e2-bf87-0b8039d3dc21?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -62,48 +62,10 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "eeaf125b-5848-4f9f-9e83-8842314e0346",
+        "apim-request-id": "3f9bb5ab-d804-4612-950d-d0ffaeb93360",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:04 GMT",
-        "request-id": "eeaf125b-5848-4f9f-9e83-8842314e0346",
-        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-        "Transfer-Encoding": "chunked",
-        "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "26",
-        "x-ms-region": "West US 3",
-        "x-ms-request-id": "Sanitized"
-      },
-      "ResponseBody": {
-        "id": "8696cacb-9f5e-48e2-bf87-0b8039d3dc21",
-        "status": "Running",
-        "result": {
-          "analyzerId": "prebuilt-documentAnalyzer",
-          "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:45:05Z",
-          "warnings": [],
-          "contents": []
-        }
-      }
-    },
-    {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/8696cacb-9f5e-48e2-bf87-0b8039d3dc21?api-version=2025-11-01",
-      "RequestMethod": "GET",
-      "RequestHeaders": {
-        "Accept": "application/json",
-        "Accept-Encoding": "gzip,deflate",
-        "Connection": "keep-alive",
-        "Ocp-Apim-Subscription-Key": "Sanitized",
-        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
-        "x-ms-client-request-id": "Sanitized"
-      },
-      "RequestBody": null,
-      "StatusCode": 200,
-      "ResponseHeaders": {
-        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "0010a222-a9aa-44e2-b929-74693b1e6f73",
-        "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:07 GMT",
-        "request-id": "0010a222-a9aa-44e2-b929-74693b1e6f73",
+        "Date": "Wed, 12 Nov 2025 07:26:19 GMT",
+        "request-id": "3f9bb5ab-d804-4612-950d-d0ffaeb93360",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
@@ -112,19 +74,19 @@
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "8696cacb-9f5e-48e2-bf87-0b8039d3dc21",
+        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:45:05Z",
+          "createdAt": "2025-11-12T07:26:20Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/8696cacb-9f5e-48e2-bf87-0b8039d3dc21?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -138,24 +100,62 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "15005f4b-68cb-47e7-95a6-9d238cd9358f",
+        "apim-request-id": "5888eb0f-3e7a-4016-9ee0-fb8d92703464",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:09 GMT",
-        "request-id": "15005f4b-68cb-47e7-95a6-9d238cd9358f",
+        "Date": "Wed, 12 Nov 2025 07:26:21 GMT",
+        "request-id": "5888eb0f-3e7a-4016-9ee0-fb8d92703464",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "30",
+        "x-envoy-upstream-service-time": "25",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "8696cacb-9f5e-48e2-bf87-0b8039d3dc21",
+        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "status": "Running",
+        "result": {
+          "analyzerId": "prebuilt-documentAnalyzer",
+          "apiVersion": "2025-11-01",
+          "createdAt": "2025-11-12T07:26:20Z",
+          "warnings": [],
+          "contents": []
+        }
+      }
+    },
+    {
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
+      "RequestMethod": "GET",
+      "RequestHeaders": {
+        "Accept": "application/json",
+        "Accept-Encoding": "gzip,deflate",
+        "Connection": "keep-alive",
+        "Ocp-Apim-Subscription-Key": "Sanitized",
+        "User-Agent": "azsdk-js-client azsdk-js-api azsdk-js-ai-content-understanding/1.0.0-beta.1 core-rest-pipeline/1.22.2 Node/22.21.0 (Linux 5.15.167.4-microsoft-standard-WSL2; x64)",
+        "x-ms-client-request-id": "Sanitized"
+      },
+      "RequestBody": null,
+      "StatusCode": 200,
+      "ResponseHeaders": {
+        "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
+        "apim-request-id": "03314397-d22a-47c8-bc5b-b306a958f608",
+        "Content-Type": "application/json",
+        "Date": "Wed, 12 Nov 2025 07:26:24 GMT",
+        "request-id": "03314397-d22a-47c8-bc5b-b306a958f608",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Transfer-Encoding": "chunked",
+        "X-Content-Type-Options": "nosniff",
+        "x-envoy-upstream-service-time": "29",
+        "x-ms-region": "West US 3",
+        "x-ms-request-id": "Sanitized"
+      },
+      "ResponseBody": {
+        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
         "status": "Succeeded",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:45:05Z",
+          "createdAt": "2025-11-12T07:26:20Z",
           "warnings": [],
           "contents": [
             {
@@ -164,7 +164,7 @@
               "fields": {
                 "Summary": {
                   "type": "string",
-                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100 and dated 11/15/2019, details charges for consulting services, document fees, and printing fees, including quantities, unit prices, taxes, and amounts. The subtotal is $100.00, with a sales tax of $10.00, leading to a total of $110.00. There is a previous unpaid balance of $500.00, making the total amount due $610.00. The invoice includes billing and shipping addresses in Redmond, WA, and payment instructions to remit to Contoso Billing in New York, NY."
+                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100, dated 11/15/2019, includes billing and shipping addresses in Redmond, WA, and details charges for consulting services, document fees, and printing fees with corresponding quantities, unit prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, and the total amount due is $610.00, which includes a previous unpaid balance of $500.00. The invoice also provides payment remittance information for Contoso Billing in New York, NY."
                 }
               },
               "kind": "document",
@@ -4037,14 +4037,14 @@
           "documentPagesStandard": 1,
           "contextualizationTokens": 1000,
           "tokens": {
-            "gpt-4.1-mini-input": 4144,
-            "gpt-4.1-mini-output": 545
+            "gpt-4.1-mini-input": 4135,
+            "gpt-4.1-mini-output": 488
           }
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/8696cacb-9f5e-48e2-bf87-0b8039d3dc21?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -4058,24 +4058,24 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "e2e3fc86-43f3-4d88-91d2-b180e44ba60b",
+        "apim-request-id": "4674cf50-0419-4c45-9ad3-b86f0d40a108",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:09 GMT",
-        "request-id": "e2e3fc86-43f3-4d88-91d2-b180e44ba60b",
+        "Date": "Wed, 12 Nov 2025 07:26:24 GMT",
+        "request-id": "4674cf50-0419-4c45-9ad3-b86f0d40a108",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "31",
+        "x-envoy-upstream-service-time": "48",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "8696cacb-9f5e-48e2-bf87-0b8039d3dc21",
+        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
         "status": "Succeeded",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:45:05Z",
+          "createdAt": "2025-11-12T07:26:20Z",
           "warnings": [],
           "contents": [
             {
@@ -4084,7 +4084,7 @@
               "fields": {
                 "Summary": {
                   "type": "string",
-                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100 and dated 11/15/2019, details charges for consulting services, document fees, and printing fees, including quantities, unit prices, taxes, and amounts. The subtotal is $100.00, with a sales tax of $10.00, leading to a total of $110.00. There is a previous unpaid balance of $500.00, making the total amount due $610.00. The invoice includes billing and shipping addresses in Redmond, WA, and payment instructions to remit to Contoso Billing in New York, NY."
+                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100, dated 11/15/2019, includes billing and shipping addresses in Redmond, WA, and details charges for consulting services, document fees, and printing fees with corresponding quantities, unit prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, and the total amount due is $610.00, which includes a previous unpaid balance of $500.00. The invoice also provides payment remittance information for Contoso Billing in New York, NY."
                 }
               },
               "kind": "document",
@@ -7957,8 +7957,8 @@
           "documentPagesStandard": 1,
           "contextualizationTokens": 1000,
           "tokens": {
-            "gpt-4.1-mini-input": 4144,
-            "gpt-4.1-mini-output": 545
+            "gpt-4.1-mini-input": 4135,
+            "gpt-4.1-mini-output": 488
           }
         }
       }

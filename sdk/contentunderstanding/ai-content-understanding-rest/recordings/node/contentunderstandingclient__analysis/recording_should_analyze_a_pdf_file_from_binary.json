@@ -17,32 +17,32 @@
       "StatusCode": 202,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "75adab2d-8a25-47da-b9b1-788b811df3a9",
+        "apim-request-id": "fd082206-8c64-4ce1-ae54-a401c5c27076",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:44:58 GMT",
-        "Operation-Location": "https://endpoint/contentunderstanding/analyzerResults/75adab2d-8a25-47da-b9b1-788b811df3a9?api-version=2025-11-01",
-        "request-id": "75adab2d-8a25-47da-b9b1-788b811df3a9",
+        "Date": "Wed, 12 Nov 2025 07:26:13 GMT",
+        "Operation-Location": "https://endpoint/contentunderstanding/analyzerResults/fd082206-8c64-4ce1-ae54-a401c5c27076?api-version=2025-11-01",
+        "request-id": "fd082206-8c64-4ce1-ae54-a401c5c27076",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "94",
+        "x-envoy-upstream-service-time": "80",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "75adab2d-8a25-47da-b9b1-788b811df3a9",
+        "id": "fd082206-8c64-4ce1-ae54-a401c5c27076",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:44:58Z",
+          "createdAt": "2025-11-12T07:26:13Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/75adab2d-8a25-47da-b9b1-788b811df3a9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/fd082206-8c64-4ce1-ae54-a401c5c27076?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -56,31 +56,31 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "9d4e53d3-51bd-4e08-b111-4d7916649ffb",
+        "apim-request-id": "5e4a8100-e2a5-484c-b048-0fa15df1ff73",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:44:57 GMT",
-        "request-id": "9d4e53d3-51bd-4e08-b111-4d7916649ffb",
+        "Date": "Wed, 12 Nov 2025 07:26:13 GMT",
+        "request-id": "5e4a8100-e2a5-484c-b048-0fa15df1ff73",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "26",
+        "x-envoy-upstream-service-time": "23",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "75adab2d-8a25-47da-b9b1-788b811df3a9",
+        "id": "fd082206-8c64-4ce1-ae54-a401c5c27076",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:44:58Z",
+          "createdAt": "2025-11-12T07:26:13Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/75adab2d-8a25-47da-b9b1-788b811df3a9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/fd082206-8c64-4ce1-ae54-a401c5c27076?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -94,31 +94,31 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "44fee897-a5af-4ef6-9897-b0f5986b5174",
+        "apim-request-id": "6e7bc2ba-f0c8-46ba-8e3b-8fbfd58bc332",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:00 GMT",
-        "request-id": "44fee897-a5af-4ef6-9897-b0f5986b5174",
+        "Date": "Wed, 12 Nov 2025 07:26:15 GMT",
+        "request-id": "6e7bc2ba-f0c8-46ba-8e3b-8fbfd58bc332",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "40",
+        "x-envoy-upstream-service-time": "50",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "75adab2d-8a25-47da-b9b1-788b811df3a9",
+        "id": "fd082206-8c64-4ce1-ae54-a401c5c27076",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:44:58Z",
+          "createdAt": "2025-11-12T07:26:13Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/75adab2d-8a25-47da-b9b1-788b811df3a9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/fd082206-8c64-4ce1-ae54-a401c5c27076?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -132,24 +132,24 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "f5e53609-63b1-4409-8475-ff9b3d505b8f",
+        "apim-request-id": "6fa4bfca-6042-4f7d-a87f-a38ec646e459",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:02 GMT",
-        "request-id": "f5e53609-63b1-4409-8475-ff9b3d505b8f",
+        "Date": "Wed, 12 Nov 2025 07:26:17 GMT",
+        "request-id": "6fa4bfca-6042-4f7d-a87f-a38ec646e459",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "34",
+        "x-envoy-upstream-service-time": "30",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "75adab2d-8a25-47da-b9b1-788b811df3a9",
+        "id": "fd082206-8c64-4ce1-ae54-a401c5c27076",
         "status": "Succeeded",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:44:58Z",
+          "createdAt": "2025-11-12T07:26:13Z",
           "warnings": [],
           "contents": [
             {
@@ -158,7 +158,7 @@
               "fields": {
                 "Summary": {
                   "type": "string",
-                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100 and dated 11/15/2019, includes billing and shipping addresses in Redmond, WA. It lists three line items with dates, item codes, descriptions, quantities, units of measure, prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, and the total is $110.00. There is a previous unpaid balance of $500.00, making the total amount due $610.00. The invoice also provides remit-to details at Contoso Billing in New York, NY."
+                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice includes billing and shipping addresses, purchase order number, itemized charges for consulting services, document fee, and printing fee, along with subtotal, sales tax, total, previous unpaid balance, and the final amount due. The invoice date is 11/15/2019 with a due date of 12/15/2019, and payment is to be remitted to Contoso Billing in New York."
                 }
               },
               "kind": "document",
@@ -4031,14 +4031,14 @@
           "documentPagesStandard": 1,
           "contextualizationTokens": 1000,
           "tokens": {
-            "gpt-4.1-mini-input": 4143,
-            "gpt-4.1-mini-output": 538
+            "gpt-4.1-mini-input": 4109,
+            "gpt-4.1-mini-output": 388
           }
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/75adab2d-8a25-47da-b9b1-788b811df3a9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/fd082206-8c64-4ce1-ae54-a401c5c27076?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -4052,24 +4052,24 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "9eaeb091-50a0-4db8-9a26-a7efb048ac0d",
+        "apim-request-id": "dc3af016-5f36-4015-a31d-da6b2abff6b4",
         "Content-Type": "application/json",
-        "Date": "Sat, 08 Nov 2025 00:45:02 GMT",
-        "request-id": "9eaeb091-50a0-4db8-9a26-a7efb048ac0d",
+        "Date": "Wed, 12 Nov 2025 07:26:18 GMT",
+        "request-id": "dc3af016-5f36-4015-a31d-da6b2abff6b4",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "29",
+        "x-envoy-upstream-service-time": "31",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "75adab2d-8a25-47da-b9b1-788b811df3a9",
+        "id": "fd082206-8c64-4ce1-ae54-a401c5c27076",
         "status": "Succeeded",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-08T00:44:58Z",
+          "createdAt": "2025-11-12T07:26:13Z",
           "warnings": [],
           "contents": [
             {
@@ -4078,7 +4078,7 @@
               "fields": {
                 "Summary": {
                   "type": "string",
-                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100 and dated 11/15/2019, includes billing and shipping addresses in Redmond, WA. It lists three line items with dates, item codes, descriptions, quantities, units of measure, prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, and the total is $110.00. There is a previous unpaid balance of $500.00, making the total amount due $610.00. The invoice also provides remit-to details at Contoso Billing in New York, NY."
+                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice includes billing and shipping addresses, purchase order number, itemized charges for consulting services, document fee, and printing fee, along with subtotal, sales tax, total, previous unpaid balance, and the final amount due. The invoice date is 11/15/2019 with a due date of 12/15/2019, and payment is to be remitted to Contoso Billing in New York."
                 }
               },
               "kind": "document",
@@ -7951,8 +7951,8 @@
           "documentPagesStandard": 1,
           "contextualizationTokens": 1000,
           "tokens": {
-            "gpt-4.1-mini-input": 4143,
-            "gpt-4.1-mini-output": 538
+            "gpt-4.1-mini-input": 4109,
+            "gpt-4.1-mini-output": 388
           }
         }
       }
