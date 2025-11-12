@@ -1,18 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import type { ContentUnderstandingClient } from "./contentUnderstandingClient.js";
+import { ContentUnderstandingClient } from "./contentUnderstandingClient.js";
 import {
+  _createOrReplaceDeserialize,
   _copyDeserialize,
   _analyzeBinaryDeserialize,
   _analyzeDeserialize,
-  _createOrReplaceDeserialize,
-} from "./api/contentAnalyzers/operations.js";
+} from "./api/operations.js";
 import { getLongRunningPoller } from "./static-helpers/pollingHelpers.js";
-import type { OperationOptions, PathUncheckedResponse } from "@azure-rest/core-client";
-import type { AbortSignalLike } from "@azure/abort-controller";
-import type { PollerLike, OperationState, ResourceLocationConfig } from "@azure/core-lro";
-import { deserializeState } from "@azure/core-lro";
+import {
+  OperationOptions,
+  PathUncheckedResponse,
+} from "@azure-rest/core-client";
+import { AbortSignalLike } from "@azure/abort-controller";
+import {
+  PollerLike,
+  OperationState,
+  deserializeState,
+  ResourceLocationConfig,
+} from "@azure/core-lro";
 
 export interface RestorePollerOptions<
   TResult,
@@ -36,7 +43,9 @@ export interface RestorePollerOptions<
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   client: ContentUnderstandingClient,
   serializedState: string,
-  sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>,
+  sourceOperation: (
+    ...args: any[]
+  ) => PollerLike<OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>,
 ): PollerLike<OperationState<TResult>, TResult> {
   const pollerConfig = deserializeState(serializedState).config;
@@ -72,27 +81,26 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 }
 
 interface DeserializationHelper {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  deserializer: Function;
+  deserializer: (result: PathUncheckedResponse) => Promise<any>;
   expectedStatuses: string[];
 }
 
 const deserializeMap: Record<string, DeserializationHelper> = {
-  "POST /analyzers/{analyzerId}:copy": {
-    deserializer: _copyDeserialize,
-    expectedStatuses: ["202", "200"],
-  },
-  "POST /analyzers/{analyzerId}:analyzeBinary": {
-    deserializer: _analyzeBinaryDeserialize,
-    expectedStatuses: ["202", "200"],
-  },
-  "POST /analyzers/{analyzerId}:analyze": {
-    deserializer: _analyzeDeserialize,
-    expectedStatuses: ["202", "200"],
-  },
   "PUT /analyzers/{analyzerId}": {
     deserializer: _createOrReplaceDeserialize,
     expectedStatuses: ["201", "200", "202"],
+  },
+  "POST /analyzers/{analyzerId}:copy": {
+    deserializer: _copyDeserialize,
+    expectedStatuses: ["202", "200", "201"],
+  },
+  "POST /analyzers/{analyzerId}:analyzeBinary": {
+    deserializer: _analyzeBinaryDeserialize,
+    expectedStatuses: ["202", "200", "201"],
+  },
+  "POST /analyzers/{analyzerId}:analyze": {
+    deserializer: _analyzeDeserialize,
+    expectedStatuses: ["202", "200", "201"],
   },
 };
 
@@ -122,17 +130,24 @@ function getDeserializationHelper(
 
     // track if we have found a match to return the values found.
     let found = true;
-    for (let i = candidateParts.length - 1, j = pathParts.length - 1; i >= 1 && j >= 1; i--, j--) {
-      if (candidateParts[i]?.startsWith("{") && candidateParts[i]?.indexOf("}") !== -1) {
+    for (
+      let i = candidateParts.length - 1, j = pathParts.length - 1;
+      i >= 1 && j >= 1;
+      i--, j--
+    ) {
+      if (
+        candidateParts[i]?.startsWith("{") &&
+        candidateParts[i]?.indexOf("}") !== -1
+      ) {
         const start = candidateParts[i]!.indexOf("}") + 1,
           end = candidateParts[i]?.length;
         // If the current part of the candidate is a "template" part
         // Try to use the suffix of pattern to match the path
         // {guid} ==> $
         // {guid}:export ==> :export$
-        const isMatched = new RegExp(`${candidateParts[i]?.slice(start, end)}`).test(
-          pathParts[j] || "",
-        );
+        const isMatched = new RegExp(
+          `${candidateParts[i]?.slice(start, end)}`,
+        ).test(pathParts[j] || "");
 
         if (!isMatched) {
           found = false;
