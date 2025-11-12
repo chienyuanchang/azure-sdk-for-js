@@ -131,13 +131,13 @@ async function main(): Promise<void> {
           console.log(`  Video content found:`);
           console.log(`    Start time: ${videoContent.startTimeMs}ms`);
           console.log(`    End time: ${videoContent.endTimeMs}ms`);
-          console.log(`    KeyFrames count: ${videoContent.KeyFrameTimesMs?.length ?? 0}`);
+          console.log(`    KeyFrames count: ${videoContent.keyFrameTimesMs?.length ?? 0}`);
 
-          if (videoContent.KeyFrameTimesMs && videoContent.KeyFrameTimesMs.length > 0) {
+          if (videoContent.keyFrameTimesMs && videoContent.keyFrameTimesMs.length > 0) {
             console.log(
-              `  Found ${videoContent.KeyFrameTimesMs.length} keyframes in video content`,
+              `  Found ${videoContent.keyFrameTimesMs.length} keyframes in video content`,
             );
-            keyframeTimeMs.push(...videoContent.KeyFrameTimesMs);
+            keyframeTimeMs.push(...videoContent.keyFrameTimesMs);
           }
           break;
         }
