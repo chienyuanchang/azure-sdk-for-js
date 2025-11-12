@@ -6,21 +6,158 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
+import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState as OperationState_2 } from '@azure/core-lro';
+import { PollerLike } from '@azure/core-lro';
 import { TokenCredential } from '@azure/core-auth';
+
+// @public
+export function $delete(context: ContentUnderstandingContext, analyzerId: string, options?: DeleteOptionalParams): Promise<void>;
+
+// @public
+export function analyze(context: ContentUnderstandingContext, analyzerId: string, options?: AnalyzeOptionalParams): PollerLike<OperationState_2<AnalyzeResult>, AnalyzeResult>;
+
+// @public
+export function analyzeBinary(context: ContentUnderstandingContext, analyzerId: string, contentType: string, input: Uint8Array, options?: AnalyzeBinaryOptionalParams): PollerLike<OperationState_2<AnalyzeResult>, AnalyzeResult>;
+
+// @public
+export interface AnalyzeBinaryOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    processingLocation?: ProcessingLocation;
+    range?: string;
+    stringEncoding?: StringEncoding;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface AnalyzeOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    inputs?: AnalyzeInput[];
+    modelDeployments?: Record<string, string>;
+    processingLocation?: ProcessingLocation;
+    stringEncoding?: StringEncoding;
+    updateIntervalInMs?: number;
+}
 
 // @public
 export interface ContentUnderstandingClientOptionalParams extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public
+// @public (undocumented)
 export interface ContentUnderstandingContext extends Client {
     apiVersion: string;
 }
 
 // @public
+export function copy(context: ContentUnderstandingContext, analyzerId: string, sourceAnalyzerId: string, options?: CopyOptionalParams): PollerLike<OperationState_2<ContentAnalyzer>, ContentAnalyzer>;
+
+// @public
+export interface CopyOptionalParams extends OperationOptions {
+    allowReplace?: boolean;
+    clientRequestId?: string;
+    sourceAzureResourceId?: string;
+    sourceRegion?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
 export function createContentUnderstanding(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentUnderstandingClientOptionalParams): ContentUnderstandingContext;
+
+// @public
+export function createOrReplace(context: ContentUnderstandingContext, analyzerId: string, resource: ContentAnalyzer, options?: CreateOrReplaceOptionalParams): PollerLike<OperationState_2<ContentAnalyzer>, ContentAnalyzer>;
+
+// @public
+export interface CreateOrReplaceOptionalParams extends OperationOptions {
+    allowReplace?: boolean;
+    clientRequestId?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface DeleteOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export function deleteResult(context: ContentUnderstandingContext, operationId: string, options?: DeleteResultOptionalParams): Promise<void>;
+
+// @public
+export interface DeleteResultOptionalParams extends OperationOptions {
+}
+
+// @public
+export function get(context: ContentUnderstandingContext, analyzerId: string, options?: GetOptionalParams): Promise<ContentAnalyzer>;
+
+// @public
+export function getDefaults(context: ContentUnderstandingContext, options?: GetDefaultsOptionalParams): Promise<ContentUnderstandingDefaults>;
+
+// @public
+export interface GetDefaultsOptionalParams extends OperationOptions {
+}
+
+// @public
+export function getOperationStatus(context: ContentUnderstandingContext, analyzerId: string, operationId: string, options?: GetOperationStatusOptionalParams): Promise<ContentAnalyzerOperationStatus>;
+
+// @public
+export interface GetOperationStatusOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export function getResult(context: ContentUnderstandingContext, operationId: string, options?: GetResultOptionalParams): Promise<ContentAnalyzerAnalyzeOperationStatus>;
+
+// @public
+export function getResultFile(context: ContentUnderstandingContext, operationId: string, path: string, options?: GetResultFileOptionalParams): Promise<Uint8Array>;
+
+// @public
+export interface GetResultFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetResultOptionalParams extends OperationOptions {
+}
+
+// @public
+export function grantCopyAuthorization(context: ContentUnderstandingContext, analyzerId: string, targetAzureResourceId: string, options?: GrantCopyAuthorizationOptionalParams): Promise<CopyAuthorization>;
+
+// @public
+export interface GrantCopyAuthorizationOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    targetRegion?: string;
+}
+
+// @public
+export function list(context: ContentUnderstandingContext, options?: ListOptionalParams): PagedAsyncIterableIterator<ContentAnalyzer>;
+
+// @public
+export interface ListOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export function update(context: ContentUnderstandingContext, analyzerId: string, resource: ContentAnalyzer, options?: UpdateOptionalParams): Promise<ContentAnalyzer>;
+
+// @public
+export function updateDefaults(context: ContentUnderstandingContext, options?: UpdateDefaultsOptionalParams): Promise<ContentUnderstandingDefaults>;
+
+// @public
+export interface UpdateDefaultsOptionalParams extends OperationOptions {
+    modelDeployments?: {
+        [modelName: string]: string;
+    };
+}
+
+// @public
+export interface UpdateOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
 
 // (No @packageDocumentation comment for this package)
 

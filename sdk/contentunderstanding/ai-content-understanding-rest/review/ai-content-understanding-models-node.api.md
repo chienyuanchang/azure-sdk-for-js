@@ -39,7 +39,7 @@ export interface AudioVisualContent extends MediaContent {
     cameraShotTimesMs?: number[];
     endTimeMs: number;
     height?: number;
-    KeyFrameTimesMs?: number[];
+    keyFrameTimesMs?: number[];
     kind: "audioVisual";
     segments?: AudioVisualContentSegment[];
     startTimeMs: number;
@@ -99,7 +99,6 @@ export interface ContentAnalyzerConfig {
     chartFormat?: ChartFormat;
     contentCategories?: Record<string, ContentCategoryDefinition>;
     disableFaceBlurring?: boolean;
-    enableAnnotation?: boolean;
     enableFigureAnalysis?: boolean;
     enableFigureDescription?: boolean;
     enableFormula?: boolean;

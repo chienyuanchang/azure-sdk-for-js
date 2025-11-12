@@ -16,12 +16,31 @@ import { PollerLike } from '@azure/core-lro';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
+export interface AnalyzeBinaryOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    processingLocation?: ProcessingLocation;
+    range?: string;
+    stringEncoding?: StringEncoding;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface AnalyzeInput {
     data?: Uint8Array;
     mimeType?: string;
     name?: string;
     range?: string;
     url?: string;
+}
+
+// @public
+export interface AnalyzeOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    inputs?: AnalyzeInput[];
+    modelDeployments?: Record<string, string>;
+    processingLocation?: ProcessingLocation;
+    stringEncoding?: StringEncoding;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -48,7 +67,7 @@ export interface AudioVisualContent extends MediaContent {
     cameraShotTimesMs?: number[];
     endTimeMs: number;
     height?: number;
-    KeyFrameTimesMs?: number[];
+    keyFrameTimesMs?: number[];
     kind: "audioVisual";
     segments?: AudioVisualContentSegment[];
     startTimeMs: number;
@@ -108,7 +127,6 @@ export interface ContentAnalyzerConfig {
     chartFormat?: ChartFormat;
     contentCategories?: Record<string, ContentCategoryDefinition>;
     disableFaceBlurring?: boolean;
-    enableAnnotation?: boolean;
     enableFigureAnalysis?: boolean;
     enableFigureDescription?: boolean;
     enableFormula?: boolean;
@@ -130,111 +148,6 @@ export interface ContentAnalyzerOperationStatus {
     result?: ContentAnalyzer;
     status: OperationState;
     usage?: UsageDetails;
-}
-
-// @public
-export interface ContentAnalyzersAnalyzeBinaryOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-    processingLocation?: ProcessingLocation;
-    range?: string;
-    stringEncoding?: StringEncoding;
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface ContentAnalyzersAnalyzeOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-    inputs?: AnalyzeInput[];
-    modelDeployments?: Record<string, string>;
-    processingLocation?: ProcessingLocation;
-    stringEncoding?: StringEncoding;
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface ContentAnalyzersCopyOptionalParams extends OperationOptions {
-    allowReplace?: boolean;
-    clientRequestId?: string;
-    sourceAzureResourceId?: string;
-    sourceRegion?: string;
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface ContentAnalyzersCreateOrReplaceOptionalParams extends OperationOptions {
-    allowReplace?: boolean;
-    clientRequestId?: string;
-    updateIntervalInMs?: number;
-}
-
-// @public
-export interface ContentAnalyzersDeleteOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-}
-
-// @public
-export interface ContentAnalyzersDeleteResultOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ContentAnalyzersGetDefaultsOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ContentAnalyzersGetOperationStatusOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ContentAnalyzersGetOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-}
-
-// @public
-export interface ContentAnalyzersGetResultFileOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ContentAnalyzersGetResultOptionalParams extends OperationOptions {
-}
-
-// @public
-export interface ContentAnalyzersGrantCopyAuthorizationOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-    targetRegion?: string;
-}
-
-// @public
-export interface ContentAnalyzersListOptionalParams extends OperationOptions {
-    clientRequestId?: string;
-}
-
-// @public
-export interface ContentAnalyzersOperations {
-    analyze: (analyzerId: string, options?: ContentAnalyzersAnalyzeOptionalParams) => PollerLike<OperationState_2<AnalyzeResult>, AnalyzeResult>;
-    analyzeBinary: (analyzerId: string, contentType: string, input: Uint8Array, options?: ContentAnalyzersAnalyzeBinaryOptionalParams) => PollerLike<OperationState_2<AnalyzeResult>, AnalyzeResult>;
-    copy: (analyzerId: string, sourceAnalyzerId: string, options?: ContentAnalyzersCopyOptionalParams) => PollerLike<OperationState_2<ContentAnalyzer>, ContentAnalyzer>;
-    createOrReplace: (analyzerId: string, resource: ContentAnalyzer, options?: ContentAnalyzersCreateOrReplaceOptionalParams) => PollerLike<OperationState_2<ContentAnalyzer>, ContentAnalyzer>;
-    delete: (analyzerId: string, options?: ContentAnalyzersDeleteOptionalParams) => Promise<void>;
-    deleteResult: (operationId: string, options?: ContentAnalyzersDeleteResultOptionalParams) => Promise<void>;
-    get: (analyzerId: string, options?: ContentAnalyzersGetOptionalParams) => Promise<ContentAnalyzer>;
-    getDefaults: (options?: ContentAnalyzersGetDefaultsOptionalParams) => Promise<ContentUnderstandingDefaults>;
-    getOperationStatus: (analyzerId: string, operationId: string, options?: ContentAnalyzersGetOperationStatusOptionalParams) => Promise<ContentAnalyzerOperationStatus>;
-    getResult: (operationId: string, options?: ContentAnalyzersGetResultOptionalParams) => Promise<ContentAnalyzerAnalyzeOperationStatus>;
-    getResultFile: (operationId: string, path: string, options?: ContentAnalyzersGetResultFileOptionalParams) => Promise<Uint8Array>;
-    grantCopyAuthorization: (analyzerId: string, targetAzureResourceId: string, options?: ContentAnalyzersGrantCopyAuthorizationOptionalParams) => Promise<CopyAuthorization>;
-    list: (options?: ContentAnalyzersListOptionalParams) => PagedAsyncIterableIterator<ContentAnalyzer>;
-    update: (analyzerId: string, resource: ContentAnalyzer, options?: ContentAnalyzersUpdateOptionalParams) => Promise<ContentAnalyzer>;
-    updateDefaults: (options?: ContentAnalyzersUpdateDefaultsOptionalParams) => Promise<ContentUnderstandingDefaults>;
-}
-
-// @public
-export interface ContentAnalyzersUpdateDefaultsOptionalParams extends OperationOptions {
-    modelDeployments?: Record<string, string>;
-}
-
-// @public
-export interface ContentAnalyzersUpdateOptionalParams extends OperationOptions {
-    clientRequestId?: string;
 }
 
 // @public
@@ -289,8 +202,22 @@ export interface ContentSpan {
 // @public (undocumented)
 export class ContentUnderstandingClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentUnderstandingClientOptionalParams);
-    readonly contentAnalyzers: ContentAnalyzersOperations;
+    analyze(analyzerId: string, options?: AnalyzeOptionalParams): PollerLike<OperationState_2<AnalyzeResult>, AnalyzeResult>;
+    analyzeBinary(analyzerId: string, contentType: string, input: Uint8Array, options?: AnalyzeBinaryOptionalParams): PollerLike<OperationState_2<AnalyzeResult>, AnalyzeResult>;
+    copy(analyzerId: string, sourceAnalyzerId: string, options?: CopyOptionalParams): PollerLike<OperationState_2<ContentAnalyzer>, ContentAnalyzer>;
+    createOrReplace(analyzerId: string, resource: ContentAnalyzer, options?: CreateOrReplaceOptionalParams): PollerLike<OperationState_2<ContentAnalyzer>, ContentAnalyzer>;
+    delete(analyzerId: string, options?: DeleteOptionalParams): Promise<void>;
+    deleteResult(operationId: string, options?: DeleteResultOptionalParams): Promise<void>;
+    get(analyzerId: string, options?: GetOptionalParams): Promise<ContentAnalyzer>;
+    getDefaults(options?: GetDefaultsOptionalParams): Promise<ContentUnderstandingDefaults>;
+    getOperationStatus(analyzerId: string, operationId: string, options?: GetOperationStatusOptionalParams): Promise<ContentAnalyzerOperationStatus>;
+    getResult(operationId: string, options?: GetResultOptionalParams): Promise<ContentAnalyzerAnalyzeOperationStatus>;
+    getResultFile(operationId: string, path: string, options?: GetResultFileOptionalParams): Promise<Uint8Array>;
+    grantCopyAuthorization(analyzerId: string, targetAzureResourceId: string, options?: GrantCopyAuthorizationOptionalParams): Promise<CopyAuthorization>;
+    list(options?: ListOptionalParams): PagedAsyncIterableIterator<ContentAnalyzer>;
     readonly pipeline: Pipeline;
+    update(analyzerId: string, resource: ContentAnalyzer, options?: UpdateOptionalParams): Promise<ContentAnalyzer>;
+    updateDefaults(options?: UpdateDefaultsOptionalParams): Promise<ContentUnderstandingDefaults>;
 }
 
 // @public
@@ -316,9 +243,34 @@ export interface CopyAuthorization {
 }
 
 // @public
+export interface CopyOptionalParams extends OperationOptions {
+    allowReplace?: boolean;
+    clientRequestId?: string;
+    sourceAzureResourceId?: string;
+    sourceRegion?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface CreateOrReplaceOptionalParams extends OperationOptions {
+    allowReplace?: boolean;
+    clientRequestId?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
 export interface DateField extends ContentField {
     type: "date";
     valueDate?: string;
+}
+
+// @public
+export interface DeleteOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface DeleteResultOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -532,6 +484,33 @@ export interface DocumentWord {
 export type GenerationMethod = "generate" | "extract" | "classify";
 
 // @public
+export interface GetDefaultsOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetOperationStatusOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
+
+// @public
+export interface GetResultFileOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GetResultOptionalParams extends OperationOptions {
+}
+
+// @public
+export interface GrantCopyAuthorizationOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+    targetRegion?: string;
+}
+
+// @public
 export interface IntegerField extends ContentField {
     type: "integer";
     valueInteger?: number;
@@ -569,6 +548,11 @@ export interface LabeledDataKnowledgeSource extends KnowledgeSource {
 
 // @public
 export type LengthUnit = "pixel" | "inch";
+
+// @public
+export interface ListOptionalParams extends OperationOptions {
+    clientRequestId?: string;
+}
 
 // @public
 export interface MediaContent {
@@ -675,6 +659,18 @@ export interface TranscriptWord {
     span?: ContentSpan;
     startTimeMs: number;
     text: string;
+}
+
+// @public
+export interface UpdateDefaultsOptionalParams extends OperationOptions {
+    modelDeployments?: {
+        [modelName: string]: string;
+    };
+}
+
+// @public
+export interface UpdateOptionalParams extends OperationOptions {
+    clientRequestId?: string;
 }
 
 // @public
