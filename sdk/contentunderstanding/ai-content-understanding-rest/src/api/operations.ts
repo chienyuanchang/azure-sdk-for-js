@@ -272,19 +272,19 @@ export function _getResultFileSend(
   path: string,
   options: GetResultFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod {
-  const path = expandUrlTemplate(
-    "/analyzerResults/{operationId}/files/{+path}{?api%2Dversion}",
-    {
-      operationId: operationId,
-      path: path,
-      "api%2Dversion": context.apiVersion,
+    const expandedPath = expandUrlTemplate(
+      "/analyzerResults/{operationId}/files/{+path}{?api%2Dversion}",
+      {
+        operationId: operationId,
+        path: path,
+        "api%2Dversion": context.apiVersion,
     },
     {
       allowReserved: options?.requestOptions?.skipUrlEncoding,
     },
   );
   return context
-    .path(path)
+    .path(expandedPath)
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: { accept: "*/*", ...options.requestOptions?.headers },
@@ -651,14 +651,14 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
-  if (result?.body?.result === undefined) {
+  if (result?.body === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
+      `Expected a result in the response at position "result.body"`,
       result,
     );
   }
 
-  return contentAnalyzerDeserializer(result.body.result);
+  return contentAnalyzerDeserializer(result.body);
 }
 
 /** Create a new analyzer asynchronously. */
@@ -727,14 +727,14 @@ export async function _copyDeserialize(
     throw createRestError(result);
   }
 
-  if (result?.body?.result === undefined) {
+  if (result?.body === undefined) {
     throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
+      `Expected a result in the response at position "result.body"`,
       result,
     );
   }
 
-  return contentAnalyzerDeserializer(result.body.result);
+  return contentAnalyzerDeserializer(result.body);
 }
 
 /** Create a copy of the source analyzer to the current location. */
