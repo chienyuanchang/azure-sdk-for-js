@@ -74,7 +74,7 @@ async function main(): Promise<void> {
     console.log("  Starting video analysis (this may take several moments)...");
 
     // Start the analysis
-    const analyzePoller = client.contentAnalyzers.analyze(analyzerId, {
+    const analyzePoller = client.analyze(analyzerId, {
       inputs: [{ url: videoUrl }],
     });
 
@@ -100,7 +100,7 @@ async function main(): Promise<void> {
     console.log("  Polling for completion (this may take several minutes for video)...");
     await analyzePoller.pollUntilDone();
 
-    const operationStatus = await client.contentAnalyzers.getResult(operationId);
+    const operationStatus = await client.getResult(operationId);
     const analyzeResult = operationStatus.result!;
 
     console.log("  ✅ Video analysis completed!");
@@ -184,7 +184,7 @@ async function main(): Promise<void> {
         console.log(`  📥 Getting result file: ${framePath}`);
 
         try {
-          const fileResponse = await client.contentAnalyzers.getResultFile(operationId, framePath);
+          const fileResponse = await client.getResultFile(operationId, framePath);
 
           const imageBytes = fileResponse;
           console.log(`    ✅ Retrieved (${imageBytes.length.toLocaleString()} bytes)`);
