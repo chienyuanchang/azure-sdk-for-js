@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ErrorModel } from "@azure-rest/core-client";
+import type { ErrorModel } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 
 /**
@@ -26,30 +26,21 @@ export interface AnalyzeInput {
 export function analyzeInputSerializer(item: AnalyzeInput): any {
   return {
     url: item["url"],
-    data: !item["data"]
-      ? item["data"]
-      : uint8ArrayToString(item["data"], "base64"),
+    data: !item["data"] ? item["data"] : uint8ArrayToString(item["data"], "base64"),
     name: item["name"],
     mimeType: item["mimeType"],
     range: item["range"],
   };
 }
 
-export function analyzeInputArraySerializer(
-  result: Array<AnalyzeInput>,
-): any[] {
+export function analyzeInputArraySerializer(result: Array<AnalyzeInput>): any[] {
   return result.map((item) => {
     return analyzeInputSerializer(item);
   });
 }
 
 /** Enum describing allowed operation states. */
-export type OperationState =
-  | "NotStarted"
-  | "Running"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
+export type OperationState = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
 
 /** Analyze operation result. */
 export interface AnalyzeResult {
@@ -71,9 +62,7 @@ export function analyzeResultDeserializer(item: any): AnalyzeResult {
   return {
     analyzerId: item["analyzerId"],
     apiVersion: item["apiVersion"],
-    createdAt: !item["createdAt"]
-      ? item["createdAt"]
-      : new Date(item["createdAt"]),
+    createdAt: !item["createdAt"] ? item["createdAt"] : new Date(item["createdAt"]),
     warnings: !item["warnings"]
       ? item["warnings"]
       : item["warnings"].map((p: any) => {
@@ -87,9 +76,7 @@ export function analyzeResultDeserializer(item: any): AnalyzeResult {
 /** String encoding format. */
 export type StringEncoding = "codePoint" | "utf16" | "utf8";
 
-export function mediaContentUnionArrayDeserializer(
-  result: Array<MediaContentUnion>,
-): any[] {
+export function mediaContentUnionArrayDeserializer(result: Array<MediaContentUnion>): any[] {
   return result.map((item) => {
     return mediaContentUnionDeserializer(item);
   });
@@ -122,17 +109,12 @@ export function mediaContentDeserializer(item: any): MediaContent {
     category: item["category"],
     path: item["path"],
     markdown: item["markdown"],
-    fields: !item["fields"]
-      ? item["fields"]
-      : contentFieldUnionRecordDeserializer(item["fields"]),
+    fields: !item["fields"] ? item["fields"] : contentFieldUnionRecordDeserializer(item["fields"]),
   };
 }
 
 /** Alias for MediaContentUnion */
-export type MediaContentUnion =
-  | DocumentContent
-  | AudioVisualContent
-  | MediaContent;
+export type MediaContentUnion = DocumentContent | AudioVisualContent | MediaContent;
 
 export function mediaContentUnionDeserializer(item: any): MediaContentUnion {
   switch (item.kind) {
@@ -155,9 +137,7 @@ export function contentFieldUnionRecordDeserializer(
 ): Record<string, ContentField> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : contentFieldUnionDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : contentFieldUnionDeserializer(item[key]);
   });
   return result;
 }
@@ -178,9 +158,7 @@ export interface ContentField {
 export function contentFieldDeserializer(item: any): ContentField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
   };
@@ -245,9 +223,7 @@ export type ContentFieldType =
   | "object"
   | "json";
 
-export function contentSpanArrayDeserializer(
-  result: Array<ContentSpan>,
-): any[] {
+export function contentSpanArrayDeserializer(result: Array<ContentSpan>): any[] {
   return result.map((item) => {
     return contentSpanDeserializer(item);
   });
@@ -279,9 +255,7 @@ export interface StringField extends ContentField {
 export function stringFieldDeserializer(item: any): StringField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueString: item["valueString"],
@@ -299,9 +273,7 @@ export interface DateField extends ContentField {
 export function dateFieldDeserializer(item: any): DateField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueDate: item["valueDate"],
@@ -319,9 +291,7 @@ export interface TimeField extends ContentField {
 export function timeFieldDeserializer(item: any): TimeField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueTime: item["valueTime"],
@@ -339,9 +309,7 @@ export interface NumberField extends ContentField {
 export function numberFieldDeserializer(item: any): NumberField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueNumber: item["valueNumber"],
@@ -359,9 +327,7 @@ export interface IntegerField extends ContentField {
 export function integerFieldDeserializer(item: any): IntegerField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueInteger: item["valueInteger"],
@@ -379,9 +345,7 @@ export interface BooleanField extends ContentField {
 export function booleanFieldDeserializer(item: any): BooleanField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueBoolean: item["valueBoolean"],
@@ -399,9 +363,7 @@ export interface ArrayField extends ContentField {
 export function arrayFieldDeserializer(item: any): ArrayField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueArray: !item["valueArray"]
@@ -410,9 +372,7 @@ export function arrayFieldDeserializer(item: any): ArrayField {
   };
 }
 
-export function contentFieldUnionArrayDeserializer(
-  result: Array<ContentFieldUnion>,
-): any[] {
+export function contentFieldUnionArrayDeserializer(result: Array<ContentFieldUnion>): any[] {
   return result.map((item) => {
     return contentFieldUnionDeserializer(item);
   });
@@ -429,9 +389,7 @@ export interface ObjectField extends ContentField {
 export function objectFieldDeserializer(item: any): ObjectField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueObject: !item["valueObject"]
@@ -451,9 +409,7 @@ export interface JsonField extends ContentField {
 export function jsonFieldDeserializer(item: any): JsonField {
   return {
     type: item["type"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     confidence: item["confidence"],
     source: item["source"],
     valueJson: item["valueJson"],
@@ -501,30 +457,22 @@ export function documentContentDeserializer(item: any): DocumentContent {
     category: item["category"],
     path: item["path"],
     markdown: item["markdown"],
-    fields: !item["fields"]
-      ? item["fields"]
-      : contentFieldUnionRecordDeserializer(item["fields"]),
+    fields: !item["fields"] ? item["fields"] : contentFieldUnionRecordDeserializer(item["fields"]),
     startPageNumber: item["startPageNumber"],
     endPageNumber: item["endPageNumber"],
     unit: item["unit"],
-    pages: !item["pages"]
-      ? item["pages"]
-      : documentPageArrayDeserializer(item["pages"]),
+    pages: !item["pages"] ? item["pages"] : documentPageArrayDeserializer(item["pages"]),
     paragraphs: !item["paragraphs"]
       ? item["paragraphs"]
       : documentParagraphArrayDeserializer(item["paragraphs"]),
     sections: !item["sections"]
       ? item["sections"]
       : documentSectionArrayDeserializer(item["sections"]),
-    tables: !item["tables"]
-      ? item["tables"]
-      : documentTableArrayDeserializer(item["tables"]),
+    tables: !item["tables"] ? item["tables"] : documentTableArrayDeserializer(item["tables"]),
     figures: !item["figures"]
       ? item["figures"]
       : documentFigureUnionArrayDeserializer(item["figures"]),
-    persons: !item["persons"]
-      ? item["persons"]
-      : detectedPersonArrayDeserializer(item["persons"]),
+    persons: !item["persons"] ? item["persons"] : detectedPersonArrayDeserializer(item["persons"]),
     annotations: !item["annotations"]
       ? item["annotations"]
       : documentAnnotationArrayDeserializer(item["annotations"]),
@@ -540,9 +488,7 @@ export function documentContentDeserializer(item: any): DocumentContent {
 /** Length unit used by the width, height, and source properties. */
 export type LengthUnit = "pixel" | "inch";
 
-export function documentPageArrayDeserializer(
-  result: Array<DocumentPage>,
-): any[] {
+export function documentPageArrayDeserializer(result: Array<DocumentPage>): any[] {
   return result.map((item) => {
     return documentPageDeserializer(item);
   });
@@ -579,16 +525,10 @@ export function documentPageDeserializer(item: any): DocumentPage {
     pageNumber: item["pageNumber"],
     width: item["width"],
     height: item["height"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     angle: item["angle"],
-    words: !item["words"]
-      ? item["words"]
-      : documentWordArrayDeserializer(item["words"]),
-    lines: !item["lines"]
-      ? item["lines"]
-      : documentLineArrayDeserializer(item["lines"]),
+    words: !item["words"] ? item["words"] : documentWordArrayDeserializer(item["words"]),
+    lines: !item["lines"] ? item["lines"] : documentLineArrayDeserializer(item["lines"]),
     barcodes: !item["barcodes"]
       ? item["barcodes"]
       : documentBarcodeArrayDeserializer(item["barcodes"]),
@@ -598,9 +538,7 @@ export function documentPageDeserializer(item: any): DocumentPage {
   };
 }
 
-export function documentWordArrayDeserializer(
-  result: Array<DocumentWord>,
-): any[] {
+export function documentWordArrayDeserializer(result: Array<DocumentWord>): any[] {
   return result.map((item) => {
     return documentWordDeserializer(item);
   });
@@ -631,9 +569,7 @@ export function documentWordDeserializer(item: any): DocumentWord {
   };
 }
 
-export function documentLineArrayDeserializer(
-  result: Array<DocumentLine>,
-): any[] {
+export function documentLineArrayDeserializer(result: Array<DocumentLine>): any[] {
   return result.map((item) => {
     return documentLineDeserializer(item);
   });
@@ -657,9 +593,7 @@ export function documentLineDeserializer(item: any): DocumentLine {
   };
 }
 
-export function documentBarcodeArrayDeserializer(
-  result: Array<DocumentBarcode>,
-): any[] {
+export function documentBarcodeArrayDeserializer(result: Array<DocumentBarcode>): any[] {
   return result.map((item) => {
     return documentBarcodeDeserializer(item);
   });
@@ -709,9 +643,7 @@ export type DocumentBarcodeKind =
   | "DataMatrix"
   | "MaxiCode";
 
-export function documentFormulaArrayDeserializer(
-  result: Array<DocumentFormula>,
-): any[] {
+export function documentFormulaArrayDeserializer(result: Array<DocumentFormula>): any[] {
   return result.map((item) => {
     return documentFormulaDeserializer(item);
   });
@@ -744,9 +676,7 @@ export function documentFormulaDeserializer(item: any): DocumentFormula {
 /** Formula kind. */
 export type DocumentFormulaKind = "inline" | "display";
 
-export function documentParagraphArrayDeserializer(
-  result: Array<DocumentParagraph>,
-): any[] {
+export function documentParagraphArrayDeserializer(result: Array<DocumentParagraph>): any[] {
   return result.map((item) => {
     return documentParagraphDeserializer(item);
   });
@@ -786,9 +716,7 @@ export type SemanticRole =
   | "footnote"
   | "formulaBlock";
 
-export function documentSectionArrayDeserializer(
-  result: Array<DocumentSection>,
-): any[] {
+export function documentSectionArrayDeserializer(result: Array<DocumentSection>): any[] {
   return result.map((item) => {
     return documentSectionDeserializer(item);
   });
@@ -813,9 +741,7 @@ export function documentSectionDeserializer(item: any): DocumentSection {
   };
 }
 
-export function documentTableArrayDeserializer(
-  result: Array<DocumentTable>,
-): any[] {
+export function documentTableArrayDeserializer(result: Array<DocumentTable>): any[] {
   return result.map((item) => {
     return documentTableDeserializer(item);
   });
@@ -848,9 +774,7 @@ export function documentTableDeserializer(item: any): DocumentTable {
     cells: documentTableCellArrayDeserializer(item["cells"]),
     source: item["source"],
     span: !item["span"] ? item["span"] : contentSpanDeserializer(item["span"]),
-    caption: !item["caption"]
-      ? item["caption"]
-      : documentCaptionDeserializer(item["caption"]),
+    caption: !item["caption"] ? item["caption"] : documentCaptionDeserializer(item["caption"]),
     footnotes: !item["footnotes"]
       ? item["footnotes"]
       : documentFootnoteArrayDeserializer(item["footnotes"]),
@@ -858,9 +782,7 @@ export function documentTableDeserializer(item: any): DocumentTable {
   };
 }
 
-export function documentTableCellArrayDeserializer(
-  result: Array<DocumentTableCell>,
-): any[] {
+export function documentTableCellArrayDeserializer(result: Array<DocumentTableCell>): any[] {
   return result.map((item) => {
     return documentTableCellDeserializer(item);
   });
@@ -939,9 +861,7 @@ export function documentCaptionDeserializer(item: any): DocumentCaption {
   };
 }
 
-export function documentFootnoteArrayDeserializer(
-  result: Array<DocumentFootnote>,
-): any[] {
+export function documentFootnoteArrayDeserializer(result: Array<DocumentFootnote>): any[] {
   return result.map((item) => {
     return documentFootnoteDeserializer(item);
   });
@@ -972,9 +892,7 @@ export function documentFootnoteDeserializer(item: any): DocumentFootnote {
   };
 }
 
-export function documentFigureUnionArrayDeserializer(
-  result: Array<DocumentFigureUnion>,
-): any[] {
+export function documentFigureUnionArrayDeserializer(result: Array<DocumentFigureUnion>): any[] {
   return result.map((item) => {
     return documentFigureUnionDeserializer(item);
   });
@@ -1014,9 +932,7 @@ export function documentFigureDeserializer(item: any): DocumentFigure {
       : item["elements"].map((p: any) => {
           return p;
         }),
-    caption: !item["caption"]
-      ? item["caption"]
-      : documentCaptionDeserializer(item["caption"]),
+    caption: !item["caption"] ? item["caption"] : documentCaptionDeserializer(item["caption"]),
     footnotes: !item["footnotes"]
       ? item["footnotes"]
       : documentFootnoteArrayDeserializer(item["footnotes"]),
@@ -1026,14 +942,9 @@ export function documentFigureDeserializer(item: any): DocumentFigure {
 }
 
 /** Alias for DocumentFigureUnion */
-export type DocumentFigureUnion =
-  | DocumentChartFigure
-  | DocumentMermaidFigure
-  | DocumentFigure;
+export type DocumentFigureUnion = DocumentChartFigure | DocumentMermaidFigure | DocumentFigure;
 
-export function documentFigureUnionDeserializer(
-  item: any,
-): DocumentFigureUnion {
+export function documentFigureUnionDeserializer(item: any): DocumentFigureUnion {
   switch (item.kind) {
     case "chart":
       return documentChartFigureDeserializer(item as DocumentChartFigure);
@@ -1057,9 +968,7 @@ export interface DocumentChartFigure extends DocumentFigure {
   content: any;
 }
 
-export function documentChartFigureDeserializer(
-  item: any,
-): DocumentChartFigure {
+export function documentChartFigureDeserializer(item: any): DocumentChartFigure {
   return {
     kind: item["kind"],
     id: item["id"],
@@ -1070,9 +979,7 @@ export function documentChartFigureDeserializer(
       : item["elements"].map((p: any) => {
           return p;
         }),
-    caption: !item["caption"]
-      ? item["caption"]
-      : documentCaptionDeserializer(item["caption"]),
+    caption: !item["caption"] ? item["caption"] : documentCaptionDeserializer(item["caption"]),
     footnotes: !item["footnotes"]
       ? item["footnotes"]
       : documentFootnoteArrayDeserializer(item["footnotes"]),
@@ -1090,9 +997,7 @@ export interface DocumentMermaidFigure extends DocumentFigure {
   content: string;
 }
 
-export function documentMermaidFigureDeserializer(
-  item: any,
-): DocumentMermaidFigure {
+export function documentMermaidFigureDeserializer(item: any): DocumentMermaidFigure {
   return {
     kind: item["kind"],
     id: item["id"],
@@ -1103,9 +1008,7 @@ export function documentMermaidFigureDeserializer(
       : item["elements"].map((p: any) => {
           return p;
         }),
-    caption: !item["caption"]
-      ? item["caption"]
-      : documentCaptionDeserializer(item["caption"]),
+    caption: !item["caption"] ? item["caption"] : documentCaptionDeserializer(item["caption"]),
     footnotes: !item["footnotes"]
       ? item["footnotes"]
       : documentFootnoteArrayDeserializer(item["footnotes"]),
@@ -1115,9 +1018,7 @@ export function documentMermaidFigureDeserializer(
   };
 }
 
-export function detectedPersonArrayDeserializer(
-  result: Array<DetectedPerson>,
-): any[] {
+export function detectedPersonArrayDeserializer(result: Array<DetectedPerson>): any[] {
   return result.map((item) => {
     return detectedPersonDeserializer(item);
   });
@@ -1141,9 +1042,7 @@ export function detectedPersonDeserializer(item: any): DetectedPerson {
   };
 }
 
-export function documentAnnotationArrayDeserializer(
-  result: Array<DocumentAnnotation>,
-): any[] {
+export function documentAnnotationArrayDeserializer(result: Array<DocumentAnnotation>): any[] {
   return result.map((item) => {
     return documentAnnotationDeserializer(item);
   });
@@ -1175,17 +1074,13 @@ export function documentAnnotationDeserializer(item: any): DocumentAnnotation {
   return {
     id: item["id"],
     kind: item["kind"],
-    spans: !item["spans"]
-      ? item["spans"]
-      : contentSpanArrayDeserializer(item["spans"]),
+    spans: !item["spans"] ? item["spans"] : contentSpanArrayDeserializer(item["spans"]),
     source: item["source"],
     comments: !item["comments"]
       ? item["comments"]
       : documentAnnotationCommentArrayDeserializer(item["comments"]),
     author: item["author"],
-    createdAt: !item["createdAt"]
-      ? item["createdAt"]
-      : new Date(item["createdAt"]),
+    createdAt: !item["createdAt"] ? item["createdAt"] : new Date(item["createdAt"]),
     lastModifiedAt: !item["lastModifiedAt"]
       ? item["lastModifiedAt"]
       : new Date(item["lastModifiedAt"]),
@@ -1229,15 +1124,11 @@ export interface DocumentAnnotationComment {
   tags?: string[];
 }
 
-export function documentAnnotationCommentDeserializer(
-  item: any,
-): DocumentAnnotationComment {
+export function documentAnnotationCommentDeserializer(item: any): DocumentAnnotationComment {
   return {
     message: item["message"],
     author: item["author"],
-    createdAt: !item["createdAt"]
-      ? item["createdAt"]
-      : new Date(item["createdAt"]),
+    createdAt: !item["createdAt"] ? item["createdAt"] : new Date(item["createdAt"]),
     lastModifiedAt: !item["lastModifiedAt"]
       ? item["lastModifiedAt"]
       : new Date(item["lastModifiedAt"]),
@@ -1249,9 +1140,7 @@ export function documentAnnotationCommentDeserializer(
   };
 }
 
-export function documentHyperlinkArrayDeserializer(
-  result: Array<DocumentHyperlink>,
-): any[] {
+export function documentHyperlinkArrayDeserializer(result: Array<DocumentHyperlink>): any[] {
   return result.map((item) => {
     return documentHyperlinkDeserializer(item);
   });
@@ -1300,9 +1189,7 @@ export interface DocumentContentSegment {
   endPageNumber: number;
 }
 
-export function documentContentSegmentDeserializer(
-  item: any,
-): DocumentContentSegment {
+export function documentContentSegmentDeserializer(item: any): DocumentContentSegment {
   return {
     segmentId: item["segmentId"],
     category: item["category"],
@@ -1342,9 +1229,7 @@ export function audioVisualContentDeserializer(item: any): AudioVisualContent {
     category: item["category"],
     path: item["path"],
     markdown: item["markdown"],
-    fields: !item["fields"]
-      ? item["fields"]
-      : contentFieldUnionRecordDeserializer(item["fields"]),
+    fields: !item["fields"] ? item["fields"] : contentFieldUnionRecordDeserializer(item["fields"]),
     startTimeMs: item["startTimeMs"],
     endTimeMs: item["endTimeMs"],
     width: item["width"],
@@ -1368,9 +1253,7 @@ export function audioVisualContentDeserializer(item: any): AudioVisualContent {
   };
 }
 
-export function transcriptPhraseArrayDeserializer(
-  result: Array<TranscriptPhrase>,
-): any[] {
+export function transcriptPhraseArrayDeserializer(result: Array<TranscriptPhrase>): any[] {
   return result.map((item) => {
     return transcriptPhraseDeserializer(item);
   });
@@ -1409,9 +1292,7 @@ export function transcriptPhraseDeserializer(item: any): TranscriptPhrase {
   };
 }
 
-export function transcriptWordArrayDeserializer(
-  result: Array<TranscriptWord>,
-): any[] {
+export function transcriptWordArrayDeserializer(result: Array<TranscriptWord>): any[] {
   return result.map((item) => {
     return transcriptWordDeserializer(item);
   });
@@ -1460,9 +1341,7 @@ export interface AudioVisualContentSegment {
   endTimeMs: number;
 }
 
-export function audioVisualContentSegmentDeserializer(
-  item: any,
-): AudioVisualContentSegment {
+export function audioVisualContentSegmentDeserializer(item: any): AudioVisualContentSegment {
   return {
     segmentId: item["segmentId"],
     category: item["category"],
@@ -1493,12 +1372,8 @@ export function contentAnalyzerAnalyzeOperationStatusDeserializer(
     id: item["id"],
     status: item["status"],
     error: !item["error"] ? item["error"] : item["error"],
-    result: !item["result"]
-      ? item["result"]
-      : analyzeResultDeserializer(item["result"]),
-    usage: !item["usage"]
-      ? item["usage"]
-      : usageDetailsDeserializer(item["usage"]),
+    result: !item["result"] ? item["result"] : analyzeResultDeserializer(item["result"]),
+    usage: !item["usage"] ? item["usage"] : usageDetailsDeserializer(item["usage"]),
   };
 }
 
@@ -1583,9 +1458,7 @@ export function contentAnalyzerSerializer(item: ContentAnalyzer): any {
     description: item["description"],
     tags: item["tags"],
     baseAnalyzerId: item["baseAnalyzerId"],
-    config: !item["config"]
-      ? item["config"]
-      : contentAnalyzerConfigSerializer(item["config"]),
+    config: !item["config"] ? item["config"] : contentAnalyzerConfigSerializer(item["config"]),
     fieldSchema: !item["fieldSchema"]
       ? item["fieldSchema"]
       : contentFieldSchemaSerializer(item["fieldSchema"]),
@@ -1612,9 +1485,7 @@ export function contentAnalyzerDeserializer(item: any): ContentAnalyzer {
           return p;
         }),
     baseAnalyzerId: item["baseAnalyzerId"],
-    config: !item["config"]
-      ? item["config"]
-      : contentAnalyzerConfigDeserializer(item["config"]),
+    config: !item["config"] ? item["config"] : contentAnalyzerConfigDeserializer(item["config"]),
     fieldSchema: !item["fieldSchema"]
       ? item["fieldSchema"]
       : contentFieldSchemaDeserializer(item["fieldSchema"]),
@@ -1672,9 +1543,7 @@ export interface ContentAnalyzerConfig {
   omitContent?: boolean;
 }
 
-export function contentAnalyzerConfigSerializer(
-  item: ContentAnalyzerConfig,
-): any {
+export function contentAnalyzerConfigSerializer(item: ContentAnalyzerConfig): any {
   return {
     returnDetails: item["returnDetails"],
     locales: !item["locales"]
@@ -1701,9 +1570,7 @@ export function contentAnalyzerConfigSerializer(
   };
 }
 
-export function contentAnalyzerConfigDeserializer(
-  item: any,
-): ContentAnalyzerConfig {
+export function contentAnalyzerConfigDeserializer(item: any): ContentAnalyzerConfig {
   return {
     returnDetails: item["returnDetails"],
     locales: !item["locales"]
@@ -1742,9 +1609,7 @@ export function contentCategoryDefinitionRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : contentCategoryDefinitionSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : contentCategoryDefinitionSerializer(item[key]);
   });
   return result;
 }
@@ -1754,9 +1619,7 @@ export function contentCategoryDefinitionRecordDeserializer(
 ): Record<string, ContentCategoryDefinition> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : contentCategoryDefinitionDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : contentCategoryDefinitionDeserializer(item[key]);
   });
   return result;
 }
@@ -1771,27 +1634,19 @@ export interface ContentCategoryDefinition {
   analyzer?: ContentAnalyzer;
 }
 
-export function contentCategoryDefinitionSerializer(
-  item: ContentCategoryDefinition,
-): any {
+export function contentCategoryDefinitionSerializer(item: ContentCategoryDefinition): any {
   return {
     description: item["description"],
     analyzerId: item["analyzerId"],
-    analyzer: !item["analyzer"]
-      ? item["analyzer"]
-      : contentAnalyzerSerializer(item["analyzer"]),
+    analyzer: !item["analyzer"] ? item["analyzer"] : contentAnalyzerSerializer(item["analyzer"]),
   };
 }
 
-export function contentCategoryDefinitionDeserializer(
-  item: any,
-): ContentCategoryDefinition {
+export function contentCategoryDefinitionDeserializer(item: any): ContentCategoryDefinition {
   return {
     description: item["description"],
     analyzerId: item["analyzerId"],
-    analyzer: !item["analyzer"]
-      ? item["analyzer"]
-      : contentAnalyzerDeserializer(item["analyzer"]),
+    analyzer: !item["analyzer"] ? item["analyzer"] : contentAnalyzerDeserializer(item["analyzer"]),
   };
 }
 
@@ -1834,9 +1689,7 @@ export function contentFieldDefinitionRecordSerializer(
 ): Record<string, any> {
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : contentFieldDefinitionSerializer(item[key]);
+    result[key] = !item[key] ? item[key] : contentFieldDefinitionSerializer(item[key]);
   });
   return result;
 }
@@ -1849,9 +1702,7 @@ export function contentFieldDefinitionRecordDeserializer(
   }
   const result: Record<string, any> = {};
   Object.keys(item).map((key) => {
-    result[key] = !item[key]
-      ? item[key]
-      : contentFieldDefinitionDeserializer(item[key]);
+    result[key] = !item[key] ? item[key] : contentFieldDefinitionDeserializer(item[key]);
   });
   return result;
 }
@@ -1880,16 +1731,12 @@ export interface ContentFieldDefinition {
   estimateSourceAndConfidence?: boolean;
 }
 
-export function contentFieldDefinitionSerializer(
-  item: ContentFieldDefinition,
-): any {
+export function contentFieldDefinitionSerializer(item: ContentFieldDefinition): any {
   return {
     method: item["method"],
     type: item["type"],
     description: item["description"],
-    items: !item["items"]
-      ? item["items"]
-      : contentFieldDefinitionSerializer(item["items"]),
+    items: !item["items"] ? item["items"] : contentFieldDefinitionSerializer(item["items"]),
     properties: !item["properties"]
       ? item["properties"]
       : contentFieldDefinitionRecordSerializer(item["properties"]),
@@ -1909,16 +1756,12 @@ export function contentFieldDefinitionSerializer(
   };
 }
 
-export function contentFieldDefinitionDeserializer(
-  item: any,
-): ContentFieldDefinition {
+export function contentFieldDefinitionDeserializer(item: any): ContentFieldDefinition {
   return {
     method: item["method"],
     type: item["type"],
     description: item["description"],
-    items: !item["items"]
-      ? item["items"]
-      : contentFieldDefinitionDeserializer(item["items"]),
+    items: !item["items"] ? item["items"] : contentFieldDefinitionDeserializer(item["items"]),
     properties: !item["properties"]
       ? item["properties"]
       : contentFieldDefinitionRecordDeserializer(item["properties"]),
@@ -1943,17 +1786,13 @@ export type GenerationMethod = "generate" | "extract" | "classify";
 /** The location where the data may be processed. */
 export type ProcessingLocation = "geography" | "dataZone" | "global";
 
-export function knowledgeSourceUnionArraySerializer(
-  result: Array<KnowledgeSourceUnion>,
-): any[] {
+export function knowledgeSourceUnionArraySerializer(result: Array<KnowledgeSourceUnion>): any[] {
   return result.map((item) => {
     return knowledgeSourceUnionSerializer(item);
   });
 }
 
-export function knowledgeSourceUnionArrayDeserializer(
-  result: Array<KnowledgeSourceUnion>,
-): any[] {
+export function knowledgeSourceUnionArrayDeserializer(result: Array<KnowledgeSourceUnion>): any[] {
   return result.map((item) => {
     return knowledgeSourceUnionDeserializer(item);
   });
@@ -1979,28 +1818,20 @@ export function knowledgeSourceDeserializer(item: any): KnowledgeSource {
 /** Alias for KnowledgeSourceUnion */
 export type KnowledgeSourceUnion = LabeledDataKnowledgeSource | KnowledgeSource;
 
-export function knowledgeSourceUnionSerializer(
-  item: KnowledgeSourceUnion,
-): any {
+export function knowledgeSourceUnionSerializer(item: KnowledgeSourceUnion): any {
   switch (item.kind) {
     case "labeledData":
-      return labeledDataKnowledgeSourceSerializer(
-        item as LabeledDataKnowledgeSource,
-      );
+      return labeledDataKnowledgeSourceSerializer(item as LabeledDataKnowledgeSource);
 
     default:
       return knowledgeSourceSerializer(item);
   }
 }
 
-export function knowledgeSourceUnionDeserializer(
-  item: any,
-): KnowledgeSourceUnion {
+export function knowledgeSourceUnionDeserializer(item: any): KnowledgeSourceUnion {
   switch (item.kind) {
     case "labeledData":
-      return labeledDataKnowledgeSourceDeserializer(
-        item as LabeledDataKnowledgeSource,
-      );
+      return labeledDataKnowledgeSourceDeserializer(item as LabeledDataKnowledgeSource);
 
     default:
       return knowledgeSourceDeserializer(item);
@@ -2022,9 +1853,7 @@ export interface LabeledDataKnowledgeSource extends KnowledgeSource {
   fileListPath: string;
 }
 
-export function labeledDataKnowledgeSourceSerializer(
-  item: LabeledDataKnowledgeSource,
-): any {
+export function labeledDataKnowledgeSourceSerializer(item: LabeledDataKnowledgeSource): any {
   return {
     kind: item["kind"],
     containerUrl: item["containerUrl"],
@@ -2033,9 +1862,7 @@ export function labeledDataKnowledgeSourceSerializer(
   };
 }
 
-export function labeledDataKnowledgeSourceDeserializer(
-  item: any,
-): LabeledDataKnowledgeSource {
+export function labeledDataKnowledgeSourceDeserializer(item: any): LabeledDataKnowledgeSource {
   return {
     kind: item["kind"],
     containerUrl: item["containerUrl"],
@@ -2080,12 +1907,8 @@ export function contentAnalyzerOperationStatusDeserializer(
     id: item["id"],
     status: item["status"],
     error: !item["error"] ? item["error"] : item["error"],
-    result: !item["result"]
-      ? item["result"]
-      : contentAnalyzerDeserializer(item["result"]),
-    usage: !item["usage"]
-      ? item["usage"]
-      : usageDetailsDeserializer(item["usage"]),
+    result: !item["result"] ? item["result"] : contentAnalyzerDeserializer(item["result"]),
+    usage: !item["usage"] ? item["usage"] : usageDetailsDeserializer(item["usage"]),
   };
 }
 
@@ -2098,9 +1921,7 @@ export interface ContentUnderstandingDefaults {
   modelDeployments: Record<string, string>;
 }
 
-export function contentUnderstandingDefaultsDeserializer(
-  item: any,
-): ContentUnderstandingDefaults {
+export function contentUnderstandingDefaultsDeserializer(item: any): ContentUnderstandingDefaults {
   return {
     modelDeployments: item["modelDeployments"],
   };
@@ -2132,26 +1953,20 @@ export interface _PagedContentAnalyzer {
   nextLink?: string;
 }
 
-export function _pagedContentAnalyzerDeserializer(
-  item: any,
-): _PagedContentAnalyzer {
+export function _pagedContentAnalyzerDeserializer(item: any): _PagedContentAnalyzer {
   return {
     value: contentAnalyzerArrayDeserializer(item["value"]),
     nextLink: item["nextLink"],
   };
 }
 
-export function contentAnalyzerArraySerializer(
-  result: Array<ContentAnalyzer>,
-): any[] {
+export function contentAnalyzerArraySerializer(result: Array<ContentAnalyzer>): any[] {
   return result.map((item) => {
     return contentAnalyzerSerializer(item);
   });
 }
 
-export function contentAnalyzerArrayDeserializer(
-  result: Array<ContentAnalyzer>,
-): any[] {
+export function contentAnalyzerArrayDeserializer(result: Array<ContentAnalyzer>): any[] {
   return result.map((item) => {
     return contentAnalyzerDeserializer(item);
   });

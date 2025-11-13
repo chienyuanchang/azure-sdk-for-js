@@ -154,7 +154,7 @@ async function main(): Promise<void> {
     const operationId = operationIdMatch[1];
     // Get the full operation status which includes the complete result
     const operationStatus = await client.getResult(operationId);
-    const analyzeResult = operationStatus.result;
+    const analyzeResult: AnalyzeResult = operationStatus.result!;
 
     // 6) Print result
     printAnalysisResult(analyzeResult);

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  createContentUnderstanding,
+import type {
   ContentUnderstandingContext,
   ContentUnderstandingClientOptionalParams,
 } from "./api/index.js";
+import { createContentUnderstanding } from "./api/index.js";
 import {
   updateDefaults,
   update,
@@ -23,7 +23,7 @@ import {
   analyzeBinary,
   analyze,
 } from "./api/operations.js";
-import {
+import type {
   UpdateDefaultsOptionalParams,
   UpdateOptionalParams,
   ListOptionalParams,
@@ -40,7 +40,7 @@ import {
   AnalyzeBinaryOptionalParams,
   AnalyzeOptionalParams,
 } from "./api/options.js";
-import {
+import type {
   AnalyzeResult,
   ContentAnalyzerAnalyzeOperationStatus,
   ContentAnalyzer,
@@ -48,10 +48,10 @@ import {
   ContentUnderstandingDefaults,
   CopyAuthorization,
 } from "./models/models.js";
-import { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
-import { KeyCredential, TokenCredential } from "@azure/core-auth";
-import { PollerLike, OperationState } from "@azure/core-lro";
-import { Pipeline } from "@azure/core-rest-pipeline";
+import type { PagedAsyncIterableIterator } from "./static-helpers/pagingHelpers.js";
+import type { KeyCredential, TokenCredential } from "@azure/core-auth";
+import type { PollerLike, OperationState } from "@azure/core-lro";
+import type { Pipeline } from "@azure/core-rest-pipeline";
 
 export { ContentUnderstandingClientOptionalParams } from "./api/contentUnderstandingContext.js";
 
@@ -105,12 +105,7 @@ export class ContentUnderstandingClient {
     targetAzureResourceId: string,
     options: GrantCopyAuthorizationOptionalParams = { requestOptions: {} },
   ): Promise<CopyAuthorization> {
-    return grantCopyAuthorization(
-      this._client,
-      analyzerId,
-      targetAzureResourceId,
-      options,
-    );
+    return grantCopyAuthorization(this._client, analyzerId, targetAzureResourceId, options);
   }
 
   /** Get a file associated with the result of an analysis operation. */
