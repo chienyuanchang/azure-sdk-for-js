@@ -25,7 +25,6 @@ import * as path from "path";
 import { DefaultAzureCredential } from "@azure/identity";
 import { AzureKeyCredential } from "@azure/core-auth";
 import { ContentUnderstandingClient } from "@azure-rest/ai-content-understanding";
-import type { AnalyzeResult } from "@azure-rest/ai-content-understanding";
 
 // Helper to select credential based on environment
 function getCredential(): DefaultAzureCredential | AzureKeyCredential {
@@ -119,12 +118,24 @@ async function main(): Promise<void> {
     }
     const operationId = operationIdMatch[1];
 
-    // Get the full operation status which includes the complete result
-    const operationStatus = await client.getResult(operationId);
-    const analyzeResult: AnalyzeResult = operationStatus.result!;
+    // Variable to capture raw JSON from onResponse callback
+    let rawJson: string | undefined;
 
-    // Convert the result object to JSON string
-    const rawJson = JSON.stringify(analyzeResult, null, 2);
+    // Get the full operation status which includes the complete result
+    await client.getResult(operationId, {
+      onResponse: (response) => {
+        rawJson = response.bodyAsText;
+      },
+    });
+
+    // Use the raw JSON captured from onResponse
+    if (!rawJson) {
+      throw new Error("Failed to capture raw JSON from response");
+    }
+
+    // Parse the raw JSON to get the operation status and result
+    const operationStatusParsed = JSON.parse(rawJson);
+    const result = operationStatusParsed.result;
 
     // Create output directory if it doesn't exist
     const outputDir = path.join(process.cwd(), "sample_output");
@@ -144,18 +155,16 @@ async function main(): Promise<void> {
     fs.writeFileSync(outputPath, rawJson);
 
     console.log(`  Raw JSON response saved to: ${outputPath}`);
-    console.log(`  File size: ${rawJson.length.toLocaleString()} characters\n`);
-
-    // Step 7: Display key information from the response
+    console.log(`  File size: ${rawJson.length.toLocaleString()} characters\n`);    // Step 7: Display key information from the response
     console.log("Step 7: Displaying key information from response...");
-    if (analyzeResult.analyzerId) {
-      console.log(`  Analyzer ID: ${analyzeResult.analyzerId}`);
+    if (result.analyzerId) {
+      console.log(`  Analyzer ID: ${result.analyzerId}`);
     }
 
-    if (analyzeResult.contents && analyzeResult.contents.length > 0) {
-      console.log(`  Contents count: ${analyzeResult.contents.length}`);
+    if (result.contents && result.contents.length > 0) {
+      console.log(`  Contents count: ${result.contents.length}`);
 
-      const firstContent = analyzeResult.contents[0];
+      const firstContent = result.contents[0];
       if (firstContent.kind) {
         console.log(`  Content kind: ${firstContent.kind}`);
       }
