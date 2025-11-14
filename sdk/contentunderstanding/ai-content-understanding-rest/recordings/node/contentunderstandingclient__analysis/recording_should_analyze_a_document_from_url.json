@@ -23,32 +23,32 @@
       "StatusCode": 202,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "apim-request-id": "a7a03cc3-e41a-4f4e-a9bb-97327e0000fb",
         "Content-Type": "application/json",
-        "Date": "Wed, 12 Nov 2025 07:26:19 GMT",
-        "Operation-Location": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
-        "request-id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "Date": "Fri, 14 Nov 2025 00:33:25 GMT",
+        "Operation-Location": "https://endpoint/contentunderstanding/analyzerResults/a7a03cc3-e41a-4f4e-a9bb-97327e0000fb?api-version=2025-11-01",
+        "request-id": "a7a03cc3-e41a-4f4e-a9bb-97327e0000fb",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "740",
+        "x-envoy-upstream-service-time": "875",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "id": "a7a03cc3-e41a-4f4e-a9bb-97327e0000fb",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-12T07:26:20Z",
+          "createdAt": "2025-11-14T00:33:26Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/a7a03cc3-e41a-4f4e-a9bb-97327e0000fb?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -62,31 +62,31 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "3f9bb5ab-d804-4612-950d-d0ffaeb93360",
+        "apim-request-id": "426f9d6f-1cf0-4eed-91e7-dbff3ca10cc7",
         "Content-Type": "application/json",
-        "Date": "Wed, 12 Nov 2025 07:26:19 GMT",
-        "request-id": "3f9bb5ab-d804-4612-950d-d0ffaeb93360",
+        "Date": "Fri, 14 Nov 2025 00:33:26 GMT",
+        "request-id": "426f9d6f-1cf0-4eed-91e7-dbff3ca10cc7",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "27",
+        "x-envoy-upstream-service-time": "90",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "id": "a7a03cc3-e41a-4f4e-a9bb-97327e0000fb",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-12T07:26:20Z",
+          "createdAt": "2025-11-14T00:33:26Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/a7a03cc3-e41a-4f4e-a9bb-97327e0000fb?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -100,31 +100,31 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "5888eb0f-3e7a-4016-9ee0-fb8d92703464",
+        "apim-request-id": "2c6b6f26-69d2-4efb-b1c6-cb7ae74d1427",
         "Content-Type": "application/json",
-        "Date": "Wed, 12 Nov 2025 07:26:21 GMT",
-        "request-id": "5888eb0f-3e7a-4016-9ee0-fb8d92703464",
+        "Date": "Fri, 14 Nov 2025 00:33:28 GMT",
+        "request-id": "2c6b6f26-69d2-4efb-b1c6-cb7ae74d1427",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "25",
+        "x-envoy-upstream-service-time": "26",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "id": "a7a03cc3-e41a-4f4e-a9bb-97327e0000fb",
         "status": "Running",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-12T07:26:20Z",
+          "createdAt": "2025-11-14T00:33:26Z",
           "warnings": [],
           "contents": []
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/a7a03cc3-e41a-4f4e-a9bb-97327e0000fb?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -138,24 +138,24 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "03314397-d22a-47c8-bc5b-b306a958f608",
+        "apim-request-id": "40589b78-a999-4988-93dd-a4d9ecff05ba",
         "Content-Type": "application/json",
-        "Date": "Wed, 12 Nov 2025 07:26:24 GMT",
-        "request-id": "03314397-d22a-47c8-bc5b-b306a958f608",
+        "Date": "Fri, 14 Nov 2025 00:33:30 GMT",
+        "request-id": "40589b78-a999-4988-93dd-a4d9ecff05ba",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "29",
+        "x-envoy-upstream-service-time": "33",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "id": "a7a03cc3-e41a-4f4e-a9bb-97327e0000fb",
         "status": "Succeeded",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-12T07:26:20Z",
+          "createdAt": "2025-11-14T00:33:26Z",
           "warnings": [],
           "contents": [
             {
@@ -164,7 +164,251 @@
               "fields": {
                 "Summary": {
                   "type": "string",
-                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100, dated 11/15/2019, includes billing and shipping addresses in Redmond, WA, and details charges for consulting services, document fees, and printing fees with corresponding quantities, unit prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, and the total amount due is $610.00, which includes a previous unpaid balance of $500.00. The invoice also provides payment remittance information for Contoso Billing in New York, NY."
+                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100, was issued on 11/15/2019 with a due date of 12/15/2019. It includes billing and shipping addresses in Redmond, WA, and details of items charged such as consulting services, document fee, and printing fee with their quantities, unit prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, making a total of $110.00. There is a previous unpaid balance of $500.00, resulting in an amount due of $610.00. The invoice also provides remit-to address information in New York, NY.",
+                  "spans": [
+                    {
+                      "offset": 0,
+                      "length": 12
+                    },
+                    {
+                      "offset": 17,
+                      "length": 7
+                    },
+                    {
+                      "offset": 81,
+                      "length": 16
+                    },
+                    {
+                      "offset": 99,
+                      "length": 24
+                    },
+                    {
+                      "offset": 125,
+                      "length": 20
+                    },
+                    {
+                      "offset": 147,
+                      "length": 36
+                    },
+                    {
+                      "offset": 185,
+                      "length": 39
+                    },
+                    {
+                      "offset": 298,
+                      "length": 8
+                    },
+                    {
+                      "offset": 307,
+                      "length": 17
+                    },
+                    {
+                      "offset": 325,
+                      "length": 12
+                    },
+                    {
+                      "offset": 338,
+                      "length": 17
+                    },
+                    {
+                      "offset": 357,
+                      "length": 8
+                    },
+                    {
+                      "offset": 366,
+                      "length": 18
+                    },
+                    {
+                      "offset": 385,
+                      "length": 12
+                    },
+                    {
+                      "offset": 398,
+                      "length": 17
+                    },
+                    {
+                      "offset": 737,
+                      "length": 4
+                    },
+                    {
+                      "offset": 751,
+                      "length": 9
+                    },
+                    {
+                      "offset": 770,
+                      "length": 11
+                    },
+                    {
+                      "offset": 791,
+                      "length": 3
+                    },
+                    {
+                      "offset": 804,
+                      "length": 2
+                    },
+                    {
+                      "offset": 816,
+                      "length": 5
+                    },
+                    {
+                      "offset": 831,
+                      "length": 3
+                    },
+                    {
+                      "offset": 844,
+                      "length": 6
+                    },
+                    {
+                      "offset": 871,
+                      "length": 8
+                    },
+                    {
+                      "offset": 889,
+                      "length": 4
+                    },
+                    {
+                      "offset": 903,
+                      "length": 19
+                    },
+                    {
+                      "offset": 932,
+                      "length": 1
+                    },
+                    {
+                      "offset": 943,
+                      "length": 5
+                    },
+                    {
+                      "offset": 958,
+                      "length": 6
+                    },
+                    {
+                      "offset": 974,
+                      "length": 5
+                    },
+                    {
+                      "offset": 989,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1016,
+                      "length": 8
+                    },
+                    {
+                      "offset": 1034,
+                      "length": 4
+                    },
+                    {
+                      "offset": 1048,
+                      "length": 12
+                    },
+                    {
+                      "offset": 1070,
+                      "length": 1
+                    },
+                    {
+                      "offset": 1091,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1107,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1122,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1149,
+                      "length": 8
+                    },
+                    {
+                      "offset": 1167,
+                      "length": 4
+                    },
+                    {
+                      "offset": 1181,
+                      "length": 12
+                    },
+                    {
+                      "offset": 1203,
+                      "length": 2
+                    },
+                    {
+                      "offset": 1215,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1230,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1245,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1260,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1306,
+                      "length": 8
+                    },
+                    {
+                      "offset": 1324,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1352,
+                      "length": 9
+                    },
+                    {
+                      "offset": 1371,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1398,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1413,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1441,
+                      "length": 23
+                    },
+                    {
+                      "offset": 1474,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1502,
+                      "length": 10
+                    },
+                    {
+                      "offset": 1522,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1582,
+                      "length": 9
+                    },
+                    {
+                      "offset": 1592,
+                      "length": 15
+                    },
+                    {
+                      "offset": 1608,
+                      "length": 12
+                    },
+                    {
+                      "offset": 1621,
+                      "length": 19
+                    }
+                  ],
+                  "confidence": 0.009,
+                  "source": "Sanitized"
                 }
               },
               "kind": "document",
@@ -199,7 +443,7 @@
                         "offset": 8,
                         "length": 3
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -217,7 +461,7 @@
                         "offset": 17,
                         "length": 7
                       },
-                      "confidence": 0.986,
+                      "confidence": 0.988,
                       "source": "Sanitized"
                     },
                     {
@@ -244,7 +488,7 @@
                         "offset": 47,
                         "length": 3
                       },
-                      "confidence": 0.966,
+                      "confidence": 0.971,
                       "source": "Sanitized"
                     },
                     {
@@ -253,7 +497,7 @@
                         "offset": 51,
                         "length": 5
                       },
-                      "confidence": 0.882,
+                      "confidence": 0.891,
                       "source": "Sanitized"
                     },
                     {
@@ -262,7 +506,7 @@
                         "offset": 57,
                         "length": 2
                       },
-                      "confidence": 0.963,
+                      "confidence": 0.968,
                       "source": "Sanitized"
                     },
                     {
@@ -280,7 +524,7 @@
                         "offset": 64,
                         "length": 4
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -316,7 +560,7 @@
                         "offset": 74,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -325,7 +569,7 @@
                         "offset": 81,
                         "length": 7
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -334,7 +578,7 @@
                         "offset": 88,
                         "length": 1
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -343,7 +587,7 @@
                         "offset": 90,
                         "length": 3
                       },
-                      "confidence": 0.991,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -352,7 +596,7 @@
                         "offset": 93,
                         "length": 1
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -361,7 +605,7 @@
                         "offset": 94,
                         "length": 3
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -370,7 +614,7 @@
                         "offset": 99,
                         "length": 7
                       },
-                      "confidence": 0.99,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -397,7 +641,7 @@
                         "offset": 113,
                         "length": 10
                       },
-                      "confidence": 0.991,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -406,7 +650,7 @@
                         "offset": 125,
                         "length": 3
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -415,7 +659,7 @@
                         "offset": 129,
                         "length": 4
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -433,7 +677,7 @@
                         "offset": 135,
                         "length": 10
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -469,7 +713,7 @@
                         "offset": 162,
                         "length": 9
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -478,7 +722,7 @@
                         "offset": 172,
                         "length": 11
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -487,7 +731,7 @@
                         "offset": 185,
                         "length": 7
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -496,7 +740,7 @@
                         "offset": 193,
                         "length": 6
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -514,7 +758,7 @@
                         "offset": 201,
                         "length": 10
                       },
-                      "confidence": 0.828,
+                      "confidence": 0.85,
                       "source": "Sanitized"
                     },
                     {
@@ -523,7 +767,7 @@
                         "offset": 212,
                         "length": 1
                       },
-                      "confidence": 0.775,
+                      "confidence": 0.796,
                       "source": "Sanitized"
                     },
                     {
@@ -532,7 +776,7 @@
                         "offset": 214,
                         "length": 10
                       },
-                      "confidence": 0.819,
+                      "confidence": 0.843,
                       "source": "Sanitized"
                     },
                     {
@@ -541,7 +785,7 @@
                         "offset": 226,
                         "length": 8
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -550,7 +794,7 @@
                         "offset": 235,
                         "length": 2
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -568,7 +812,7 @@
                         "offset": 239,
                         "length": 3
                       },
-                      "confidence": 0.988,
+                      "confidence": 0.99,
                       "source": "Sanitized"
                     },
                     {
@@ -586,7 +830,7 @@
                         "offset": 243,
                         "length": 5
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -613,7 +857,7 @@
                         "offset": 265,
                         "length": 3
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -622,7 +866,7 @@
                         "offset": 269,
                         "length": 5
                       },
-                      "confidence": 0.984,
+                      "confidence": 0.986,
                       "source": "Sanitized"
                     },
                     {
@@ -649,7 +893,7 @@
                         "offset": 279,
                         "length": 7
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -676,7 +920,7 @@
                         "offset": 291,
                         "length": 5
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -685,7 +929,7 @@
                         "offset": 298,
                         "length": 4
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -748,7 +992,7 @@
                         "offset": 334,
                         "length": 2
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -802,7 +1046,7 @@
                         "offset": 357,
                         "length": 4
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -811,7 +1055,7 @@
                         "offset": 362,
                         "length": 2
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -847,7 +1091,7 @@
                         "offset": 385,
                         "length": 3
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -856,7 +1100,7 @@
                         "offset": 389,
                         "length": 4
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -910,7 +1154,7 @@
                         "offset": 410,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -946,7 +1190,7 @@
                         "offset": 434,
                         "length": 9
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -955,7 +1199,7 @@
                         "offset": 444,
                         "length": 8
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -964,7 +1208,7 @@
                         "offset": 453,
                         "length": 3
                       },
-                      "confidence": 0.986,
+                      "confidence": 0.988,
                       "source": "Sanitized"
                     },
                     {
@@ -973,7 +1217,7 @@
                         "offset": 457,
                         "length": 7
                       },
-                      "confidence": 0.972,
+                      "confidence": 0.977,
                       "source": "Sanitized"
                     },
                     {
@@ -982,7 +1226,7 @@
                         "offset": 465,
                         "length": 2
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1000,7 +1244,7 @@
                         "offset": 469,
                         "length": 7
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1027,7 +1271,7 @@
                         "offset": 481,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1036,7 +1280,7 @@
                         "offset": 506,
                         "length": 11
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1045,7 +1289,7 @@
                         "offset": 527,
                         "length": 1
                       },
-                      "confidence": 0.912,
+                      "confidence": 0.924,
                       "source": "Sanitized"
                     },
                     {
@@ -1054,7 +1298,7 @@
                         "offset": 528,
                         "length": 1
                       },
-                      "confidence": 0.953,
+                      "confidence": 0.959,
                       "source": "Sanitized"
                     },
                     {
@@ -1063,7 +1307,7 @@
                         "offset": 529,
                         "length": 1
                       },
-                      "confidence": 0.934,
+                      "confidence": 0.941,
                       "source": "Sanitized"
                     },
                     {
@@ -1072,7 +1316,7 @@
                         "offset": 530,
                         "length": 1
                       },
-                      "confidence": 0.96,
+                      "confidence": 0.966,
                       "source": "Sanitized"
                     },
                     {
@@ -1081,7 +1325,7 @@
                         "offset": 532,
                         "length": 6
                       },
-                      "confidence": 0.928,
+                      "confidence": 0.938,
                       "source": "Sanitized"
                     },
                     {
@@ -1090,7 +1334,7 @@
                         "offset": 548,
                         "length": 13
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1099,7 +1343,7 @@
                         "offset": 571,
                         "length": 7
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -1117,7 +1361,7 @@
                         "offset": 592,
                         "length": 1
                       },
-                      "confidence": 0.92,
+                      "confidence": 0.928,
                       "source": "Sanitized"
                     },
                     {
@@ -1126,7 +1370,7 @@
                         "offset": 593,
                         "length": 1
                       },
-                      "confidence": 0.938,
+                      "confidence": 0.943,
                       "source": "Sanitized"
                     },
                     {
@@ -1135,7 +1379,7 @@
                         "offset": 594,
                         "length": 1
                       },
-                      "confidence": 0.897,
+                      "confidence": 0.909,
                       "source": "Sanitized"
                     },
                     {
@@ -1144,7 +1388,7 @@
                         "offset": 595,
                         "length": 1
                       },
-                      "confidence": 0.914,
+                      "confidence": 0.922,
                       "source": "Sanitized"
                     },
                     {
@@ -1153,7 +1397,7 @@
                         "offset": 596,
                         "length": 1
                       },
-                      "confidence": 0.921,
+                      "confidence": 0.928,
                       "source": "Sanitized"
                     },
                     {
@@ -1162,7 +1406,7 @@
                         "offset": 597,
                         "length": 1
                       },
-                      "confidence": 0.931,
+                      "confidence": 0.939,
                       "source": "Sanitized"
                     },
                     {
@@ -1171,7 +1415,7 @@
                         "offset": 599,
                         "length": 5
                       },
-                      "confidence": 0.909,
+                      "confidence": 0.92,
                       "source": "Sanitized"
                     },
                     {
@@ -1189,7 +1433,7 @@
                         "offset": 650,
                         "length": 2
                       },
-                      "confidence": 0.929,
+                      "confidence": 0.941,
                       "source": "Sanitized"
                     },
                     {
@@ -1207,7 +1451,7 @@
                         "offset": 653,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1216,7 +1460,7 @@
                         "offset": 737,
                         "length": 4
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1225,7 +1469,7 @@
                         "offset": 751,
                         "length": 4
                       },
-                      "confidence": 0.99,
+                      "confidence": 0.991,
                       "source": "Sanitized"
                     },
                     {
@@ -1234,7 +1478,7 @@
                         "offset": 756,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1243,7 +1487,7 @@
                         "offset": 770,
                         "length": 11
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1252,7 +1496,7 @@
                         "offset": 791,
                         "length": 3
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -1261,7 +1505,7 @@
                         "offset": 804,
                         "length": 2
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1270,7 +1514,7 @@
                         "offset": 816,
                         "length": 5
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1279,7 +1523,7 @@
                         "offset": 831,
                         "length": 3
                       },
-                      "confidence": 0.96,
+                      "confidence": 0.967,
                       "source": "Sanitized"
                     },
                     {
@@ -1297,7 +1541,7 @@
                         "offset": 871,
                         "length": 8
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1306,7 +1550,7 @@
                         "offset": 889,
                         "length": 4
                       },
-                      "confidence": 0.985,
+                      "confidence": 0.987,
                       "source": "Sanitized"
                     },
                     {
@@ -1324,7 +1568,7 @@
                         "offset": 914,
                         "length": 8
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -1333,7 +1577,7 @@
                         "offset": 932,
                         "length": 1
                       },
-                      "confidence": 0.989,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -1360,7 +1604,7 @@
                         "offset": 959,
                         "length": 5
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -1378,7 +1622,7 @@
                         "offset": 975,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1396,7 +1640,7 @@
                         "offset": 990,
                         "length": 5
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1405,7 +1649,7 @@
                         "offset": 1016,
                         "length": 8
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1414,7 +1658,7 @@
                         "offset": 1034,
                         "length": 4
                       },
-                      "confidence": 0.795,
+                      "confidence": 0.845,
                       "source": "Sanitized"
                     },
                     {
@@ -1423,7 +1667,7 @@
                         "offset": 1048,
                         "length": 8
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1441,7 +1685,7 @@
                         "offset": 1070,
                         "length": 1
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -1459,7 +1703,7 @@
                         "offset": 1092,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1477,7 +1721,7 @@
                         "offset": 1108,
                         "length": 4
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -1495,7 +1739,7 @@
                         "offset": 1123,
                         "length": 5
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -1513,7 +1757,7 @@
                         "offset": 1167,
                         "length": 4
                       },
-                      "confidence": 0.981,
+                      "confidence": 0.985,
                       "source": "Sanitized"
                     },
                     {
@@ -1549,7 +1793,7 @@
                         "offset": 1215,
                         "length": 5
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1567,7 +1811,7 @@
                         "offset": 1231,
                         "length": 4
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -1585,7 +1829,7 @@
                         "offset": 1246,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1603,7 +1847,7 @@
                         "offset": 1261,
                         "length": 5
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1612,7 +1856,7 @@
                         "offset": 1306,
                         "length": 8
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1630,7 +1874,7 @@
                         "offset": 1325,
                         "length": 6
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1648,7 +1892,7 @@
                         "offset": 1358,
                         "length": 3
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -1666,7 +1910,7 @@
                         "offset": 1372,
                         "length": 5
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1693,7 +1937,7 @@
                         "offset": 1414,
                         "length": 6
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -1702,7 +1946,7 @@
                         "offset": 1441,
                         "length": 8
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1711,7 +1955,7 @@
                         "offset": 1450,
                         "length": 6
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1783,7 +2027,7 @@
                         "offset": 1552,
                         "length": 5
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -1801,7 +2045,7 @@
                         "offset": 1562,
                         "length": 3
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1810,7 +2054,7 @@
                         "offset": 1566,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1873,7 +2117,7 @@
                         "offset": 1600,
                         "length": 7
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -1882,7 +2126,7 @@
                         "offset": 1608,
                         "length": 3
                       },
-                      "confidence": 0.991,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -1891,7 +2135,7 @@
                         "offset": 1612,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1900,7 +2144,7 @@
                         "offset": 1618,
                         "length": 2
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -1909,7 +2153,7 @@
                         "offset": 1621,
                         "length": 3
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -1918,7 +2162,7 @@
                         "offset": 1625,
                         "length": 4
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -1954,7 +2198,7 @@
                         "offset": 1635,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     }
                   ],
@@ -4037,14 +4281,14 @@
           "documentPagesStandard": 1,
           "contextualizationTokens": 1000,
           "tokens": {
-            "gpt-4.1-mini-input": 4135,
-            "gpt-4.1-mini-output": 488
+            "gpt-4.1-mini-input": 4158,
+            "gpt-4.1-mini-output": 530
           }
         }
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/82b370a1-47ce-4a04-b0f1-695cbd4f28f9?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzerResults/a7a03cc3-e41a-4f4e-a9bb-97327e0000fb?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -4058,24 +4302,24 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2024-12-01-preview,2025-05-01-preview,2025-11-01",
-        "apim-request-id": "4674cf50-0419-4c45-9ad3-b86f0d40a108",
+        "apim-request-id": "f1ef1fb9-1318-4dca-8089-d81ab4a5e076",
         "Content-Type": "application/json",
-        "Date": "Wed, 12 Nov 2025 07:26:24 GMT",
-        "request-id": "4674cf50-0419-4c45-9ad3-b86f0d40a108",
+        "Date": "Fri, 14 Nov 2025 00:33:30 GMT",
+        "request-id": "f1ef1fb9-1318-4dca-8089-d81ab4a5e076",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "48",
+        "x-envoy-upstream-service-time": "91",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "82b370a1-47ce-4a04-b0f1-695cbd4f28f9",
+        "id": "a7a03cc3-e41a-4f4e-a9bb-97327e0000fb",
         "status": "Succeeded",
         "result": {
           "analyzerId": "prebuilt-documentAnalyzer",
           "apiVersion": "2025-11-01",
-          "createdAt": "2025-11-12T07:26:20Z",
+          "createdAt": "2025-11-14T00:33:26Z",
           "warnings": [],
           "contents": [
             {
@@ -4084,7 +4328,251 @@
               "fields": {
                 "Summary": {
                   "type": "string",
-                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100, dated 11/15/2019, includes billing and shipping addresses in Redmond, WA, and details charges for consulting services, document fees, and printing fees with corresponding quantities, unit prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, and the total amount due is $610.00, which includes a previous unpaid balance of $500.00. The invoice also provides payment remittance information for Contoso Billing in New York, NY."
+                  "valueString": "This document is an invoice from CONTOSO LTD. to MICROSOFT CORPORATION for services rendered during the period from 10/14/2019 to 11/14/2019. The invoice, numbered INV-100, was issued on 11/15/2019 with a due date of 12/15/2019. It includes billing and shipping addresses in Redmond, WA, and details of items charged such as consulting services, document fee, and printing fee with their quantities, unit prices, taxes, and amounts. The subtotal is $100.00, sales tax is $10.00, making a total of $110.00. There is a previous unpaid balance of $500.00, resulting in an amount due of $610.00. The invoice also provides remit-to address information in New York, NY.",
+                  "spans": [
+                    {
+                      "offset": 0,
+                      "length": 12
+                    },
+                    {
+                      "offset": 17,
+                      "length": 7
+                    },
+                    {
+                      "offset": 81,
+                      "length": 16
+                    },
+                    {
+                      "offset": 99,
+                      "length": 24
+                    },
+                    {
+                      "offset": 125,
+                      "length": 20
+                    },
+                    {
+                      "offset": 147,
+                      "length": 36
+                    },
+                    {
+                      "offset": 185,
+                      "length": 39
+                    },
+                    {
+                      "offset": 298,
+                      "length": 8
+                    },
+                    {
+                      "offset": 307,
+                      "length": 17
+                    },
+                    {
+                      "offset": 325,
+                      "length": 12
+                    },
+                    {
+                      "offset": 338,
+                      "length": 17
+                    },
+                    {
+                      "offset": 357,
+                      "length": 8
+                    },
+                    {
+                      "offset": 366,
+                      "length": 18
+                    },
+                    {
+                      "offset": 385,
+                      "length": 12
+                    },
+                    {
+                      "offset": 398,
+                      "length": 17
+                    },
+                    {
+                      "offset": 737,
+                      "length": 4
+                    },
+                    {
+                      "offset": 751,
+                      "length": 9
+                    },
+                    {
+                      "offset": 770,
+                      "length": 11
+                    },
+                    {
+                      "offset": 791,
+                      "length": 3
+                    },
+                    {
+                      "offset": 804,
+                      "length": 2
+                    },
+                    {
+                      "offset": 816,
+                      "length": 5
+                    },
+                    {
+                      "offset": 831,
+                      "length": 3
+                    },
+                    {
+                      "offset": 844,
+                      "length": 6
+                    },
+                    {
+                      "offset": 871,
+                      "length": 8
+                    },
+                    {
+                      "offset": 889,
+                      "length": 4
+                    },
+                    {
+                      "offset": 903,
+                      "length": 19
+                    },
+                    {
+                      "offset": 932,
+                      "length": 1
+                    },
+                    {
+                      "offset": 943,
+                      "length": 5
+                    },
+                    {
+                      "offset": 958,
+                      "length": 6
+                    },
+                    {
+                      "offset": 974,
+                      "length": 5
+                    },
+                    {
+                      "offset": 989,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1016,
+                      "length": 8
+                    },
+                    {
+                      "offset": 1034,
+                      "length": 4
+                    },
+                    {
+                      "offset": 1048,
+                      "length": 12
+                    },
+                    {
+                      "offset": 1070,
+                      "length": 1
+                    },
+                    {
+                      "offset": 1091,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1107,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1122,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1149,
+                      "length": 8
+                    },
+                    {
+                      "offset": 1167,
+                      "length": 4
+                    },
+                    {
+                      "offset": 1181,
+                      "length": 12
+                    },
+                    {
+                      "offset": 1203,
+                      "length": 2
+                    },
+                    {
+                      "offset": 1215,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1230,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1245,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1260,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1306,
+                      "length": 8
+                    },
+                    {
+                      "offset": 1324,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1352,
+                      "length": 9
+                    },
+                    {
+                      "offset": 1371,
+                      "length": 6
+                    },
+                    {
+                      "offset": 1398,
+                      "length": 5
+                    },
+                    {
+                      "offset": 1413,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1441,
+                      "length": 23
+                    },
+                    {
+                      "offset": 1474,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1502,
+                      "length": 10
+                    },
+                    {
+                      "offset": 1522,
+                      "length": 7
+                    },
+                    {
+                      "offset": 1582,
+                      "length": 9
+                    },
+                    {
+                      "offset": 1592,
+                      "length": 15
+                    },
+                    {
+                      "offset": 1608,
+                      "length": 12
+                    },
+                    {
+                      "offset": 1621,
+                      "length": 19
+                    }
+                  ],
+                  "confidence": 0.009,
+                  "source": "Sanitized"
                 }
               },
               "kind": "document",
@@ -4119,7 +4607,7 @@
                         "offset": 8,
                         "length": 3
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -4137,7 +4625,7 @@
                         "offset": 17,
                         "length": 7
                       },
-                      "confidence": 0.986,
+                      "confidence": 0.988,
                       "source": "Sanitized"
                     },
                     {
@@ -4164,7 +4652,7 @@
                         "offset": 47,
                         "length": 3
                       },
-                      "confidence": 0.966,
+                      "confidence": 0.971,
                       "source": "Sanitized"
                     },
                     {
@@ -4173,7 +4661,7 @@
                         "offset": 51,
                         "length": 5
                       },
-                      "confidence": 0.882,
+                      "confidence": 0.891,
                       "source": "Sanitized"
                     },
                     {
@@ -4182,7 +4670,7 @@
                         "offset": 57,
                         "length": 2
                       },
-                      "confidence": 0.963,
+                      "confidence": 0.968,
                       "source": "Sanitized"
                     },
                     {
@@ -4200,7 +4688,7 @@
                         "offset": 64,
                         "length": 4
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -4236,7 +4724,7 @@
                         "offset": 74,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4245,7 +4733,7 @@
                         "offset": 81,
                         "length": 7
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -4254,7 +4742,7 @@
                         "offset": 88,
                         "length": 1
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -4263,7 +4751,7 @@
                         "offset": 90,
                         "length": 3
                       },
-                      "confidence": 0.991,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -4272,7 +4760,7 @@
                         "offset": 93,
                         "length": 1
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -4281,7 +4769,7 @@
                         "offset": 94,
                         "length": 3
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4290,7 +4778,7 @@
                         "offset": 99,
                         "length": 7
                       },
-                      "confidence": 0.99,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -4317,7 +4805,7 @@
                         "offset": 113,
                         "length": 10
                       },
-                      "confidence": 0.991,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -4326,7 +4814,7 @@
                         "offset": 125,
                         "length": 3
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -4335,7 +4823,7 @@
                         "offset": 129,
                         "length": 4
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4353,7 +4841,7 @@
                         "offset": 135,
                         "length": 10
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -4389,7 +4877,7 @@
                         "offset": 162,
                         "length": 9
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -4398,7 +4886,7 @@
                         "offset": 172,
                         "length": 11
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -4407,7 +4895,7 @@
                         "offset": 185,
                         "length": 7
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -4416,7 +4904,7 @@
                         "offset": 193,
                         "length": 6
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -4434,7 +4922,7 @@
                         "offset": 201,
                         "length": 10
                       },
-                      "confidence": 0.828,
+                      "confidence": 0.85,
                       "source": "Sanitized"
                     },
                     {
@@ -4443,7 +4931,7 @@
                         "offset": 212,
                         "length": 1
                       },
-                      "confidence": 0.775,
+                      "confidence": 0.796,
                       "source": "Sanitized"
                     },
                     {
@@ -4452,7 +4940,7 @@
                         "offset": 214,
                         "length": 10
                       },
-                      "confidence": 0.819,
+                      "confidence": 0.843,
                       "source": "Sanitized"
                     },
                     {
@@ -4461,7 +4949,7 @@
                         "offset": 226,
                         "length": 8
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4470,7 +4958,7 @@
                         "offset": 235,
                         "length": 2
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -4488,7 +4976,7 @@
                         "offset": 239,
                         "length": 3
                       },
-                      "confidence": 0.988,
+                      "confidence": 0.99,
                       "source": "Sanitized"
                     },
                     {
@@ -4506,7 +4994,7 @@
                         "offset": 243,
                         "length": 5
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -4533,7 +5021,7 @@
                         "offset": 265,
                         "length": 3
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -4542,7 +5030,7 @@
                         "offset": 269,
                         "length": 5
                       },
-                      "confidence": 0.984,
+                      "confidence": 0.986,
                       "source": "Sanitized"
                     },
                     {
@@ -4569,7 +5057,7 @@
                         "offset": 279,
                         "length": 7
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4596,7 +5084,7 @@
                         "offset": 291,
                         "length": 5
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -4605,7 +5093,7 @@
                         "offset": 298,
                         "length": 4
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -4668,7 +5156,7 @@
                         "offset": 334,
                         "length": 2
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -4722,7 +5210,7 @@
                         "offset": 357,
                         "length": 4
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -4731,7 +5219,7 @@
                         "offset": 362,
                         "length": 2
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -4767,7 +5255,7 @@
                         "offset": 385,
                         "length": 3
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4776,7 +5264,7 @@
                         "offset": 389,
                         "length": 4
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -4830,7 +5318,7 @@
                         "offset": 410,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4866,7 +5354,7 @@
                         "offset": 434,
                         "length": 9
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -4875,7 +5363,7 @@
                         "offset": 444,
                         "length": 8
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -4884,7 +5372,7 @@
                         "offset": 453,
                         "length": 3
                       },
-                      "confidence": 0.986,
+                      "confidence": 0.988,
                       "source": "Sanitized"
                     },
                     {
@@ -4893,7 +5381,7 @@
                         "offset": 457,
                         "length": 7
                       },
-                      "confidence": 0.972,
+                      "confidence": 0.977,
                       "source": "Sanitized"
                     },
                     {
@@ -4902,7 +5390,7 @@
                         "offset": 465,
                         "length": 2
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -4920,7 +5408,7 @@
                         "offset": 469,
                         "length": 7
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4947,7 +5435,7 @@
                         "offset": 481,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -4956,7 +5444,7 @@
                         "offset": 506,
                         "length": 11
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -4965,7 +5453,7 @@
                         "offset": 527,
                         "length": 1
                       },
-                      "confidence": 0.912,
+                      "confidence": 0.924,
                       "source": "Sanitized"
                     },
                     {
@@ -4974,7 +5462,7 @@
                         "offset": 528,
                         "length": 1
                       },
-                      "confidence": 0.953,
+                      "confidence": 0.959,
                       "source": "Sanitized"
                     },
                     {
@@ -4983,7 +5471,7 @@
                         "offset": 529,
                         "length": 1
                       },
-                      "confidence": 0.934,
+                      "confidence": 0.941,
                       "source": "Sanitized"
                     },
                     {
@@ -4992,7 +5480,7 @@
                         "offset": 530,
                         "length": 1
                       },
-                      "confidence": 0.96,
+                      "confidence": 0.966,
                       "source": "Sanitized"
                     },
                     {
@@ -5001,7 +5489,7 @@
                         "offset": 532,
                         "length": 6
                       },
-                      "confidence": 0.928,
+                      "confidence": 0.938,
                       "source": "Sanitized"
                     },
                     {
@@ -5010,7 +5498,7 @@
                         "offset": 548,
                         "length": 13
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5019,7 +5507,7 @@
                         "offset": 571,
                         "length": 7
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -5037,7 +5525,7 @@
                         "offset": 592,
                         "length": 1
                       },
-                      "confidence": 0.92,
+                      "confidence": 0.928,
                       "source": "Sanitized"
                     },
                     {
@@ -5046,7 +5534,7 @@
                         "offset": 593,
                         "length": 1
                       },
-                      "confidence": 0.938,
+                      "confidence": 0.943,
                       "source": "Sanitized"
                     },
                     {
@@ -5055,7 +5543,7 @@
                         "offset": 594,
                         "length": 1
                       },
-                      "confidence": 0.897,
+                      "confidence": 0.909,
                       "source": "Sanitized"
                     },
                     {
@@ -5064,7 +5552,7 @@
                         "offset": 595,
                         "length": 1
                       },
-                      "confidence": 0.914,
+                      "confidence": 0.922,
                       "source": "Sanitized"
                     },
                     {
@@ -5073,7 +5561,7 @@
                         "offset": 596,
                         "length": 1
                       },
-                      "confidence": 0.921,
+                      "confidence": 0.928,
                       "source": "Sanitized"
                     },
                     {
@@ -5082,7 +5570,7 @@
                         "offset": 597,
                         "length": 1
                       },
-                      "confidence": 0.931,
+                      "confidence": 0.939,
                       "source": "Sanitized"
                     },
                     {
@@ -5091,7 +5579,7 @@
                         "offset": 599,
                         "length": 5
                       },
-                      "confidence": 0.909,
+                      "confidence": 0.92,
                       "source": "Sanitized"
                     },
                     {
@@ -5109,7 +5597,7 @@
                         "offset": 650,
                         "length": 2
                       },
-                      "confidence": 0.929,
+                      "confidence": 0.941,
                       "source": "Sanitized"
                     },
                     {
@@ -5127,7 +5615,7 @@
                         "offset": 653,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5136,7 +5624,7 @@
                         "offset": 737,
                         "length": 4
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -5145,7 +5633,7 @@
                         "offset": 751,
                         "length": 4
                       },
-                      "confidence": 0.99,
+                      "confidence": 0.991,
                       "source": "Sanitized"
                     },
                     {
@@ -5154,7 +5642,7 @@
                         "offset": 756,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5163,7 +5651,7 @@
                         "offset": 770,
                         "length": 11
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5172,7 +5660,7 @@
                         "offset": 791,
                         "length": 3
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -5181,7 +5669,7 @@
                         "offset": 804,
                         "length": 2
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5190,7 +5678,7 @@
                         "offset": 816,
                         "length": 5
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5199,7 +5687,7 @@
                         "offset": 831,
                         "length": 3
                       },
-                      "confidence": 0.96,
+                      "confidence": 0.967,
                       "source": "Sanitized"
                     },
                     {
@@ -5217,7 +5705,7 @@
                         "offset": 871,
                         "length": 8
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5226,7 +5714,7 @@
                         "offset": 889,
                         "length": 4
                       },
-                      "confidence": 0.985,
+                      "confidence": 0.987,
                       "source": "Sanitized"
                     },
                     {
@@ -5244,7 +5732,7 @@
                         "offset": 914,
                         "length": 8
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -5253,7 +5741,7 @@
                         "offset": 932,
                         "length": 1
                       },
-                      "confidence": 0.989,
+                      "confidence": 0.992,
                       "source": "Sanitized"
                     },
                     {
@@ -5280,7 +5768,7 @@
                         "offset": 959,
                         "length": 5
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -5298,7 +5786,7 @@
                         "offset": 975,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5316,7 +5804,7 @@
                         "offset": 990,
                         "length": 5
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5325,7 +5813,7 @@
                         "offset": 1016,
                         "length": 8
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5334,7 +5822,7 @@
                         "offset": 1034,
                         "length": 4
                       },
-                      "confidence": 0.795,
+                      "confidence": 0.845,
                       "source": "Sanitized"
                     },
                     {
@@ -5343,7 +5831,7 @@
                         "offset": 1048,
                         "length": 8
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5361,7 +5849,7 @@
                         "offset": 1070,
                         "length": 1
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -5379,7 +5867,7 @@
                         "offset": 1092,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -5397,7 +5885,7 @@
                         "offset": 1108,
                         "length": 4
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -5415,7 +5903,7 @@
                         "offset": 1123,
                         "length": 5
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -5433,7 +5921,7 @@
                         "offset": 1167,
                         "length": 4
                       },
-                      "confidence": 0.981,
+                      "confidence": 0.985,
                       "source": "Sanitized"
                     },
                     {
@@ -5469,7 +5957,7 @@
                         "offset": 1215,
                         "length": 5
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5487,7 +5975,7 @@
                         "offset": 1231,
                         "length": 4
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -5505,7 +5993,7 @@
                         "offset": 1246,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5523,7 +6011,7 @@
                         "offset": 1261,
                         "length": 5
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5532,7 +6020,7 @@
                         "offset": 1306,
                         "length": 8
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5550,7 +6038,7 @@
                         "offset": 1325,
                         "length": 6
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -5568,7 +6056,7 @@
                         "offset": 1358,
                         "length": 3
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -5586,7 +6074,7 @@
                         "offset": 1372,
                         "length": 5
                       },
-                      "confidence": 0.993,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5613,7 +6101,7 @@
                         "offset": 1414,
                         "length": 6
                       },
-                      "confidence": 0.994,
+                      "confidence": 0.995,
                       "source": "Sanitized"
                     },
                     {
@@ -5622,7 +6110,7 @@
                         "offset": 1441,
                         "length": 8
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -5631,7 +6119,7 @@
                         "offset": 1450,
                         "length": 6
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -5703,7 +6191,7 @@
                         "offset": 1552,
                         "length": 5
                       },
-                      "confidence": 0.997,
+                      "confidence": 0.998,
                       "source": "Sanitized"
                     },
                     {
@@ -5721,7 +6209,7 @@
                         "offset": 1562,
                         "length": 3
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5730,7 +6218,7 @@
                         "offset": 1566,
                         "length": 4
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5793,7 +6281,7 @@
                         "offset": 1600,
                         "length": 7
                       },
-                      "confidence": 0.998,
+                      "confidence": 0.999,
                       "source": "Sanitized"
                     },
                     {
@@ -5802,7 +6290,7 @@
                         "offset": 1608,
                         "length": 3
                       },
-                      "confidence": 0.991,
+                      "confidence": 0.993,
                       "source": "Sanitized"
                     },
                     {
@@ -5811,7 +6299,7 @@
                         "offset": 1612,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -5820,7 +6308,7 @@
                         "offset": 1618,
                         "length": 2
                       },
-                      "confidence": 0.996,
+                      "confidence": 0.997,
                       "source": "Sanitized"
                     },
                     {
@@ -5829,7 +6317,7 @@
                         "offset": 1621,
                         "length": 3
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     },
                     {
@@ -5838,7 +6326,7 @@
                         "offset": 1625,
                         "length": 4
                       },
-                      "confidence": 0.992,
+                      "confidence": 0.994,
                       "source": "Sanitized"
                     },
                     {
@@ -5874,7 +6362,7 @@
                         "offset": 1635,
                         "length": 5
                       },
-                      "confidence": 0.995,
+                      "confidence": 0.996,
                       "source": "Sanitized"
                     }
                   ],
@@ -7957,8 +8445,8 @@
           "documentPagesStandard": 1,
           "contextualizationTokens": 1000,
           "tokens": {
-            "gpt-4.1-mini-input": 4135,
-            "gpt-4.1-mini-output": 488
+            "gpt-4.1-mini-input": 4158,
+            "gpt-4.1-mini-output": 530
           }
         }
       }
