@@ -15,14 +15,14 @@
       "StatusCode": 404,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "0e95a71d-1147-4052-9dca-6c19a222a562",
+        "apim-request-id": "66be678f-0db6-4bf1-9d28-bae64419bd18",
         "Content-Length": "146",
         "Content-Type": "application/json; charset=utf-8",
-        "Date": "Fri, 14 Nov 2025 00:33:52 GMT",
-        "request-id": "0e95a71d-1147-4052-9dca-6c19a222a562",
+        "Date": "Tue, 18 Nov 2025 19:42:17 GMT",
+        "request-id": "66be678f-0db6-4bf1-9d28-bae64419bd18",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "15",
+        "x-envoy-upstream-service-time": "12",
         "x-ms-error-code": "NotFound",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
@@ -39,7 +39,7 @@
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080432?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494935?api-version=2025-11-01",
       "RequestMethod": "DELETE",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -53,13 +53,13 @@
       "StatusCode": 204,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "2a42c1f7-26c4-494a-b135-edabaa7f4e8e",
+        "apim-request-id": "159723eb-059d-4f9f-b292-550417f73733",
         "Content-Length": "0",
-        "Date": "Fri, 14 Nov 2025 00:33:52 GMT",
-        "request-id": "2a42c1f7-26c4-494a-b135-edabaa7f4e8e",
+        "Date": "Tue, 18 Nov 2025 19:42:17 GMT",
+        "request-id": "159723eb-059d-4f9f-b292-550417f73733",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "31",
+        "x-envoy-upstream-service-time": "29",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
@@ -67,6 +67,6 @@
     }
   ],
   "Variables": {
-    "testAnalyzerId": "test_analyzer_1763080432"
+    "testAnalyzerId": "test_analyzer_1763494935"
   }
 }

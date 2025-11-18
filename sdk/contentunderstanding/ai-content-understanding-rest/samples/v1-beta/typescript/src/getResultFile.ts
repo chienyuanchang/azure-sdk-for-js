@@ -64,7 +64,7 @@ async function main(): Promise<void> {
 
     // Step 3: Use prebuilt video analyzer
     console.log("Step 3: Using prebuilt video analyzer...");
-    const analyzerId = "prebuilt-videoAnalyzer";
+    const analyzerId = "prebuilt-videoSearch";
     console.log(`  Analyzer ID: ${analyzerId}`);
     console.log("  (Using prebuilt analyzer - no creation needed)\n");
 
@@ -149,7 +149,7 @@ async function main(): Promise<void> {
     if (keyframeTimeMs.length === 0) {
       console.log();
       console.log("  ⚠️  No keyframes found in the analysis result");
-      console.log("  NOTE: The prebuilt-videoAnalyzer may not generate keyframes by default.");
+      console.log("  NOTE: The prebuilt-videoSearch may not generate keyframes by default.");
       console.log(
         "        To generate keyframes, a custom video analyzer with specific configuration",
       );

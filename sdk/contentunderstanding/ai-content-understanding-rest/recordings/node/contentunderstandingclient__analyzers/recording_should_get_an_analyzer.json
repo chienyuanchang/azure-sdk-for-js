@@ -1,7 +1,7 @@
 {
   "Entries": [
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080411?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494902?api-version=2025-11-01",
       "RequestMethod": "PUT",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -38,23 +38,23 @@
       "StatusCode": 201,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "a189729c-5ae0-4fb8-a60b-e609fc3642f3",
+        "apim-request-id": "3ae66392-32d0-4c2a-b7cf-b1b365780b98",
         "Content-Type": "application/json",
-        "Date": "Fri, 14 Nov 2025 00:33:31 GMT",
-        "Operation-Location": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080411/operations/a189729c-5ae0-4fb8-a60b-e609fc3642f3?api-version=2025-11-01",
-        "request-id": "a189729c-5ae0-4fb8-a60b-e609fc3642f3",
+        "Date": "Tue, 18 Nov 2025 19:41:43 GMT",
+        "Operation-Location": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494902/operations/3ae66392-32d0-4c2a-b7cf-b1b365780b98?api-version=2025-11-01",
+        "request-id": "3ae66392-32d0-4c2a-b7cf-b1b365780b98",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "195",
+        "x-envoy-upstream-service-time": "112",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "analyzerId": "test_analyzer_1763080411",
+        "analyzerId": "test_analyzer_1763494902",
         "description": "Test analyzer for extraction",
-        "createdAt": "2025-11-14T00:33:31Z",
-        "lastModifiedAt": "2025-11-14T00:33:31Z",
+        "createdAt": "2025-11-18T19:41:43Z",
+        "lastModifiedAt": "2025-11-18T19:41:43Z",
         "baseAnalyzerId": "prebuilt-document",
         "config": {
           "returnDetails": true,
@@ -105,7 +105,7 @@
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080411/operations/a189729c-5ae0-4fb8-a60b-e609fc3642f3?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494902/operations/3ae66392-32d0-4c2a-b7cf-b1b365780b98?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -119,25 +119,25 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "6e566a96-e440-45dd-90bc-09047f7f5182",
+        "apim-request-id": "ee7639ae-6b59-4173-8052-11e0669dd3c6",
         "Content-Type": "application/json",
-        "Date": "Fri, 14 Nov 2025 00:33:31 GMT",
-        "request-id": "6e566a96-e440-45dd-90bc-09047f7f5182",
+        "Date": "Tue, 18 Nov 2025 19:41:43 GMT",
+        "request-id": "ee7639ae-6b59-4173-8052-11e0669dd3c6",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "65",
+        "x-envoy-upstream-service-time": "55",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "a189729c-5ae0-4fb8-a60b-e609fc3642f3",
+        "id": "3ae66392-32d0-4c2a-b7cf-b1b365780b98",
         "status": "Running",
         "result": {
-          "analyzerId": "test_analyzer_1763080411",
+          "analyzerId": "test_analyzer_1763494902",
           "description": "Test analyzer for extraction",
-          "createdAt": "2025-11-14T00:33:31Z",
-          "lastModifiedAt": "2025-11-14T00:33:31Z",
+          "createdAt": "2025-11-18T19:41:43Z",
+          "lastModifiedAt": "2025-11-18T19:41:43Z",
           "baseAnalyzerId": "prebuilt-document",
           "config": {
             "returnDetails": true,
@@ -189,7 +189,7 @@
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080411/operations/a189729c-5ae0-4fb8-a60b-e609fc3642f3?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494902/operations/3ae66392-32d0-4c2a-b7cf-b1b365780b98?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -203,25 +203,25 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "74a279b7-10c8-42ea-8293-ca492dcec9d1",
+        "apim-request-id": "1dd05060-588b-4ac3-bd09-6e14663c8517",
         "Content-Type": "application/json",
-        "Date": "Fri, 14 Nov 2025 00:33:33 GMT",
-        "request-id": "74a279b7-10c8-42ea-8293-ca492dcec9d1",
+        "Date": "Tue, 18 Nov 2025 19:41:46 GMT",
+        "request-id": "1dd05060-588b-4ac3-bd09-6e14663c8517",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "63",
+        "x-envoy-upstream-service-time": "64",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "id": "a189729c-5ae0-4fb8-a60b-e609fc3642f3",
+        "id": "3ae66392-32d0-4c2a-b7cf-b1b365780b98",
         "status": "Succeeded",
         "result": {
-          "analyzerId": "test_analyzer_1763080411",
+          "analyzerId": "test_analyzer_1763494902",
           "description": "Test analyzer for extraction",
-          "createdAt": "2025-11-14T00:33:31Z",
-          "lastModifiedAt": "2025-11-14T00:33:33Z",
+          "createdAt": "2025-11-18T19:41:43Z",
+          "lastModifiedAt": "2025-11-18T19:41:46Z",
           "baseAnalyzerId": "prebuilt-document",
           "config": {
             "returnDetails": true,
@@ -273,7 +273,7 @@
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080411?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494902?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -287,22 +287,22 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "a4a45304-5c6b-4f6f-9c45-e7c781321254",
+        "apim-request-id": "a0d89284-403d-49a9-8984-fc387bc9de58",
         "Content-Type": "application/json",
-        "Date": "Fri, 14 Nov 2025 00:33:33 GMT",
-        "request-id": "a4a45304-5c6b-4f6f-9c45-e7c781321254",
+        "Date": "Tue, 18 Nov 2025 19:41:46 GMT",
+        "request-id": "a0d89284-403d-49a9-8984-fc387bc9de58",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "24",
+        "x-envoy-upstream-service-time": "25",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "analyzerId": "test_analyzer_1763080411",
+        "analyzerId": "test_analyzer_1763494902",
         "description": "Test analyzer for extraction",
-        "createdAt": "2025-11-14T00:33:31Z",
-        "lastModifiedAt": "2025-11-14T00:33:33Z",
+        "createdAt": "2025-11-18T19:41:43Z",
+        "lastModifiedAt": "2025-11-18T19:41:46Z",
         "baseAnalyzerId": "prebuilt-document",
         "config": {
           "returnDetails": true,
@@ -353,7 +353,7 @@
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080411?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494902?api-version=2025-11-01",
       "RequestMethod": "GET",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -367,22 +367,22 @@
       "StatusCode": 200,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "2c339383-4abd-40bd-9103-bf4981ae21fb",
+        "apim-request-id": "6f6594c1-3161-4803-9d1c-d9d33376480a",
         "Content-Type": "application/json",
-        "Date": "Fri, 14 Nov 2025 00:33:33 GMT",
-        "request-id": "2c339383-4abd-40bd-9103-bf4981ae21fb",
+        "Date": "Tue, 18 Nov 2025 19:41:46 GMT",
+        "request-id": "6f6594c1-3161-4803-9d1c-d9d33376480a",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "Transfer-Encoding": "chunked",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "23",
+        "x-envoy-upstream-service-time": "25",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
       "ResponseBody": {
-        "analyzerId": "test_analyzer_1763080411",
+        "analyzerId": "test_analyzer_1763494902",
         "description": "Test analyzer for extraction",
-        "createdAt": "2025-11-14T00:33:31Z",
-        "lastModifiedAt": "2025-11-14T00:33:33Z",
+        "createdAt": "2025-11-18T19:41:43Z",
+        "lastModifiedAt": "2025-11-18T19:41:46Z",
         "baseAnalyzerId": "prebuilt-document",
         "config": {
           "returnDetails": true,
@@ -433,7 +433,7 @@
       }
     },
     {
-      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763080411?api-version=2025-11-01",
+      "RequestUri": "https://endpoint/contentunderstanding/analyzers/test_analyzer_1763494902?api-version=2025-11-01",
       "RequestMethod": "DELETE",
       "RequestHeaders": {
         "Accept": "application/json",
@@ -447,13 +447,13 @@
       "StatusCode": 204,
       "ResponseHeaders": {
         "api-supported-versions": "2025-05-01-preview,2025-11-01",
-        "apim-request-id": "67ac0b11-9dd8-4387-a002-0929ca8cf859",
+        "apim-request-id": "70e02031-b558-4607-bc73-5ac48c6a903e",
         "Content-Length": "0",
-        "Date": "Fri, 14 Nov 2025 00:33:33 GMT",
-        "request-id": "67ac0b11-9dd8-4387-a002-0929ca8cf859",
+        "Date": "Tue, 18 Nov 2025 19:41:46 GMT",
+        "request-id": "70e02031-b558-4607-bc73-5ac48c6a903e",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
         "X-Content-Type-Options": "nosniff",
-        "x-envoy-upstream-service-time": "95",
+        "x-envoy-upstream-service-time": "106",
         "x-ms-region": "West US 3",
         "x-ms-request-id": "Sanitized"
       },
@@ -461,6 +461,6 @@
     }
   ],
   "Variables": {
-    "testAnalyzerId": "test_analyzer_1763080411"
+    "testAnalyzerId": "test_analyzer_1763494902"
   }
 }

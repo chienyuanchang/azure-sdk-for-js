@@ -30,7 +30,7 @@ describe("ContentUnderstandingClient - Analysis", () => {
       new AzureKeyCredential(getKey()),
       recorder.configureClientOptions({}),
     );
-    testAnalyzerId = "prebuilt-documentAnalyzer";
+    testAnalyzerId = "prebuilt-documentSearch";
   });
 
   afterEach(async () => {

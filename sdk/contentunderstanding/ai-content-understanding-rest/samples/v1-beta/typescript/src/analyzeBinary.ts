@@ -4,9 +4,9 @@
 // --------------------------------------------------------------------------
 
 /**
- * @summary Analyze a PDF file from disk using the prebuilt-documentAnalyzer.
+ * @summary Analyze a PDF file from disk using the prebuilt-documentSearch.
  *
- * Analyze a PDF file from disk using the prebuilt-documentAnalyzer.
+ * Analyze a PDF file from disk using the prebuilt-documentSearch.
  *
  * Environment variables:
  *   AZURE_CONTENT_UNDERSTANDING_ENDPOINT   (required)
@@ -133,7 +133,7 @@ async function main(): Promise<void> {
     console.log("  Client is ready\n");
 
     console.log("Step 5: Analyzing document...");
-    const analyzerId = "prebuilt-documentAnalyzer";
+    const analyzerId = "prebuilt-documentSearch";
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Analyzing...");
 

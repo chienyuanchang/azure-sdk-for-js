@@ -4,9 +4,9 @@
 // --------------------------------------------------------------------------
 
 /**
- * @summary Analyze a document from a URL using the prebuilt-documentAnalyzer.
+ * @summary Analyze a document from a URL using the prebuilt-documentSearch.
  *
- * Analyze a document from a URL using the prebuilt-documentAnalyzer.
+ * Analyze a document from a URL using the prebuilt-documentSearch.
  *
  * Environment variables:
  *   AZURE_CONTENT_UNDERSTANDING_ENDPOINT   (required)
@@ -108,7 +108,7 @@ async function main() {
     const fileUrl =
       "https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf";
     console.log(`  URL: ${fileUrl}`);
-    const analyzerId = "prebuilt-documentAnalyzer";
+    const analyzerId = "prebuilt-documentSearch";
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Analyzing...");
 

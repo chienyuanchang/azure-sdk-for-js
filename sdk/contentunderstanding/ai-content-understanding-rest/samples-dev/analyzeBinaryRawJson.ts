@@ -4,9 +4,9 @@
 // --------------------------------------------------------------------------
 
 /**
- * @summary Analyze a PDF file from disk using the prebuilt-documentAnalyzer and save the raw JSON response.
+ * @summary Analyze a PDF file from disk using the prebuilt-documentSearch and save the raw JSON response.
  *
- * Analyze a PDF file from disk using the prebuilt-documentAnalyzer and save the raw JSON response.
+ * Analyze a PDF file from disk using the prebuilt-documentSearch and save the raw JSON response.
  *
  * IMPORTANT NOTES:
  * - The SDK returns analysis results with an object model, which is easier to navigate and retrieve
@@ -93,7 +93,7 @@ async function main(): Promise<void> {
 
     // Step 5: Analyze document using the poller
     console.log("Step 5: Analyzing document...");
-    const analyzerId = "prebuilt-documentAnalyzer";
+    const analyzerId = "prebuilt-documentSearch";
     console.log(`  Analyzer: ${analyzerId}`);
     console.log("  Using protocol method to access raw JSON response");
     console.log("  Analyzing...");
